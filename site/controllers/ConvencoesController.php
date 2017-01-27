@@ -17,9 +17,9 @@ class ConvencoesController extends Controller
         $modelAgencias = Convencao::find()->where('Id_Categoria_Convencao = :id_categoria',[':id_categoria' => 2])->orderBy('id desc')->all();
         $modelSindilistas = Convencao::find()->where('Id_Categoria_Convencao = :id_categoria',[':id_categoria' => 3])->orderBy('id desc')->all();
         return $this->render('index', [
-                'paineis' => ["titulo" => "Painéis", "documentos" => $modelSindipaineis],
+                'paineis' => ["titulo" => "Sindipainéis", "documentos" => $modelSindipaineis],
                 'agencias' => ["titulo" => "Agências", "documentos" => $modelAgencias],
-                'listas' => ["titulo" => "Listas", "documentos" => $modelSindilistas],
+                'listas' => ["titulo" => "Sindilistas", "documentos" => $modelSindilistas],
             ]);
     }
 }

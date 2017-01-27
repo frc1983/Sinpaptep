@@ -3,23 +3,21 @@
 $this->title = 'Sindicato dos Publicitários e Agências de Propaganda do Rio Grande do Sul';
 ?>
 <div class="site-index">
-
-    <div class="jumbotron">
-        <h1>Destaques</h1>
-
+    <div class="row">
+        <h1 class="title-border">Destaques</h1>
         <?php
         foreach ($destaques as $destaque) {
             echo "<div class='col-lg-4'>";
             echo '<h2>' . $destaque->Titulo . '</h2>';
-            echo '<p class="lead">' . $destaque->Resumo . '</p>';
+            echo '<p class="" style="text-align: justify">' . $destaque->Resumo . '</p>';
             echo '<p><a class="btn btn-lg btn-success" href="' . $destaque->Link . '">Ver mais</a></p>';
             echo "</div>";
         }
         ?>
     </div>
 
-    <div class="body-content" style="clear: both;">
-        <h1>Notícias</h1>
+    <div class="row" style="clear: both;">
+        <h1 class="title-border">Notícias</h1>
 
         <?php
         foreach ($noticias as $noticia) {
@@ -33,8 +31,8 @@ $this->title = 'Sindicato dos Publicitários e Agências de Propaganda do Rio Gr
         ?>
     </div>
 
-    <div class="body-content" style="clear: both;">
-        <div class="row">
+    <div class="row" style="clear: both;">
+            <h1 class="title-border">Convenções</h1>
             <?php
             for ($i = 0; $i <= count($convencoes) - 1; $i++) {
                 //echo($convencao[0]->idCategoriaConvencao->Nome);
@@ -49,27 +47,25 @@ $this->title = 'Sindicato dos Publicitários e Agências de Propaganda do Rio Gr
                 }
             }
             ?>
-        </div>
-
     </div>
-    
-    <?php if(count($parceiros) > 0) { ?>
-    <div class="row">        
-        <h1 class="title-border">Parceiros</h1>
-        <ul class="bxslider">
-            <?php
+
+    <?php if (count($parceiros) > 0) { ?>
+        <div class="row">        
+            <h1 class="title-border">Parceiros</h1>
+            <ul class="bxslider">
+                <?php
                 foreach ($parceiros as $key => $value) {
-                    echo '<li><img src="'.$value->Logo.'" /></li>';
+                    echo '<li><img src="' . $value->Logo . '" /></li>';
                 }
                 ?>
-        </ul>
-    </div>
+            </ul>
+        </div>
     <?php } ?>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.5/jquery.bxslider.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.5/jquery.bxslider.min.css" type="text/css" />
-    <script>        
-        $(document).ready(function() {
+    <script>
+        $(document).ready(function () {
             $('.bxslider').bxSlider({
                 minSlides: 5,
                 maxSlides: 5,
@@ -78,7 +74,7 @@ $this->title = 'Sindicato dos Publicitários e Agências de Propaganda do Rio Gr
                 adaptiveHeight: false,
                 responsive: true
             });
-                $('.carousel').carousel({
+            $('.carousel').carousel({
                 interval: 5000
             })
         });
