@@ -17,7 +17,7 @@ class SiteController extends Controller {
 
     public function behaviors() {
         return [
-            /*'access' => [
+            'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['logout'],
                 'rules' => [
@@ -33,7 +33,7 @@ class SiteController extends Controller {
                 'actions' => [
                     'logout' => ['post'],
                 ],
-            ],*/
+            ],
         ];
     }
 
@@ -42,10 +42,10 @@ class SiteController extends Controller {
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
-            /*'captcha' => [
+            'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],*/
+            ],
         ];
     }
 

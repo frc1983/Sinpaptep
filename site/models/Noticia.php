@@ -23,7 +23,7 @@ class Noticia extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'Noticia';
+        return 'noticia';
     }
 
     /**
@@ -46,9 +46,9 @@ class Noticia extends \yii\db\ActiveRecord
     {
         return [
             'Id' => 'ID',
-            'Id_Categoria' => 'Id  Categoria',
+            'Id_Categoria' => 'Id Categoria',
             'Titulo' => 'Titulo',
-            'Sub_Titulo' => 'Sub  Titulo',
+            'Sub_Titulo' => 'Sub Título',
             'Texto' => 'Texto',
         ];
     }
@@ -64,7 +64,7 @@ class Noticia extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdCategoria()
+    public function getCategoria()
     {
         return $this->hasOne(CategoriaNoticia::className(), ['Id' => 'Id_Categoria']);
     }

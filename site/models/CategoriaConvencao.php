@@ -19,7 +19,7 @@ class CategoriaConvencao extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'Categoria_Convencao';
+        return 'categoria_convencao';
     }
 
     /**

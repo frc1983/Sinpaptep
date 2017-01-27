@@ -38,9 +38,10 @@ AppAsset::register($this);
                     'class' => 'navbar-inverse header',
                 ],
             ]);
+            if (Yii::$app->user->isGuest) {
                 echo Nav::widget([
                 'activateItems' => true,
-        	    'activateParents' => true,
+        	'activateParents' => true,
                     'options' => ['class' => 'navbar-nav'],
                     'items' => [
                         ['label' => 'HOME', 'url' => ['/site/index']],
@@ -60,7 +61,15 @@ AppAsset::register($this);
                         ['label' => 'SÓCIOS', 'url' => ['/socios/index']],
                         ['label' => 'CONTATO', 'url' => ['/contato/index']]
                     ],
-                ]);            
+                ]);
+            } else if (!Yii::$app->user->isGuest) {
+                echo Nav::widget([
+                    'options' => ['class' => 'navbar-nav navbar-right'],
+                    'items' => [
+                        ['label' => 'Logout (' . Yii::$app->user->identity->username . ')', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']],
+                    ],
+                ]);
+            }
 
             NavBar::end();
             ?>

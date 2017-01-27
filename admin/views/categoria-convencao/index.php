@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\CategoriaConvencaoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Categorias das Convenções';
+$this->title = 'Categorias das ConvenÃ§Ãµes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="categoria--convencao-index">
