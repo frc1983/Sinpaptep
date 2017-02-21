@@ -2,11 +2,35 @@
 
 namespace app\controllers;
 
-class ContatoController extends \yii\web\Controller
-{
-    public function actionIndex()
-    {
-        return $this->render('index');
+use Yii;
+use app\models\Contato;
+use yii\web\Controller;
+
+class ContatoController extends Controller {
+
+    public function actionIndex() {
+        return $this->render('index', [
+                    'model' => new Contato(),
+        ]);
+    }
+
+    public function actionSend() {
+        $model = new Contato();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->mensagem = Yii::$app->request->post()['Contato']['mensagem'];
+            Yii::$app->mailer->compose() // a view rendering result becomes the message body here
+                    ->setFrom($model->email)
+                    ->setTo(Yii::$app->params['adminEmail'])
+                    ->setSubject('Contato Sinpaptep RS')
+                    ->send();
+
+            Yii::$app->session->setFlash('success', 'Email enviado com sucesso.');
+        } else {
+            Yii::$app->session->setFlash('error', 'Houve um erro ao enviar o email.');
+        }
+        
+        return $this->render('index', ['model' => new Contato()]);
     }
 
 }
