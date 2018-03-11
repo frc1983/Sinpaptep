@@ -7,12 +7,6 @@ use app\models\Boleto;
 class GuiasController extends \yii\web\Controller {
 
     public function actionAssistencial() {
-        /* if (isset($_POST['gerar'])) {
-          $_POST['numDocumento'] = 1;
-          $_POST['nossoNumero'] = '00000002';
-          return $this->render('boleto', $_POST);
-          } */
-
         return $this->render('assistencial');
     }
 

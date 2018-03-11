@@ -107,7 +107,7 @@ use unclead\multipleinput\MultipleInput;
                 'format' => 'dd/mm/yyyy',
                 'todayHighlight' => true
             ]
-        ])->label('Date de Nascimento do Cônjuge')
+        ])->label('Data de Nascimento do Cônjuge')
         ?>
     </div>
     <div class="row">
