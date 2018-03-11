@@ -31,7 +31,8 @@ $this->title = 'Sindicato dos Publicitários e Agências de Propaganda do Rio Gr
         ?>
     </div>
 
-    <div class="row" style="clear: both;">
+    <?php if (count($convencoes[0]) > 0 && count($convencoes[1]) > 0 && count($convencoes[2]) > 0) { ?>
+        <div class="row" style="clear: both;">
             <h1 class="title-border">Convenções</h1>
             <?php
             for ($i = 0; $i <= count($convencoes) - 1; $i++) {
@@ -47,7 +48,8 @@ $this->title = 'Sindicato dos Publicitários e Agências de Propaganda do Rio Gr
                 }
             }
             ?>
-    </div>
+        </div>
+    <?php } ?>
 
     <?php if (count($parceiros) > 0) { ?>
         <div class="row">        

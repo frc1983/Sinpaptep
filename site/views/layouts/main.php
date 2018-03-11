@@ -20,11 +20,15 @@ AppAsset::register($this);
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
+        <style type="text/css" media="print">
+            .dontprint
+            { display: none; }
+        </style>
     </head>
     <body>
         <?php $this->beginBody() ?>
         <div class="wrap">
-            <a href="/" style="text-decoration: none;">
+            <a href="/" style="text-decoration: none;" class="dontprint">
                 <div id="header-container">
                     <?php
                     echo Html::img('@web/images/logo.jpg', ['alt' => Yii::$app->name, 'id' => 'logo-main', 'class' => '']);
@@ -40,13 +44,13 @@ AppAsset::register($this);
             ]);
             if (Yii::$app->user->isGuest) {
                 echo Nav::widget([
-                'activateItems' => true,
-        	'activateParents' => true,
+                    'activateItems' => true,
+                    'activateParents' => true,
                     'options' => ['class' => 'navbar-nav'],
                     'items' => [
                         ['label' => 'HOME', 'url' => ['/site/index']],
                         ['label' => 'SINDICATO', 'url' => ['/sindicato/index']],
-                        ['label' => 'CONVENÇÕES', 'url' => ['/convencoes/index']],
+                        //['label' => 'CONVENÇÕES', 'url' => ['/convencoes/index']],
                         ['label' => 'HOMOLOGAÇÕES', 'url' => ['/homologacoes/index']],
                         ['label' => 'JURÍDICO', 'url' => ['/juridico/index']],
                         ['label' => 'GUIAS',
@@ -84,7 +88,7 @@ AppAsset::register($this);
             </div>
         </div>
 
-        <footer class="footer">
+        <footer class="footer dontprint">
             <div class="container">
                 <p class="col-sm-4">Endereço:<br />
                     Av. João Wallig, 518 <br />
@@ -92,7 +96,7 @@ AppAsset::register($this);
                     Porto Alegre, RS<br />
                     CEP: 91340-000<br />
                     Fone/Fax: (51) 3361.2495<br />
-                    E-mail: contato@sindicatopublicitariosrs.com.br
+                    E-mail: sindicatopublicitariosrs@gmail.com
                 </p>
                 <p class="col-sm-4">
                     Horário de atendimento externo: <br />

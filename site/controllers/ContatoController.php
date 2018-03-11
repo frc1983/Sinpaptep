@@ -18,11 +18,16 @@ class ContatoController extends Controller {
         $model = new Contato();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->mensagem = Yii::$app->request->post()['Contato']['mensagem'];
+            $model->mensagem = 
+                    'Nome: '.Yii::$app->request->post()['Contato']['nome'].'<br />'.
+                    'Email: '.Yii::$app->request->post()['Contato']['email'].'<br />'.
+                    'Telefone: '.Yii::$app->request->post()['Contato']['telefone'].'<br />'.
+                    'Mensagem: '.Yii::$app->request->post()['Contato']['mensagem'];
             Yii::$app->mailer->compose() // a view rendering result becomes the message body here
                     ->setFrom($model->email)
                     ->setTo(Yii::$app->params['adminEmail'])
                     ->setSubject('Contato Sinpaptep RS')
+                    ->setHtmlBody($model->mensagem)
                     ->send();
 
             Yii::$app->session->setFlash('success', 'Email enviado com sucesso.');

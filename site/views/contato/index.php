@@ -22,8 +22,8 @@ use yii\widgets\ActiveForm;
 <br />
 <div class="left col-md-5">
     <p><b>Fone/Fax:</b>(51) 3361.2495</p>
-    <p><b>E-mail:</b><a href="mailto: contato@sindicatopublicitariosrs.com.br"> 
-            contato@sindicatopublicitariosrs.com.br</a>
+    <p><b>E-mail:</b><a href="mailto: sindicatopublicitariosrs@gmail.com"> 
+            sindicatopublicitariosrs@gmail.com</a>
     </p>
     <p>
         <b>NOSSO ENDEREÇO:</b><br>
