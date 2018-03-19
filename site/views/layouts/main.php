@@ -58,10 +58,10 @@ AppAsset::register($this);
                                 ['label' => 'ASSISTENCIAL', 'url' => ['/guias/assistencial']],
                                 ['label' => 'SINDICAL', 'url' => ['/guias/sindical']]
                             ]],
-                        ['label' => 'INFORMAÇÕES', 'items' => [
+                        /*['label' => 'INFORMAÇÕES', 'items' => [
                                 ['label' => 'TERCEIRIZAÇÃO', 'url' => ['/informacoes/terceirizacao']],
                                 ['label' => 'CONSULTA CLT', 'url' => ['/informacoes/consulta']]
-                            ]],
+                            ]],*/
                         ['label' => 'SÓCIOS', 'url' => ['/socios/index']],
                         ['label' => 'CONTATO', 'url' => ['/contato/index']]
                     ],
