@@ -1,4 +1,5 @@
 <?php
+use yii\helpers\Html;
 /* @var $this yii\web\View */
 $this->title = 'Sindicato dos Publicitários e Agências de Propaganda do Rio Grande do Sul';
 ?>
@@ -25,7 +26,8 @@ $this->title = 'Sindicato dos Publicitários e Agências de Propaganda do Rio Gr
 
             echo '<h2>' . $noticia->Titulo . '</h2>';
             echo '<p class="lead">' . $noticia->Sub_Titulo . '</p>';
-            echo '<p>' . $noticia->Texto . '</p>';
+            echo '<div class="reduced">' . $noticia->Texto . '</div>';
+            echo Html::a('Ver Mais', ['/noticias/noticia/' . $noticia->Id], ['class'=>'btn btn-lg btn-success']);
             echo "</div>";
         }
         ?>
