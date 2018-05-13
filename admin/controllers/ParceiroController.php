@@ -8,12 +8,15 @@ use app\models\ParceiroSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ParceiroController implements the CRUD actions for Parceiro model.
  */
 class ParceiroController extends Controller
 {
+    private $DIR = '../uploads/parceiros/';
+    
     public function behaviors()
     {
         return [
@@ -71,13 +74,22 @@ class ParceiroController extends Controller
     public function actionCreate()
     {
         $model = new Parceiro();
+        $transaction = Yii::$app->db->beginTransaction();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->Id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        try {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {   
+   		$this->saveFile($model);
+	        $model->save();
+	        $transaction->commit();
+	
+	        return $this->redirect('index');
+            } else {
+                return $this->render('create', [
+                            'model' => $model,
+                ]);
+            }
+        } catch (Exception $e) {
+            $transaction->rollBack();
         }
     }
 
@@ -91,12 +103,22 @@ class ParceiroController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->Id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        $transaction = Yii::$app->db->beginTransaction();
+	
+        try {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                $this->saveFile($model);
+                $model->save();
+                $transaction->commit();
+
+                return $this->redirect(['index']);
+            } else {
+                return $this->render('update', [
+                            'model' => $model,
+                ]);
+            }
+        } catch (Exception $e) {
+            $transaction->rollBack();
         }
     }
 
@@ -108,7 +130,9 @@ class ParceiroController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $this->removeFile($model->Logo);
+        $model->delete();
 
         return $this->redirect(['index']);
     }
@@ -126,6 +150,19 @@ class ParceiroController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
+    private function saveFile($model) {
+        $model->Image = UploadedFile::getInstance($model, 'Image');
+        $path = $this->DIR . $model->Id . '.' . $model->Image->extension;
+        $model->Image->saveAs($path);
+        $model->Logo = $path;
+    }
+
+    private function removeFile($path){
+        if($path != "" && file_exists($path)){
+            unlink($path);
         }
     }
 }
