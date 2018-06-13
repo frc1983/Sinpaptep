@@ -17,7 +17,7 @@ $form = ActiveForm::begin([
             'enableClientValidation' => true,
         ])
 ?>
-<input type="hidden" name="msgCompensacao1" size="60" maxlength="60" value="Contribuição assistencial 2017">
+<input type="hidden" name="msgCompensacao1" size="60" maxlength="60" value="Contribuição assistencial 2018">
 <input type="hidden" name="msgCompensacao2" size="60" maxlength="60" value="Contribuição de 4% sobre o salário dos empregados">
 <input type="hidden" name="msgCompensacao3" size="60" maxlength="60" value="Valor de R$6,00 referente a despesas bancárias">
 <input type="hidden" name="msgCompensacao4" size="60" maxlength="60" value="Após vencimento, pagável apenas nas agências da Caixa">
