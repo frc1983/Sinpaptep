@@ -1,7 +1,7 @@
 <?php
 include 'includes/barcode.inc';
 include 'includes/dados.php';
-include 'includes/log.inc';
+//include 'includes/log.inc';
 
 
 // obter data da emissao do boleto ou data de hoje
