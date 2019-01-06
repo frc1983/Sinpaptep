@@ -1,9 +1,31 @@
 <?php
+
 use yii\helpers\Html;
+
 /* @var $this yii\web\View */
 $this->title = 'Sindicato dos Publicitários e Agências de Propaganda do Rio Grande do Sul';
 ?>
+
 <div class="site-index">
+    <?php
+    yii\bootstrap\Modal::begin([
+        'headerOptions' => ['id' => 'modalHeader'],
+        'id' => 'modal',
+        //'size' => 'modal-lg',
+        'closeButton' => [
+            'id' => 'close-button',
+            'class' => 'close',
+            'data-dismiss' => 'modal',
+        ],
+        //keeps from closing modal with esc key or by clicking out of the modal.
+        // user must click cancel or X to close
+        'clientOptions' => [
+            'backdrop' => false, 'keyboard' => true
+        ]
+    ]);
+    echo "<div id='modalContent'><div style='text-align:center'>" . $this->render('@app/views/site/comunicado.html') . "</div></div>";
+    yii\bootstrap\Modal::end();
+    ?>
     <div class="row">
         <h1 class="title-border">Destaques</h1>
         <?php
@@ -11,7 +33,7 @@ $this->title = 'Sindicato dos Publicitários e Agências de Propaganda do Rio Gr
             echo "<div class='col-lg-4'>";
             echo '<h2>' . $destaque->Titulo . '</h2>';
             echo '<p class="" style="text-align: justify">' . $destaque->Resumo . '</p>';
-            echo '<p><a class="btn btn-lg btn-success" href="' . $destaque->Link . '">Ver mais</a></p>';
+            //echo '<p><a class="btn btn-lg btn-success" href="' . $destaque->Link . '">Ver mais</a></p>';
             echo "</div>";
         }
         ?>
@@ -27,7 +49,7 @@ $this->title = 'Sindicato dos Publicitários e Agências de Propaganda do Rio Gr
             echo '<h2>' . $noticia->Titulo . '</h2>';
             echo '<p class="lead">' . $noticia->Sub_Titulo . '</p>';
             echo '<div class="reduced">' . $noticia->Texto . '</div>';
-            echo Html::a('Ver Mais', ['/noticias/noticia/' . $noticia->Id], ['class'=>'btn btn-lg btn-success']);
+            echo Html::a('Ver Mais', ['/noticias/noticia/' . $noticia->Id], ['class' => 'btn btn-lg btn-success']);
             echo "</div>";
         }
         ?>
@@ -85,3 +107,20 @@ $this->title = 'Sindicato dos Publicitários e Agências de Propaganda do Rio Gr
     </script>
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if ($('#modal').hasClass('in')) {
+            $('#modal').find('#modalContent')
+                    .load($(this).attr('value'));
+            $('#modalHeader').html('<h4>' + $(this).attr('title') + '</h4>');
+        } else {
+            $('#modal').modal('show')
+                    .find('#modalContent')
+                    .load($(this).attr('value'));
+            $('#modalHeader').html('<div id="header-modal">' +
+            '<img id="logo-main" class="modal-logo" style="width: 51px; margin: 3px 10px;" src="/site/web/images/logo.jpg" alt="Sindicato dos Publicitários, Agenciadores de Propaganda e Trabalhadores em Empresas de Publicidade do Estado do Rio Grande do Sul - SINPAPTEP RS">' +
+            '<div class="modal-title">Sindicato dos Publicitários, Agenciadores de Propaganda e Trabalhadores em Empresas de Publicidade do Estado do Rio Grande do Sul</div>');
+        }
+    });
+</script>
