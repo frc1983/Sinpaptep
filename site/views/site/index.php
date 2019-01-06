@@ -119,8 +119,9 @@ $this->title = 'Sindicato dos Publicitários e Agências de Propaganda do Rio Gr
                     .find('#modalContent')
                     .load($(this).attr('value'));
             $('#modalHeader').html('<div id="header-modal">' +
-            '<img id="logo-main" class="modal-logo" style="width: 51px; margin: 3px 10px;" src="/site/web/images/logo.jpg" alt="Sindicato dos Publicitários, Agenciadores de Propaganda e Trabalhadores em Empresas de Publicidade do Estado do Rio Grande do Sul - SINPAPTEP RS">' +
-            '<div class="modal-title">Sindicato dos Publicitários, Agenciadores de Propaganda e Trabalhadores em Empresas de Publicidade do Estado do Rio Grande do Sul</div>');
+                    '<button type="button" id="close-button" class="close" data-dismiss="modal" aria-hidden="true">×</button>' +
+                    '<img id="logo-main" class="modal-logo" style="width: 51px; margin: 3px 10px;" src="/site/web/images/logo.jpg" alt="Sindicato dos Publicitários, Agenciadores de Propaganda e Trabalhadores em Empresas de Publicidade do Estado do Rio Grande do Sul - SINPAPTEP RS">' +
+                    '<div class="modal-title">Sindicato dos Publicitários, Agenciadores de Propaganda e Trabalhadores em Empresas de Publicidade do Estado do Rio Grande do Sul</div>');
         }
     });
 </script>
