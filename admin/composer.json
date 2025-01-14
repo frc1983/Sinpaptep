@@ -14,10 +14,13 @@
     },
     "minimum-stability": "stable",
     "require": {
-        "php": ">=5.4.0",
-        "yiisoft/yii2": ">=2.0.4",
+        "php": ">=8.0.30",
+        "yidas/yii2-composer-bower-skip": "~2.0.0",
+        "yiisoft/yii2": ">=2.0.51",
+        "yiisoft/yii2-composer": "~2.0.5",
         "yiisoft/yii2-bootstrap": "*",
-        "yiisoft/yii2-swiftmailer": "*"
+        "yiisoft/yii2-swiftmailer": "*",
+        "2amigos/yii2-tinymce-widget": "1.1.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
@@ -26,7 +29,10 @@
         "yiisoft/yii2-faker": "*"
     },
     "config": {
-        "process-timeout": 1800
+        "process-timeout": 1800,
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true
+        }
     },
     "scripts": {
         "post-create-project-cmd": [

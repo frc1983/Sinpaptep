@@ -22,8 +22,8 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'defaultRoute' => 'site/login',
-		'<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                'defaultRoute' => 'site/index',
+		        '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ],

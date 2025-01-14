@@ -1,7 +1,7 @@
 ##### LOCAWEB - NAO REMOVER #####
-AddHandler php7-script .php
-suPHP_ConfigPath /home/sindicatopublici1/
-RewriteRule ^(.*)$ /site/web/ [L]
+#AddHandler php7-script .php
+#suPHP_ConfigPath /home/sindicatopublici1/
+#RewriteRule ^(.*)$ /site/web/ [L]
 ##### LOCAWEB - NAO REMOVER #####
 
 RewriteEngine On
