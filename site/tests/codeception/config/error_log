@@ -1,0 +1,262 @@
+[31-Dec-2020 06:15:51 America/Fortaleza] PHP Fatal error:  Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[31-Dec-2020 06:15:52 America/Fortaleza] PHP Fatal error:  Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[31-Dec-2020 06:15:53 America/Fortaleza] PHP Fatal error:  Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/unit.php on line 5
+[31-Dec-2020 06:58:17 America/Fortaleza] PHP Fatal error:  Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[06-Jan-2021 05:48:05 America/Fortaleza] PHP Fatal error:  Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[06-Jan-2021 10:58:14 America/Fortaleza] PHP Fatal error:  Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/unit.php on line 5
+[06-Jan-2021 10:58:55 America/Fortaleza] PHP Fatal error:  Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[06-Jan-2021 12:55:06 America/Fortaleza] PHP Fatal error:  Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[13-Jan-2021 13:01:00 America/Fortaleza] PHP Fatal error:  Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[29-Jan-2021 05:38:22 America/Fortaleza] PHP Fatal error:  Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[29-Jan-2021 05:38:24 America/Fortaleza] PHP Fatal error:  Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[29-Jan-2021 05:38:24 America/Fortaleza] PHP Fatal error:  Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/unit.php on line 5
+[05-Feb-2021 17:13:26 America/Fortaleza] PHP Fatal error:  Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/unit.php on line 5
+[07-Feb-2021 09:35:33 America/Fortaleza] PHP Fatal error:  Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[14-Feb-2021 08:05:26 America/Fortaleza] PHP Fatal error:  Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[24-Feb-2021 12:07:33 America/Fortaleza] PHP Fatal error:  Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[24-Feb-2021 12:07:34 America/Fortaleza] PHP Fatal error:  Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[24-Feb-2021 12:07:35 America/Fortaleza] PHP Fatal error:  Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/unit.php on line 5
+[15-Mar-2021 11:04:49 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[15-Mar-2021 11:04:49 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php:8
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[15-Mar-2021 12:03:34 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[15-Mar-2021 12:03:34 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[15-Mar-2021 12:11:04 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[15-Mar-2021 12:11:04 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/unit.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/unit.php on line 5
+[15-Mar-2021 12:11:06 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Mar-2021 14:08:17 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Mar-2021 14:08:17 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[21-Mar-2021 14:08:18 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Mar-2021 14:08:18 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Mar-2021 14:08:18 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php:8
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[21-Mar-2021 14:08:19 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Mar-2021 14:08:19 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/unit.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/unit.php on line 5
+[28-Mar-2021 00:28:26 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[28-Mar-2021 00:28:26 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/unit.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/unit.php on line 5
+[28-Mar-2021 18:56:48 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[28-Mar-2021 18:56:48 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/unit.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/unit.php on line 5
+[08-Apr-2021 10:47:43 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[16-Apr-2021 00:08:22 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[16-Apr-2021 00:08:22 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/unit.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/unit.php on line 5
+[19-Apr-2021 06:40:44 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[19-Apr-2021 06:40:44 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[19-Apr-2021 06:40:45 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[19-Apr-2021 06:40:46 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[19-Apr-2021 06:40:46 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php:8
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[19-Apr-2021 06:40:46 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[19-Apr-2021 06:40:46 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/unit.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/unit.php on line 5
+[21-Apr-2021 16:57:26 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[22-Apr-2021 05:30:14 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[22-Apr-2021 05:30:14 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php:8
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[30-Apr-2021 07:13:18 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[30-Apr-2021 12:23:12 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[30-Apr-2021 12:23:12 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[02-May-2021 22:49:35 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[04-May-2021 15:56:14 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[04-May-2021 15:56:14 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[10-May-2021 11:39:37 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[10-May-2021 11:39:37 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php:8
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[11-May-2021 19:29:00 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[11-May-2021 19:29:00 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/unit.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/unit.php on line 5
+[18-May-2021 23:36:16 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[18-May-2021 23:36:16 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[18-May-2021 23:36:17 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[18-May-2021 23:36:18 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[18-May-2021 23:36:18 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php:8
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[18-May-2021 23:36:18 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[18-May-2021 23:36:18 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/unit.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/unit.php on line 5
+[20-May-2021 04:38:47 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-May-2021 04:38:47 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[20-May-2021 09:40:10 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-May-2021 09:40:10 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[20-May-2021 09:40:54 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-May-2021 09:41:34 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-May-2021 09:41:34 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php:8
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[20-May-2021 09:42:12 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-May-2021 09:42:12 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/unit.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/unit.php on line 5
+[20-May-2021 11:56:58 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-May-2021 11:56:58 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/unit.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/unit.php on line 5
+[20-May-2021 11:57:35 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-May-2021 11:57:35 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php:8
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[20-May-2021 11:57:48 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-May-2021 11:57:48 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[21-May-2021 08:02:16 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-May-2021 08:02:16 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[21-May-2021 08:02:17 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-May-2021 08:02:18 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-May-2021 08:02:18 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php:8
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[21-May-2021 08:02:18 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-May-2021 08:02:18 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/unit.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/unit.php on line 5
+[18-Jun-2021 06:00:56 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php:8
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[25-Jun-2021 13:55:54 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[25-Jun-2021 13:55:56 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php:8
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[25-Jun-2021 13:55:57 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/unit.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/unit.php on line 5
+[23-Jul-2021 07:50:27 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php:8
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[30-Jul-2021 03:12:18 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[31-Jul-2021 18:56:24 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/unit.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/unit.php on line 5
+[10-Aug-2021 20:48:50 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php:8
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[12-Aug-2021 20:50:11 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[13-Aug-2021 03:07:41 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php:8
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[13-Aug-2021 05:46:16 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php:8
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[16-Aug-2021 06:02:32 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[16-Aug-2021 09:50:49 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/unit.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/unit.php on line 5
+[16-Aug-2021 10:19:23 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php:8
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[19-Aug-2021 05:27:24 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/unit.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/unit.php on line 5
+[20-Aug-2021 06:49:45 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[21-Aug-2021 08:55:49 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php:8
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[23-Aug-2021 05:19:04 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/unit.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/unit.php on line 5
+[24-Aug-2021 05:53:04 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/acceptance.php on line 5
+[25-Aug-2021 02:25:51 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/functional.php:8
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/functional.php on line 8
+[31-Aug-2021 04:50:13 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\helpers\ArrayHelper' not found in /home1/sindicat/public_html/site/tests/codeception/config/unit.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/config/unit.php on line 5

@@ -1,0 +1,304 @@
+html,
+body {
+    height: 100%;
+}
+
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+.wrap > .container {
+    padding: 20px 15px 20px;
+}
+
+.footer {
+    background-color: #0D2917;
+    background-image: url('../images/footer-bk.jpg');
+    background-repeat: round;
+    padding-top: 20px;
+    color: #FFF
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: transparent;
+}
+
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+.not-set {
+    color: #c55;
+    font-style: italic;
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
+}
+
+a.asc:after {
+    content: /*"\e113"*/ "\e151";
+}
+
+a.desc:after {
+    content: /*"\e114"*/ "\e152";
+}
+
+.sort-numerical a.asc:after {
+    content: "\e153";
+}
+
+.sort-numerical a.desc:after {
+    content: "\e154";
+}
+
+.sort-ordinal a.asc:after {
+    content: "\e155";
+}
+
+.sort-ordinal a.desc:after {
+    content: "\e156";
+}
+
+.grid-view th {
+    white-space: nowrap;
+}
+
+.hint-block {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+
+.left{
+    float: left;
+}
+
+textarea {
+    resize: none;
+}
+
+p.first {
+    text-indent: 4em;
+}
+
+.justify {
+    text-align: justify;
+}
+
+.navbar-inverse .navbar-nav > li > a{
+    color: #206839;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover{
+    text-decoration: underline;
+    color: #206839;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+    color: #206839;
+    background-color: white;
+}
+
+.navbar-inverse .navbar-nav > .open > a, 
+.navbar-inverse .navbar-nav > .open > a:hover, 
+.navbar-inverse .navbar-nav > .open > a:focus{
+    color: white;
+    background-color: #206839;
+}
+
+.dropdown-menu > .active > a, 
+.dropdown-menu > .active > a:hover, 
+.dropdown-menu > .active > a:focus{
+    background-color: #206839;
+}
+
+.dropdown-menu > li > a:hover{
+    text-decoration: underline;
+    background-color: white;
+    color: #206839;
+}
+
+.dropdown-menu > li > a{
+    color: #206839;
+}
+
+.navbar-brand {
+    float: left;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.navbar-inverse .navbar-toggle .icon-bar{
+    background-color: #206839;
+}
+
+.header {
+    background-color: white;
+    border: none;
+    border-bottom: 5px solid #206839;
+    border-top: 5px solid #206839;
+}
+
+#header-container{
+    min-height: 185px;
+    display: flex;
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+#logo-main {
+    display: block;
+    margin: 20px auto;
+    float: left;
+    /*height: 100%;*/
+}
+
+.brand-name {
+    color: #206839;
+    font-size: 26px;
+    width: 68%;
+    line-height: 1.4;
+    text-align: center;
+    font-family: Arial Black;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav {
+    width: 100%;
+    text-align: center;
+}
+
+.nav > li {
+    float: none;
+    display: inline-block;
+}
+
+.footer > .container{
+    margin-top: 20px;
+}
+
+.footer > .container > .area-restrita{
+    margin-bottom: 15px;
+}
+
+.slide{
+    text-align: center;
+}
+
+.slide a {
+    vertical-align: middle;
+    text-align: center;
+    height: 200px;
+    display: table-cell;
+}
+
+.slide-item {
+    display: table-cell;
+    width: 25%;
+    float: left;
+    text-align: -webkit-center;
+}
+
+h1 {
+    color: #206839;
+    font-weight: bold;
+}
+
+.title-effect {
+    text-shadow: 0 1px 0 #ccc,
+        0 2px 0 #c9c9c9,
+        0 3px 0 #bbb,
+        0 4px 0 #b9b9b9,
+        0 5px 0 #aaa,
+        0 6px 1px rgba(0,0,0,.05),
+        0 0 5px rgba(0,0,0,.05),
+        0 1px 3px rgba(0,0,0,.2),
+        0 3px 5px rgba(0,0,0,.1),
+        0 5px 10px rgba(0,0,0,.25),
+        0 10px 10px rgba(0,0,0,.1),
+        0 20px 20px rgba(0,0,0,.15);
+}
+
+.title-border {
+    border-bottom: 3px solid #206839;
+    position: relative;
+    text-shadow: 2px 2px #ccc;
+    padding: 10px 15px;
+}    
+
+.title-border:after {
+    position: absolute;
+    left: 40%;
+    right: 0;
+    bottom: -3px;
+    border-bottom: 3px solid #cccccc;
+    content: '';
+}
+
+.reduced{
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 80px;
+}
+
+@media (max-width: 767px){
+    .brand-name{
+        display: none;
+    }
+
+    .nav > li {
+        text-align: left;
+        display: block;        
+    }
+
+    .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form{
+        background-color: #206839;
+    }
+
+    .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a, 
+    .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover, 
+    .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus,
+    .navbar-inverse .navbar-nav > .active > a, 
+    .navbar-inverse .navbar-nav > .active > a:hover, 
+    .navbar-inverse .navbar-nav > .active > a:focus{
+        background-color: white;
+        color: #206839;
+    }
+
+    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a,
+    .navbar-inverse .navbar-nav > li > a{
+        color: white;
+    }
+
+    .navbar-inverse .navbar-nav > li > a:hover,
+    .dropdown-menu > li > a:hover{
+        text-decoration: underline;
+        color: white;
+    }
+}
