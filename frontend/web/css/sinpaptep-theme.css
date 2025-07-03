@@ -1,0 +1,538 @@
+/* SINPAPTEP-RS Theme - Paleta Verde Institucional */
+
+:root {
+    --sinpaptep-primary: #20713a;      /* Verde principal */
+    --sinpaptep-secondary: #38a169;    /* Verde claro */
+    --sinpaptep-accent: #f6c026;       /* Amarelo/dourado */
+    --sinpaptep-dark: #174c2a;         /* Verde escuro */
+    --sinpaptep-light: #f4fdf6;        /* Verde muito claro */
+    --sinpaptep-white: #ffffff;
+    --sinpaptep-gray: #e2e8f0;
+    --sinpaptep-success: #38a169;
+    --sinpaptep-danger: #e53e3e;
+    --sinpaptep-warning: #f6c026;
+    --sinpaptep-info: #3182ce;
+}
+
+/* Navbar personalizada */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--sinpaptep-white) !important;
+}
+
+.navbar-brand img {
+    height: 40px;
+    width: auto;
+    margin-right: 10px;
+}
+
+.navbar-dark.bg-primary {
+    background: var(--sinpaptep-primary) !important;
+    border-bottom: 3px solid var(--sinpaptep-accent);
+}
+
+.navbar-nav .nav-link {
+    color: var(--sinpaptep-white) !important;
+    font-weight: 500;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--sinpaptep-accent) !important;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.navbar-nav .nav-link::after {
+    background-color: var(--sinpaptep-accent);
+}
+
+/* Botões personalizados */
+.btn-primary {
+    background-color: var(--sinpaptep-primary);
+    border-color: var(--sinpaptep-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--sinpaptep-secondary);
+    border-color: var(--sinpaptep-secondary);
+}
+
+.btn-primary:active,
+.btn-primary.active,
+.show > .btn-primary.dropdown-toggle {
+    background-color: var(--sinpaptep-dark) !important;
+    border-color: var(--sinpaptep-dark) !important;
+}
+
+.btn-outline-primary {
+    color: var(--sinpaptep-primary);
+    border-color: var(--sinpaptep-primary);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--sinpaptep-primary);
+    border-color: var(--sinpaptep-primary);
+    color: var(--sinpaptep-white);
+}
+
+.btn-outline-primary:active,
+.btn-outline-primary.active,
+.show > .btn-outline-primary.dropdown-toggle {
+    background-color: var(--sinpaptep-dark) !important;
+    border-color: var(--sinpaptep-dark) !important;
+    color: var(--sinpaptep-white) !important;
+}
+
+.btn-outline-light:hover {
+    background-color: var(--sinpaptep-accent);
+    border-color: var(--sinpaptep-accent);
+    color: var(--sinpaptep-white);
+}
+
+.btn-outline-light:active,
+.btn-outline-light.active,
+.show > .btn-outline-light.dropdown-toggle {
+    background-color: var(--sinpaptep-dark) !important;
+    border-color: var(--sinpaptep-dark) !important;
+    color: var(--sinpaptep-white) !important;
+}
+
+.btn-success {
+    background-color: var(--sinpaptep-success);
+    border-color: var(--sinpaptep-success);
+}
+
+.btn-success:hover {
+    background-color: var(--sinpaptep-secondary);
+    border-color: var(--sinpaptep-secondary);
+}
+
+.btn-success:active,
+.btn-success.active,
+.show > .btn-success.dropdown-toggle {
+    background-color: var(--sinpaptep-dark) !important;
+    border-color: var(--sinpaptep-dark) !important;
+}
+
+.btn-warning {
+    background-color: var(--sinpaptep-warning);
+    border-color: var(--sinpaptep-warning);
+    color: var(--sinpaptep-dark);
+}
+
+.btn-warning:hover {
+    background-color: #ffe066;
+    border-color: #ffe066;
+    color: var(--sinpaptep-dark);
+}
+
+.btn-warning:active,
+.btn-warning.active,
+.show > .btn-warning.dropdown-toggle {
+    background-color: #b38a1b !important;
+    border-color: #b38a1b !important;
+    color: var(--sinpaptep-dark) !important;
+}
+
+.btn-info {
+    background-color: var(--sinpaptep-info);
+    border-color: var(--sinpaptep-info);
+}
+
+.btn-info:hover {
+    background-color: #63b3ed;
+    border-color: #63b3ed;
+}
+
+.btn-info:active,
+.btn-info.active,
+.show > .btn-info.dropdown-toggle {
+    background-color: #225a8c !important;
+    border-color: #225a8c !important;
+}
+
+/* Cards personalizados */
+.card {
+    border: 1px solid var(--sinpaptep-gray);
+    box-shadow: 0 2px 4px rgba(32, 104, 57, 0.08);
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--sinpaptep-primary) 0%, var(--sinpaptep-secondary) 100%);
+    color: var(--sinpaptep-white);
+    border-bottom: 2px solid var(--sinpaptep-accent);
+}
+
+.card:hover {
+    box-shadow: 0 8px 25px rgba(32, 104, 57, 0.15);
+    border-color: var(--sinpaptep-secondary);
+}
+
+/* Footer personalizado */
+.footer {
+    background: linear-gradient(135deg, #174c2a 0%, #206839 100%);
+    color: var(--sinpaptep-white);
+    border-top: 3px solid var(--sinpaptep-accent);
+    padding: 1rem 0;
+    width: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+}
+
+.footer > .container-fluid {
+    width: 100%;
+    max-width: 100vw;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.footer h5, .footer h6 {
+    color: var(--sinpaptep-accent);
+    font-weight: 600;
+}
+
+.footer a {
+    color: var(--sinpaptep-gray) !important;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: var(--sinpaptep-secondary) !important;
+    text-decoration: underline;
+}
+
+.footer .text-muted {
+    color: var(--sinpaptep-gray) !important;
+}
+
+.footer hr, .footer .my-3 {
+    border-color: var(--sinpaptep-accent) !important;
+    opacity: 1;
+}
+
+.footer .fa-lg, .footer .fa {
+    color: var(--sinpaptep-accent);
+}
+
+/* Breadcrumbs personalizados */
+.breadcrumb {
+    background-color: var(--sinpaptep-light);
+    border: 1px solid var(--sinpaptep-gray);
+    border-radius: 8px;
+}
+
+.breadcrumb-item.active {
+    color: var(--sinpaptep-primary);
+    font-weight: 600;
+}
+
+/* Alertas personalizados */
+.alert-primary {
+    background-color: rgba(32, 104, 57, 0.08);
+    border-color: var(--sinpaptep-secondary);
+    color: var(--sinpaptep-primary);
+}
+
+.alert-success {
+    background-color: rgba(56, 161, 105, 0.1);
+    border-color: var(--sinpaptep-success);
+    color: var(--sinpaptep-success);
+}
+
+.alert-danger {
+    background-color: rgba(229, 62, 62, 0.1);
+    border-color: var(--sinpaptep-danger);
+    color: var(--sinpaptep-danger);
+}
+
+.alert-warning {
+    background-color: rgba(246, 192, 38, 0.1);
+    border-color: var(--sinpaptep-warning);
+    color: var(--sinpaptep-warning);
+}
+
+/* Formulários personalizados */
+.form-control:focus {
+    border-color: var(--sinpaptep-secondary);
+    box-shadow: 0 0 0 0.2rem rgba(56, 161, 105, 0.15);
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--sinpaptep-dark);
+}
+
+/* Dropdown personalizado */
+.dropdown-menu {
+    border: 1px solid var(--sinpaptep-gray);
+    box-shadow: 0 4px 12px rgba(32, 104, 57, 0.10);
+}
+
+.dropdown-item:hover {
+    background-color: var(--sinpaptep-light);
+    color: var(--sinpaptep-primary);
+}
+
+/* Badges personalizados */
+.badge.bg-primary {
+    background-color: var(--sinpaptep-primary) !important;
+}
+
+.badge.bg-secondary {
+    background-color: var(--sinpaptep-secondary) !important;
+}
+
+.badge.bg-success {
+    background-color: var(--sinpaptep-success) !important;
+}
+
+.badge.bg-danger {
+    background-color: var(--sinpaptep-danger) !important;
+}
+
+.badge.bg-warning {
+    background-color: var(--sinpaptep-warning) !important;
+    color: var(--sinpaptep-dark) !important;
+}
+
+/* Links personalizados */
+a {
+    color: var(--sinpaptep-primary);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--sinpaptep-secondary);
+}
+
+/* Tabelas personalizadas */
+.table thead th {
+    background-color: var(--sinpaptep-primary);
+    color: var(--sinpaptep-white);
+    border-color: var(--sinpaptep-secondary);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(244, 253, 246, 0.5);
+}
+
+/* Paginação personalizada */
+.page-link {
+    color: var(--sinpaptep-primary);
+    border-color: var(--sinpaptep-gray);
+}
+
+.page-link:hover {
+    color: var(--sinpaptep-white);
+    background-color: var(--sinpaptep-primary);
+    border-color: var(--sinpaptep-primary);
+}
+
+.page-item.active .page-link {
+    background-color: var(--sinpaptep-primary);
+    border-color: var(--sinpaptep-primary);
+}
+
+/* Hero section personalizada */
+.hero-section {
+    background: linear-gradient(135deg, var(--sinpaptep-primary) 0%, var(--sinpaptep-secondary) 100%);
+    color: var(--sinpaptep-white);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.2;
+}
+
+/* Notícias personalizadas */
+.noticia-card {
+    border: 1px solid var(--sinpaptep-gray);
+    transition: all 0.3s ease;
+}
+
+.noticia-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(32, 104, 57, 0.15);
+    border-color: var(--sinpaptep-secondary);
+}
+
+.noticia-card .card-title {
+    color: var(--sinpaptep-primary);
+    font-weight: 600;
+}
+
+.noticia-card .card-subtitle {
+    color: var(--sinpaptep-accent);
+    font-weight: 500;
+}
+
+.noticia-card-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 100%;
+    max-height: 200px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 0.5rem 0.5rem 0 0;
+    box-shadow: 0 2px 8px rgba(32, 104, 57, 0.10);
+    transition: transform 0.2s, box-shadow 0.2s;
+    background: #f4fdf6;
+}
+
+.noticia-card-img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 25px rgba(32, 104, 57, 0.18);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    
+    .navbar-brand img {
+        height: 30px;
+    }
+    
+    .hero-section {
+        padding: 3rem 0;
+    }
+}
+
+/* Animações personalizadas */
+@keyframes sinpaptepFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sinpaptep-fade-in {
+    animation: sinpaptepFadeIn 0.6s ease-out;
+}
+
+/* Logo personalizado */
+.sinpaptep-logo {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--sinpaptep-white);
+}
+
+.sinpaptep-logo img {
+    height: 40px;
+    width: auto;
+    margin-right: 12px;
+    filter: brightness(0) invert(1);
+}
+
+.sinpaptep-logo-text {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 0.5px;
+}
+
+/* Ícones personalizados */
+.feature-icon {
+    color: var(--sinpaptep-accent);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Seção de destaque */
+.highlight-section {
+    background: linear-gradient(135deg, var(--sinpaptep-light) 0%, #ffffff 100%);
+    border-top: 3px solid var(--sinpaptep-accent);
+    border-bottom: 3px solid var(--sinpaptep-accent);
+}
+
+/* Contador personalizado */
+.counter-item {
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.counter-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--sinpaptep-primary);
+    display: block;
+}
+
+.counter-label {
+    color: var(--sinpaptep-gray);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+/* Checkbox customizado com as cores institucionais */
+input[type="checkbox"].form-check-input:checked {
+    background-color: var(--sinpaptep-primary);
+    border-color: var(--sinpaptep-primary);
+}
+input[type="checkbox"].form-check-input:focus {
+    border-color: var(--sinpaptep-secondary);
+    box-shadow: 0 0 0 0.2rem rgba(56, 161, 105, 0.15);
+}
+input[type="checkbox"].form-check-input {
+    accent-color: var(--sinpaptep-primary);
+}
+
+/* Ícones grandes das telas de login/cadastro */
+.site-login .fa-user-circle,
+.site-signup .fa-user-plus {
+    color: var(--sinpaptep-primary) !important;
+}
+
+.noticia-galeria-principal img {
+    max-width: 100%;
+    max-height: 400px !important;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(32, 104, 57, 0.10);
+    background: #f4fdf6;
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.noticia-galeria-thumbs {
+    gap: 0.5rem;
+}
+.galeria-thumb {
+    max-height: 60px !important;
+    height: 60px;
+    width: auto;
+    border: 2px solid #e2e8f0;
+    border-radius: 0.4rem;
+    transition: border-color 0.2s, transform 0.2s;
+    background: #f4fdf6;
+    object-fit: cover;
+}
+.galeria-thumb:hover {
+    border-color: var(--sinpaptep-primary);
+    transform: scale(1.08);
+    z-index: 2;
+} 
