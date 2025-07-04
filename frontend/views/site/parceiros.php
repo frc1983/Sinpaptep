@@ -3,7 +3,7 @@
 /** @var yii\web\View $this */
 /** @var common\models\Parceiro[] $parceiros */
 
-$this->title = 'Parceiros - SINPAPTEP-RS';
+$this->title = 'Parceiros';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

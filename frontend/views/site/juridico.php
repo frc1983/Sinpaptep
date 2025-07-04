@@ -1,7 +1,7 @@
 <?php
 /** @var yii\web\View $this */
 
-$this->title = 'Jurídico - SINPAPTEP-RS';
+$this->title = 'Jurídico';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

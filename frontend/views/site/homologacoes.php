@@ -2,7 +2,7 @@
 
 /** @var yii\web\View $this */
 
-$this->title = 'Homologações - SINPAPTEP-RS';
+$this->title = 'Homologações';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
