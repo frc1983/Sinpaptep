@@ -6,21 +6,6 @@ use yii\bootstrap5\Alert;
 $this->title = 'Cadastro de Sócio';
 $this->params['breadcrumbs'][] = $this->title;
 
-\Yii::$app->language = 'pt-BR';
-\Yii::$app->i18n->translations['yii'] = [
-    'class' => 'yii\i18n\PhpMessageSource',
-    'basePath' => '@yii/messages',
-    'fileMap' => [
-        'yii' => 'yii.php',
-    ],
-    'on missingTranslation' => function (
-        $event
-    ) {
-        if ($event->message === '{attribute} cannot be blank.') {
-            $event->translatedMessage = '{attribute} não pode ficar em branco.';
-        }
-    },
-];
 ?>
 <div class="cadastro-socio-page">
     <!-- Header institucional -->
@@ -351,6 +336,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('form');
     if (form) {
         form.addEventListener('submit', validarDatasFuturas);
+    }
+});
+    form.addEventListener('submit', validarDatasFuturas);
     }
 });
 </script> 

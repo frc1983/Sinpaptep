@@ -9,6 +9,7 @@ $params = array_merge(
 return [
     'id' => 'app-frontend',
     'name' => 'Sinpaptep-RS',
+    'language' => 'pt-BR',
     'basePath' => dirname(__DIR__),
     'charset' => 'utf-8',
     'bootstrap' => ['log'],
@@ -58,7 +59,15 @@ return [
                 'buscar' => 'site/buscar-noticias',
                 'sobre' => 'site/about',
                 'contato' => 'site/contact',
+                'parceiros' => 'site/parceiros',
+                'homologacoes' => 'site/homologacoes',
+                'juridico' => 'site/juridico',
+                'cadastro-socio' => 'site/cadastro-socio',
             ],
+        ],
+        'assetManager' => [
+            'basePath' => '@app/web/assets',
+            'baseUrl' => '@web/assets',
         ],
     ],
     'params' => $params,
