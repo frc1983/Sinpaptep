@@ -17,6 +17,14 @@ return [
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
+        'mailer' => [
+            'class' => \yii\symfonymailer\Mailer::class,
+            'viewPath' => '@common/mail',
+            'useFileTransport' => false,
+            'transport' => [
+                'dsn' => 'smtp://sindicatopublicitariosrs@gmail.com:prkzulvrdthjgkbh@smtp.gmail.com:587'
+            ],
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,

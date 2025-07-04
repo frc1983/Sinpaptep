@@ -1,32 +1,55 @@
-RewriteEngine on
+# Locaweb .htaccess para Yii2 - Raiz do Projeto
+# Redireciona automaticamente para frontend ou backend
 
-# Redirect root to frontend
-RewriteRule ^$ frontend/web/ [L]
-RewriteRule (.*) frontend/web/$1 [L]
+RewriteEngine On
 
-# Security: Prevent access to sensitive directories
-RewriteRule ^(backend|common|console|environments|vagrant|tests)/ - [F,L]
+# Força HTTPS (descomente se tiver SSL)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Prevent access to configuration files
-<FilesMatch "\.(env|local|dev|prod|test)\.php$">
+# Remove www (descomente se necessário)
+# RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+# RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+# Redireciona para frontend por padrão
+# Se você quiser que o backend seja acessível via /admin, descomente as linhas abaixo
+# RewriteCond %{REQUEST_URI} ^/admin(.*)$
+# RewriteRule ^admin(.*)$ backend/web/$1 [L]
+
+# Redireciona tudo para o frontend
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ frontend/web/$1 [L]
+
+# Proteção de arquivos sensíveis na raiz
+<FilesMatch "^\.">
     Order allow,deny
     Deny from all
 </FilesMatch>
 
-# Prevent access to composer files
-<FilesMatch "composer\.(json|lock)$">
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql|conf|env|key|pem|crt|bak|backup|old|orig|save|swp|tmp)$">
     Order allow,deny
     Deny from all
 </FilesMatch>
 
-# Prevent access to version control files
+# Proteção de arquivos de controle de versão
 <FilesMatch "\.(git|svn|hg|bzr)$">
     Order allow,deny
     Deny from all
 </FilesMatch>
 
-# Prevent access to backup files
-<FilesMatch "\.(bak|backup|old|orig|save|swp|tmp)$">
+# Proteção de arquivos do Composer
+<FilesMatch "composer\.(json|lock)$">
     Order allow,deny
     Deny from all
-</FilesMatch> 
+</FilesMatch>
+
+# Bloqueio de acesso a diretórios sensíveis
+RewriteRule ^(runtime|vendor|tests|migrations|console|common|backend|frontend)/ - [F,L]
+
+# Headers de segurança básicos
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options SAMEORIGIN
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule> 

@@ -1,50 +1,61 @@
-RewriteEngine on
+# Locaweb .htaccess para Yii2 Frontend
+# Otimizado para servidores Locaweb
 
-# If a directory or a file exists, use it directly
+RewriteEngine On
+
+# Força HTTPS (descomente se tiver SSL)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Remove www (descomente se necessário)
+# RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+# RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+# Yii2 URL Rewriting
+# Se o arquivo ou diretório existe, use diretamente
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# Otherwise forward it to index.php
-RewriteRule . index.php
+# Caso contrário, redirecione para index.php
+RewriteRule . index.php [L]
 
-# Security Headers
+# Configurações de Segurança para Locaweb
 <IfModule mod_headers.c>
-    # Prevent clickjacking
-    Header always append X-Frame-Options SAMEORIGIN
-    
-    # Prevent MIME type sniffing
+    # Headers de segurança básicos
     Header always set X-Content-Type-Options nosniff
-    
-    # Enable XSS protection
+    Header always set X-Frame-Options SAMEORIGIN
     Header always set X-XSS-Protection "1; mode=block"
-    
-    # Referrer Policy
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
     
-    # Content Security Policy
-    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self';"
+    # Content Security Policy (ajustado para frontend com CDNs)
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://code.jquery.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self';"
+    
+    # HSTS (descomente se tiver SSL)
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 </IfModule>
 
-# Compression
+# Compressão GZIP (otimizada para Locaweb)
 <IfModule mod_deflate.c>
-    # Enable compression for text files
+    # Ativa compressão
     AddOutputFilterByType DEFLATE text/plain
     AddOutputFilterByType DEFLATE text/html
     AddOutputFilterByType DEFLATE text/xml
     AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
     AddOutputFilterByType DEFLATE application/xml
     AddOutputFilterByType DEFLATE application/xhtml+xml
     AddOutputFilterByType DEFLATE application/rss+xml
     AddOutputFilterByType DEFLATE application/javascript
     AddOutputFilterByType DEFLATE application/x-javascript
     AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE application/xml+rss
 </IfModule>
 
-# Caching
+# Cache de Navegador (otimizado para Locaweb)
 <IfModule mod_expires.c>
-    ExpiresActive on
+    ExpiresActive On
     
-    # Images
+    # Imagens
     ExpiresByType image/jpg "access plus 1 month"
     ExpiresByType image/jpeg "access plus 1 month"
     ExpiresByType image/gif "access plus 1 month"
@@ -52,39 +63,100 @@ RewriteRule . index.php
     ExpiresByType image/webp "access plus 1 month"
     ExpiresByType image/svg+xml "access plus 1 month"
     ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresByType image/ico "access plus 1 year"
     
-    # CSS and JavaScript
+    # CSS e JavaScript
     ExpiresByType text/css "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
     ExpiresByType application/javascript "access plus 1 month"
     ExpiresByType application/x-javascript "access plus 1 month"
     
-    # Fonts
+    # Fontes
     ExpiresByType font/woff "access plus 1 year"
     ExpiresByType font/woff2 "access plus 1 year"
     ExpiresByType application/font-woff "access plus 1 year"
     ExpiresByType application/font-woff2 "access plus 1 year"
+    ExpiresByType application/x-font-woff "access plus 1 year"
     
     # HTML
     ExpiresByType text/html "access plus 1 hour"
+    
+    # Outros
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType application/x-shockwave-flash "access plus 1 month"
 </IfModule>
 
-# Prevent access to sensitive files
+# Proteção de Arquivos Sensíveis
 <FilesMatch "^\.">
     Order allow,deny
     Deny from all
 </FilesMatch>
 
-<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql|conf)$">
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql|conf|env|key|pem|crt|bak|backup|old|orig|save|swp|tmp)$">
     Order allow,deny
     Deny from all
 </FilesMatch>
 
-# Prevent access to backup files
-<FilesMatch "\.(bak|backup|old|orig|save|swp|tmp)$">
+# Proteção de arquivos de controle de versão
+<FilesMatch "\.(git|svn|hg|bzr)$">
     Order allow,deny
     Deny from all
 </FilesMatch>
 
-# Custom error pages
+# Proteção de arquivos do Composer
+<FilesMatch "composer\.(json|lock)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Proteção de arquivos de configuração Yii
+<FilesMatch "\.(local|dev|prod)\.php$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Bloqueio de acesso a diretórios sensíveis
+RewriteRule ^(runtime|vendor|tests|migrations|console|common|backend)/ - [F,L]
+
+# Páginas de erro personalizadas
 ErrorDocument 404 /index.php?r=site/error
-ErrorDocument 500 /index.php?r=site/error 
+ErrorDocument 500 /index.php?r=site/error
+ErrorDocument 403 /index.php?r=site/error
+
+# Configurações específicas para Locaweb
+# Limitação de upload (se necessário)
+# php_value upload_max_filesize 10M
+# php_value post_max_size 10M
+# php_value max_execution_time 300
+# php_value max_input_time 300
+
+# Proteção contra ataques comuns
+<IfModule mod_rewrite.c>
+    # Bloqueia tentativas de acesso a arquivos de configuração
+    RewriteCond %{REQUEST_URI} \.(env|config|ini|log)$ [NC]
+    RewriteRule .* - [F,L]
+    
+    # Bloqueia tentativas de SQL injection básicas
+    RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+    RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2}) [OR]
+    RewriteCond %{QUERY_STRING} proc/self/environ [OR]
+    RewriteCond %{QUERY_STRING} mosConfig [OR]
+    RewriteCond %{QUERY_STRING} base64_(en|de)code[^(]*\([^)]*\) [OR]
+    RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} (\<|%3C).*iframe.*(\>|%3E) [NC]
+    RewriteRule .* - [F,L]
+</IfModule>
+
+# Configurações de sessão (se necessário)
+# php_value session.cookie_httponly 1
+# php_value session.cookie_secure 1
+# php_value session.use_strict_mode 1
+
+# Otimizações específicas para frontend
+# Cache de assets estáticos
+<IfModule mod_headers.c>
+    <FilesMatch "\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$">
+        Header set Cache-Control "public, max-age=31536000"
+    </FilesMatch>
+</IfModule> 
