@@ -8,7 +8,7 @@ use yii\bootstrap5\Html;
 use yii\bootstrap5\ActiveForm;
 use yii\helpers\Url;
 
-$this->title = 'Criar Conta';
+$this->title = 'Cadastro';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -27,109 +27,89 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <p class="text-muted">Crie sua conta e comece a usar nosso sistema</p>
                                 </div>
 
-                                <?php $form = ActiveForm::begin([
-                                    'id' => 'form-signup',
-                                    'options' => ['class' => 'signup-form'],
-                                    'enableClientValidation' => true
-                                ]); ?>
+                                <?php if (Yii::$app->session->hasFlash('success')): ?>
+                                    <div class="alert alert-success"><?= Yii::$app->session->getFlash('success') ?></div>
+                                <?php elseif (Yii::$app->session->hasFlash('error')): ?>
+                                    <div class="alert alert-danger"><?= Yii::$app->session->getFlash('error') ?></div>
+                                <?php endif; ?>
 
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <?= $form->field($model, 'username', [
-                                            'options' => ['class' => 'form-group'],
-                                            'template' => '{label}<div class="input-group">{input}<span class="input-group-text"><i class="fas fa-user"></i></span></div>{error}'
-                                        ])->textInput([
-                                            'autofocus' => true,
-                                            'class' => 'form-control form-control-lg',
-                                            'placeholder' => 'Nome de usuário'
-                                        ]) ?>
-                                    </div>
-                                    
-                                    <div class="col-md-6 mb-3">
-                                        <?= $form->field($model, 'email', [
-                                            'options' => ['class' => 'form-group'],
-                                            'template' => '{label}<div class="input-group">{input}<span class="input-group-text"><i class="fas fa-envelope"></i></span></div>{error}'
-                                        ])->textInput([
-                                            'class' => 'form-control form-control-lg',
-                                            'placeholder' => 'seu@email.com'
-                                        ]) ?>
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <?= $form->field($model, 'password', [
-                                        'options' => ['class' => 'form-group'],
-                                        'template' => '{label}<div class="input-group">{input}<span class="input-group-text"><i class="fas fa-lock"></i></span></div>{error}'
-                                    ])->passwordInput([
-                                        'class' => 'form-control form-control-lg',
-                                        'placeholder' => 'Sua senha'
-                                    ]) ?>
-                                </div>
-
-                                <!-- Campos Adicionais Mock -->
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Nome Completo</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control form-control-lg" placeholder="Seu nome completo">
-                                            <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                                <form method="post" action="">
+                                    <input type="hidden" name="<?= Yii::$app->request->csrfParam ?>" value="<?= Yii::$app->request->getCsrfToken() ?>">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label>Nome de usuário*:</label>
+                                            <input type="text" name="Signup[username]" class="form-control" required>
+                                        </div>
+                                        
+                                        <div class="col-md-6 mb-3">
+                                            <label>Email*:</label>
+                                            <input type="email" name="Signup[email]" class="form-control" required>
                                         </div>
                                     </div>
-                                    
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Telefone</label>
-                                        <div class="input-group">
-                                            <input type="tel" class="form-control form-control-lg" placeholder="(11) 99999-9999">
-                                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+
+                                    <div class="mb-3">
+                                        <label>Senha*:</label>
+                                        <input type="password" name="Signup[password]" class="form-control" required>
+                                    </div>
+
+                                    <!-- Campos Adicionais Mock -->
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Nome Completo</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control form-control-lg" placeholder="Seu nome completo">
+                                                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Telefone</label>
+                                            <div class="input-group">
+                                                <input type="tel" class="form-control form-control-lg" placeholder="(11) 99999-9999">
+                                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Data de Nascimento</label>
-                                        <div class="input-group">
-                                            <input type="date" class="form-control form-control-lg">
-                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Data de Nascimento</label>
+                                            <div class="input-group">
+                                                <input type="date" class="form-control form-control-lg">
+                                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Tipo de Conta</label>
+                                            <div class="input-group">
+                                                <select class="form-select form-select-lg">
+                                                    <option value="">Selecione...</option>
+                                                    <option value="pessoal">Pessoal</option>
+                                                    <option value="empresarial">Empresarial</option>
+                                                    <option value="estudante">Estudante</option>
+                                                </select>
+                                                <span class="input-group-text"><i class="fas fa-users"></i></span>
+                                            </div>
                                         </div>
                                     </div>
-                                    
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Tipo de Conta</label>
-                                        <div class="input-group">
-                                            <select class="form-select form-select-lg">
-                                                <option value="">Selecione...</option>
-                                                <option value="pessoal">Pessoal</option>
-                                                <option value="empresarial">Empresarial</option>
-                                                <option value="estudante">Estudante</option>
-                                            </select>
-                                            <span class="input-group-text"><i class="fas fa-users"></i></span>
+
+                                    <!-- Termos e Condições -->
+                                    <div class="mb-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="acceptPrivacy" required>
+                                            <label class="form-check-label" for="acceptPrivacy">
+                                                Concordo com a <a href="<?= Url::to(['site/politica-privacidade']) ?>" class="text-decoration-none" target="_blank">Política de Privacidade</a>
+                                            </label>
                                         </div>
                                     </div>
-                                </div>
 
-                                <!-- Termos e Condições -->
-                                <div class="mb-4">
-                                    <?= $form->field($model, 'acceptPrivacy', [
-                                        'template' => '<div class="form-check">{input} {label}</div>{error}',
-                                        'options' => ['class' => 'form-group mb-0']
-                                    ])->checkbox([
-                                        'id' => 'acceptPrivacy',
-                                        'required' => true
-                                    ])->label('Concordo com a <a href="' . Url::to(['site/politica-privacidade']) . '" class="text-decoration-none" target="_blank">Política de Privacidade</a>') ?>
-                                </div>
-
-                                <div class="d-grid mb-4">
-                                    <?= Html::submitButton(
-                                        '<i class="fas fa-user-plus me-2"></i>Criar Conta',
-                                        [
-                                            'class' => 'btn btn-primary btn-lg',
-                                            'name' => 'signup-button'
-                                        ]
-                                    ) ?>
-                                </div>
-
-                                <?php ActiveForm::end(); ?>
+                                    <div class="d-grid mb-4">
+                                        <button type="submit" class="btn btn-primary btn-lg">
+                                            <i class="fas fa-user-plus me-2"></i>Criar Conta
+                                        </button>
+                                    </div>
+                                </form>
 
                                 <div class="text-center">
                                     <p class="text-muted mb-3">Já tem uma conta?</p>

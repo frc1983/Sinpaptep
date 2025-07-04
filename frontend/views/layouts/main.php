@@ -93,60 +93,11 @@ AppAsset::register($this);
         ],
     ];
 
-    // Menu para usuários não logados
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = [
-            'label' => '<i class="fas fa-user-plus me-1"></i>Cadastrar',
-            'url' => ['/site/signup'],
-            'encode' => false,
-            'options' => ['class' => 'nav-item ms-auto'],
-        ];
-    }
-
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav me-auto mb-2 mb-lg-0'],
         'items' => $menuItems,
     ]);
 
-    // Área de login/logout
-    if (Yii::$app->user->isGuest) {
-        echo Html::tag('div',
-            Html::a(
-                '<i class="fas fa-sign-in-alt me-1"></i>Entrar',
-                ['/site/login'],
-                ['class' => ['btn btn-outline-light']]
-            ),
-            ['class' => ['d-flex']]
-        );
-    } else {
-        // Menu dropdown para usuário logado
-        echo Html::beginTag('div', ['class' => 'navbar-nav dropdown']);
-        echo Html::a(
-            '<i class="fas fa-user me-1"></i>' . Yii::$app->user->identity->username . ' <i class="fas fa-chevron-down ms-1"></i>',
-            '#',
-            [
-                'class' => 'nav-link dropdown-toggle',
-                'data-bs-toggle' => 'dropdown',
-                'aria-expanded' => 'false',
-                'encode' => false,
-            ]
-        );
-        echo Html::beginTag('ul', ['class' => 'dropdown-menu dropdown-menu-end']);
-        echo Html::tag('li', Html::a('<i class="fas fa-user-cog me-2"></i>Perfil', '#', ['class' => 'dropdown-item', 'encode' => false]));
-        echo Html::tag('li', Html::a('<i class="fas fa-cog me-2"></i>Configurações', '#', ['class' => 'dropdown-item', 'encode' => false]));
-        echo Html::tag('li', '<hr class="dropdown-divider">');
-        echo Html::beginTag('li');
-        echo Html::beginForm(['/site/logout'], 'post', ['class' => 'd-inline']);
-        echo Html::submitButton(
-            '<i class="fas fa-sign-out-alt me-2"></i>Sair',
-            ['class' => 'dropdown-item border-0 bg-transparent', 'encode' => false]
-        );
-        echo Html::endForm();
-        echo Html::endTag('li');
-        echo Html::endTag('ul');
-        echo Html::endTag('div');
-    }
-    
     NavBar::end();
     ?>
 </header>

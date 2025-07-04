@@ -50,7 +50,6 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'enableStrictParsing' => false,
             'rules' => [
                 '' => 'site/index',
                 'noticia/<id:\d+>' => 'site/noticia',
@@ -59,13 +58,6 @@ return [
                 'buscar' => 'site/buscar-noticias',
                 'sobre' => 'site/about',
                 'contato' => 'site/contact',
-                'login' => 'site/login',
-                'logout' => 'site/logout',
-                'signup' => 'site/signup',
-                'request-password-reset' => 'site/request-password-reset',
-                'reset-password/<token:[\w-]+>' => 'site/reset-password',
-                'verify-email/<token:[\w-]+>' => 'site/verify-email',
-                'resend-verification-email' => 'site/resend-verification-email',
             ],
         ],
     ],
