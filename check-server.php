@@ -14,21 +14,21 @@ echo "Extensões carregadas: " . implode(', ', get_loaded_extensions()) . "<br>"
 
 // Verifica extensões necessárias
 echo "<h2>2. Extensões Necessárias</h2>";
-$required_extensions = ['pdo', 'pdo_mysql', 'mbstring', 'openssl', 'curl'];
+$required_extensions = array('pdo', 'pdo_mysql', 'mbstring', 'openssl', 'curl');
 foreach ($required_extensions as $ext) {
     echo "$ext: " . (extension_loaded($ext) ? "✅ OK" : "❌ FALTANDO") . "<br>";
 }
 
 // Verifica permissões de diretórios
 echo "<h2>3. Permissões de Diretórios</h2>";
-$dirs_to_check = [
+$dirs_to_check = array(
     'runtime',
     'backend/runtime',
     'frontend/runtime',
     'web/assets',
     'backend/web/assets',
     'frontend/web/assets'
-];
+);
 
 foreach ($dirs_to_check as $dir) {
     if (file_exists($dir)) {
@@ -41,12 +41,12 @@ foreach ($dirs_to_check as $dir) {
 
 // Verifica arquivos de configuração
 echo "<h2>4. Arquivos de Configuração</h2>";
-$config_files = [
+$config_files = array(
     'vendor/autoload.php',
     'common/config/main.php',
     'frontend/config/main.php',
     'frontend/web/index.php'
-];
+);
 
 foreach ($config_files as $file) {
     if (file_exists($file)) {
@@ -60,7 +60,7 @@ foreach ($config_files as $file) {
 echo "<h2>5. Teste de Conexão com Banco</h2>";
 try {
     $pdo = new PDO(
-        'mysql:host=127.0.0.1;port=3306;dbname=sinpaptep;charset=utf8mb4',
+        'mysql:host=186.202.152.152;port=3306;dbname=sinpaptep;charset=utf8mb4',
         'sinpaptep',
         'b3+T/geK,c9yx8'
     );
@@ -78,7 +78,7 @@ try {
 echo "<h2>6. Módulos Apache</h2>";
 if (function_exists('apache_get_modules')) {
     $modules = apache_get_modules();
-    $required_modules = ['mod_rewrite', 'mod_headers', 'mod_deflate'];
+    $required_modules = array('mod_rewrite', 'mod_headers', 'mod_deflate');
     
     foreach ($required_modules as $module) {
         echo "$module: " . (in_array($module, $modules) ? "✅ Ativo" : "❌ Inativo") . "<br>";
@@ -109,11 +109,11 @@ try {
 }
 
 echo "<h2>9. Logs de Erro</h2>";
-$log_files = [
+$log_files = array(
     'runtime/logs/app.log',
     'backend/runtime/logs/app.log',
     'frontend/runtime/logs/app.log'
-];
+);
 
 foreach ($log_files as $log) {
     if (file_exists($log)) {

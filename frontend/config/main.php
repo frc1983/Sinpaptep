@@ -16,6 +16,7 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
+            'cookieValidationKey' => 'Zp4vX7mQ2sL9wT6kJr1yB8nHc5eGf3aSd0Vx2WqUt7Jr8PlB',
         ],
         'mailer' => [
             'class' => \yii\symfonymailer\Mailer::class,
