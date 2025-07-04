@@ -49,8 +49,9 @@ return [
             'errorAction' => 'site/error',
         ],
         'urlManager' => [
-            'enablePrettyUrl' => true,
+            'enablePrettyUrl' => false,
             'showScriptName' => false,
+            'baseUrl' => '',
             'rules' => [
                 '' => 'site/index',
                 'noticia/<id:\d+>' => 'site/noticia',
