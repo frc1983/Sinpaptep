@@ -1,0 +1,19 @@
+# .htaccess simplificado para teste
+RewriteEngine On
+
+# Se o arquivo ou diretório existe, use diretamente
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Caso contrário, redirecione para index.php
+RewriteRule . index.php [L]
+
+# Configurações básicas de segurança
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql|conf)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Páginas de erro
+ErrorDocument 404 /index.php?r=site/error
+ErrorDocument 500 /index.php?r=site/error 
