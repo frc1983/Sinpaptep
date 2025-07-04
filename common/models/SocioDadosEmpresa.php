@@ -39,8 +39,9 @@ class SocioDadosEmpresa extends ActiveRecord
     public function rules()
     {
         return [
-            [['Nome', 'Logradouro', 'Numero', 'Bairro', 'Cidade', 'CEP', 'UF', 'Celular', 'Email', 'CargoAtual', 'DataInicioCargoAtual', 'NumeroCTPS', 'SerieCTPS', 'GrauInstrucao'], 'required'],
-            [['Id_Socio', 'Numero', 'CEP'], 'integer'],
+            [['Nome', 'Logradouro', 'Numero', 'Bairro', 'Cidade', 'CEP', 'UF', 'Telefone', 'Email', 'CargoAtual', 'DataInicioCargoAtual', 'NumeroCTPS', 'SerieCTPS', 'GrauInstrucao'], 'required'],
+            [['Id_Socio', 'Numero'], 'integer'],
+            ['CEP', 'string', 'max' => 8],
             [['DataInicioCargoAtual'], 'date', 'format' => 'php:Y-m-d'],
             [['Nome', 'Logradouro', 'Complemento', 'Bairro', 'Cidade', 'UF', 'Telefone', 'Celular', 'Email', 'CargoAtual', 'NumeroCTPS', 'SerieCTPS', 'NumeroRegistroAutonomo', 'GrauInstrucao', 'NumeroRegistroDRTE', 'Observacoes'], 'string', 'max' => 255],
         ];

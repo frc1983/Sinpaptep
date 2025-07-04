@@ -4,26 +4,26 @@ namespace common\models;
 use Yii;
 use yii\db\ActiveRecord;
 
-/**
- * This is the model class for table "socio".
- *
- * @property int $Id
- * @property string $Nome
- * @property int $CPF
- * @property string $CidadeNascimento
- * @property string $DataNascimento
- * @property string $EstadoCivil
- * @property string $Nacionalidade
- * @property string $Identidade
- * @property string $OrgaoEmissor
- * @property string|null $TituloEleitor
- * @property string|null $DataExpiracaoTituloEleitor
- * @property string|null $UFTituloEleitor
- * @property string $NomeMae
- * @property string|null $NomePai
- * @property string|null $NomeConjuge
- * @property string|null $DataNascimentoConjuge
- */
+    /**
+     * This is the model class for table "socio".
+     *
+     * @property int $Id
+     * @property string $Nome
+     * @property string $CPF
+     * @property string $CidadeNascimento
+     * @property string $DataNascimento
+     * @property string $EstadoCivil
+     * @property string $Nacionalidade
+     * @property string $Identidade
+     * @property string $OrgaoEmissor
+     * @property string|null $TituloEleitor
+     * @property string|null $DataExpiracaoTituloEleitor
+     * @property string|null $UFTituloEleitor
+     * @property string $NomeMae
+     * @property string|null $NomePai
+     * @property string|null $NomeConjuge
+     * @property string|null $DataNascimentoConjuge
+     */
 class Socio extends ActiveRecord
 {
     public static function tableName()
@@ -36,7 +36,7 @@ class Socio extends ActiveRecord
         return [
             [['Nome', 'CPF', 'CidadeNascimento', 'DataNascimento', 'EstadoCivil', 'Nacionalidade', 'Identidade', 'OrgaoEmissor', 'NomeMae'], 'required'],
             ['CPF', 'filter', 'filter' => function($value) { return preg_replace('/\D/', '', $value); }],
-            ['CPF', 'integer', 'message' => 'CPF deve ser um número inteiro.'],
+            ['CPF', 'string', 'max' => 11, 'message' => 'CPF deve ter no máximo 11 dígitos.'],
             [['DataNascimento', 'DataExpiracaoTituloEleitor', 'DataNascimentoConjuge'], 'date', 'format' => 'php:Y-m-d'],
             [['Nome', 'CidadeNascimento', 'EstadoCivil', 'Nacionalidade', 'Identidade', 'OrgaoEmissor', 'TituloEleitor', 'NomeMae', 'NomePai', 'NomeConjuge', 'UFTituloEleitor'], 'string', 'max' => 255],
         ];

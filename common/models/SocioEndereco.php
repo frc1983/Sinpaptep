@@ -30,8 +30,9 @@ class SocioEndereco extends ActiveRecord
     public function rules()
     {
         return [
-            [['Logradouro', 'Numero', 'Bairro', 'Cidade', 'CEP', 'UF', 'Celular', 'Email'], 'required'],
-            [['Id_Socio', 'Numero', 'CEP'], 'integer'],
+            [['Logradouro', 'Numero', 'Bairro', 'Cidade', 'CEP', 'UF', 'Telefone', 'Celular', 'Email'], 'required'],
+            [['Id_Socio', 'Numero'], 'integer'],
+            ['CEP', 'string', 'max' => 8],
             [['Logradouro', 'Complemento', 'Bairro', 'Cidade', 'UF', 'Telefone', 'Celular', 'Email'], 'string', 'max' => 255],
         ];
     }
