@@ -33,7 +33,7 @@ class SocioDadosEmpresa extends ActiveRecord
 {
     public static function tableName()
     {
-        return 'socio_dadosempresa';
+        return 'Socio_DadosEmpresa';
     }
 
     public function rules()

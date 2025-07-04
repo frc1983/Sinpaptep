@@ -16,7 +16,7 @@ class SocioFilho extends ActiveRecord
 {
     public static function tableName()
     {
-        return 'socio_filho';
+        return 'Socio_Filho';
     }
 
     public function rules()

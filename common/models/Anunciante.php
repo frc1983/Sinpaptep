@@ -14,7 +14,7 @@ class Anunciante extends ActiveRecord
 
     public static function tableName()
     {
-        return 'anunciante';
+        return 'Anunciante';
     }
 
     public function rules()

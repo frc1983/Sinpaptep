@@ -20,7 +20,7 @@ class Imagem extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'imagem';
+        return 'Imagem';
     }
 
     /**

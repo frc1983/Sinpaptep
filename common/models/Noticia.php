@@ -26,7 +26,7 @@ class Noticia extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'noticia';
+        return 'Noticia';
     }
 
     /**

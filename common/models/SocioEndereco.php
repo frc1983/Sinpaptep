@@ -24,7 +24,7 @@ class SocioEndereco extends ActiveRecord
 {
     public static function tableName()
     {
-        return 'socio_endereco';
+        return 'Socio_Endereco';
     }
 
     public function rules()

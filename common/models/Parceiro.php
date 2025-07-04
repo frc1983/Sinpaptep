@@ -28,7 +28,7 @@ class Parceiro extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'parceiro';
+        return 'Parceiro';
     }
 
     /**

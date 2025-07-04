@@ -18,7 +18,7 @@ class Categoria extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'categoria_noticia';
+        return 'Categoria_Noticia';
     }
 
     /**
