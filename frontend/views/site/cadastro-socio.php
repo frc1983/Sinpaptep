@@ -338,7 +338,4 @@ document.addEventListener('DOMContentLoaded', function() {
         form.addEventListener('submit', validarDatasFuturas);
     }
 });
-    form.addEventListener('submit', validarDatasFuturas);
-    }
-});
 </script> 
