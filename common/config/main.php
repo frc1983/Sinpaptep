@@ -11,7 +11,7 @@ return [
         ],
         'db' => [
             'class' => \yii\db\Connection::class,
-            'dsn' => 'mysql:host=127.0.0.1;port=3306;dbname=sinpaptep;charset=utf8mb4',
+            'dsn' => 'mysql:host=186.202.152.152;port=3306;dbname=sinpaptep;charset=utf8mb4',
             'username' => 'sinpaptep',
             'password' => 'b3+T/geK,c9yx8',
             'charset' => 'utf8mb4',
