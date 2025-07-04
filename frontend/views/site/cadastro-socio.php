@@ -49,7 +49,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </ul>
                             </div>
                         <?php endif; ?>
-                        <?php $form = ActiveForm::begin(); ?>
+                        <?php $form = ActiveForm::begin([
+                            'id' => 'socio-form',
+                            'options' => ['class' => 'socio-form']
+                        ]); ?>
                         <h4 class="mt-4">Dados Pessoais</h4>
                         <div class="row">
                             <div class="col-md-6">
