@@ -1,5 +1,4 @@
 <?php
-use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Alert;
 
@@ -49,180 +48,225 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </ul>
                             </div>
                         <?php endif; ?>
-                        <?php $form = ActiveForm::begin([
-                            'id' => 'socio-form',
-                            'options' => ['class' => 'socio-form']
-                        ]); ?>
-                        <h4 class="mt-4">Dados Pessoais</h4>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <?= $form->field($socio, 'Nome')->textInput() ?>
-                            </div>
-                            <div class="col-md-3">
-                                <?= $form->field($socio, 'CPF')->textInput() ?>
-                            </div>
-                            <div class="col-md-3">
-                                <?= $form->field($socio, 'DataNascimento')->input('date') ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($socio, 'CidadeNascimento')->textInput() ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($socio, 'EstadoCivil')->textInput() ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($socio, 'Nacionalidade')->textInput() ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($socio, 'Identidade')->textInput() ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($socio, 'OrgaoEmissor')->textInput() ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($socio, 'TituloEleitor')->textInput() ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($socio, 'DataExpiracaoTituloEleitor')->input('date') ?>
-                            </div>
-                            <div class="col-md-2">
-                                <?= $form->field($socio, 'UFTituloEleitor')->textInput() ?>
-                            </div>
-                            <div class="col-md-6">
-                                <?= $form->field($socio, 'NomeMae')->textInput() ?>
-                            </div>
-                            <div class="col-md-6">
-                                <?= $form->field($socio, 'NomePai')->textInput() ?>
-                            </div>
-                            <div class="col-md-6">
-                                <?= $form->field($socio, 'NomeConjuge')->textInput() ?>
-                            </div>
-                            <div class="col-md-3">
-                                <?= $form->field($socio, 'DataNascimentoConjuge')->input('date') ?>
-                            </div>
-                        </div>
-                        <h4 class="mt-4">Dados da Empresa</h4>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <?= $form->field($empresa, 'Nome')->textInput() ?>
-                            </div>
-                            <div class="col-md-6">
-                                <?= $form->field($empresa, 'Logradouro')->textInput() ?>
-                            </div>
-                            <div class="col-md-2">
-                                <?= $form->field($empresa, 'Numero')->textInput() ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($empresa, 'Complemento')->textInput() ?>
-                            </div>
-                            <div class="col-md-3">
-                                <?= $form->field($empresa, 'Bairro')->textInput() ?>
-                            </div>
-                            <div class="col-md-3">
-                                <?= $form->field($empresa, 'Cidade')->textInput() ?>
-                            </div>
-                            <div class="col-md-2">
-                                <?= $form->field($empresa, 'CEP')->textInput() ?>
-                            </div>
-                            <div class="col-md-1">
-                                <?= $form->field($empresa, 'UF')->textInput() ?>
-                            </div>
-                            <div class="col-md-3">
-                                <?= $form->field($empresa, 'Telefone')->textInput() ?>
-                            </div>
-                            <div class="col-md-3">
-                                <?= $form->field($empresa, 'Celular')->textInput() ?>
-                            </div>
-                            <div class="col-md-3">
-                                <?= $form->field($empresa, 'Email')->textInput() ?>
-                            </div>
-                            <div class="col-md-3">
-                                <?= $form->field($empresa, 'CargoAtual')->textInput() ?>
-                            </div>
-                            <div class="col-md-3">
-                                <?= $form->field($empresa, 'DataInicioCargoAtual')->input('date') ?>
-                            </div>
-                            <div class="col-md-3">
-                                <?= $form->field($empresa, 'NumeroCTPS')->textInput() ?>
-                            </div>
-                            <div class="col-md-3">
-                                <?= $form->field($empresa, 'SerieCTPS')->textInput() ?>
-                            </div>
-                            <div class="col-md-3">
-                                <?= $form->field($empresa, 'NumeroRegistroAutonomo')->textInput() ?>
-                            </div>
-                            <div class="col-md-3">
-                                <?= $form->field($empresa, 'GrauInstrucao')->dropDownList([
-                                    'Ensino Fundamental' => 'Ensino Fundamental (1º Grau)',
-                                    'Ensino Médio' => 'Ensino Médio (2º Grau)',
-                                    'Ensino Técnico' => 'Ensino Técnico',
-                                    'Superior' => 'Superior',
-                                    'Pós-graduação' => 'Pós-graduação',
-                                    'Mestrado' => 'Mestrado',
-                                    'Doutorado' => 'Doutorado',
-                                ], ['prompt' => 'Selecione']) ?>
-                            </div>
-                            <div class="col-md-3">
-                                <?= $form->field($empresa, 'NumeroRegistroDRTE')->textInput() ?>
-                            </div>
-                            <div class="col-md-6">
-                                <?= $form->field($empresa, 'Observacoes')->textInput() ?>
-                            </div>
-                        </div>
-                        <h4 class="mt-4">Endereço Residencial</h4>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <?= $form->field($endereco, 'Logradouro')->textInput() ?>
-                            </div>
-                            <div class="col-md-2">
-                                <?= $form->field($endereco, 'Numero')->textInput() ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?= $form->field($endereco, 'Complemento')->textInput() ?>
-                            </div>
-                            <div class="col-md-3">
-                                <?= $form->field($endereco, 'Bairro')->textInput() ?>
-                            </div>
-                            <div class="col-md-3">
-                                <?= $form->field($endereco, 'Cidade')->textInput() ?>
-                            </div>
-                            <div class="col-md-2">
-                                <?= $form->field($endereco, 'CEP')->textInput() ?>
-                            </div>
-                            <div class="col-md-1">
-                                <?= $form->field($endereco, 'UF')->textInput() ?>
-                            </div>
-                            <div class="col-md-3">
-                                <?= $form->field($endereco, 'Telefone')->textInput() ?>
-                            </div>
-                            <div class="col-md-3">
-                                <?= $form->field($endereco, 'Celular')->textInput() ?>
-                            </div>
-                            <div class="col-md-3">
-                                <?= $form->field($endereco, 'Email')->textInput() ?>
-                            </div>
-                        </div>
-                        <h4 class="mt-4">Filhos</h4>
-                        <div id="filhos-list">
-                            <?php foreach ($filhos as $i => $filho): ?>
-                                <div class="row filho-item mb-2" data-index="<?= $i ?>">
-                                    <div class="col-md-6">
-                                        <?= $form->field($filho, "[$i]Nome")->textInput() ?>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <?= $form->field($filho, "[$i]DataNascimento")->input('date') ?>
-                                    </div>
-                                    <div class="col-md-2 d-flex align-items-end">
-                                        <button type="button" class="btn btn-danger btn-remove-filho w-100" style="height:38px;" onclick="removeFilho(this)">Remover</button>
-                                    </div>
+                        <form id="socio-form" method="post" class="socio-form" action="<?= \yii\helpers\Url::to(['site/cadastro-socio']) ?>">
+                            <?= Html::hiddenInput(Yii::$app->request->csrfParam, Yii::$app->request->csrfToken) ?>
+                            <h4 class="mt-4">Dados Pessoais</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="socio-nome">Nome*</label>
+                                    <input type="text" class="form-control" id="socio-nome" name="Socio[Nome]" value="<?= Html::encode($socio->Nome) ?>">
                                 </div>
-                            <?php endforeach; ?>
-                        </div>
-                        <button type="button" class="btn btn-secondary mb-4" onclick="addFilho()">Adicionar Filho</button>
-                        <div class="form-group mt-4">
-                            <?= Html::submitButton('Cadastrar Sócio', ['class' => 'btn btn-success btn-lg']) ?>
-                        </div>
-                        <?php ActiveForm::end(); ?>
+                                <div class="col-md-3">
+                                    <label for="socio-cpf">CPF*</label>
+                                    <input type="text" class="form-control" id="socio-cpf" name="Socio[CPF]" value="<?= Html::encode($socio->CPF) ?>">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="socio-datanascimento">Data de Nascimento*</label>
+                                    <input type="date" class="form-control" id="socio-datanascimento" name="Socio[DataNascimento]" value="<?= Html::encode($socio->DataNascimento) ?>">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="socio-cidadenascimento">Cidade de Nascimento</label>
+                                    <input type="text" class="form-control" id="socio-cidadenascimento" name="Socio[CidadeNascimento]" value="<?= Html::encode($socio->CidadeNascimento) ?>">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="socio-estadocivil">Estado Civil</label>
+                                    <input type="text" class="form-control" id="socio-estadocivil" name="Socio[EstadoCivil]" value="<?= Html::encode($socio->EstadoCivil) ?>">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="socio-nacionalidade">Nacionalidade</label>
+                                    <input type="text" class="form-control" id="socio-nacionalidade" name="Socio[Nacionalidade]" value="<?= Html::encode($socio->Nacionalidade) ?>">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="socio-identidade">Identidade</label>
+                                    <input type="text" class="form-control" id="socio-identidade" name="Socio[Identidade]" value="<?= Html::encode($socio->Identidade) ?>">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="socio-orgaoemissor">Órgão Emissor</label>
+                                    <input type="text" class="form-control" id="socio-orgaoemissor" name="Socio[OrgaoEmissor]" value="<?= Html::encode($socio->OrgaoEmissor) ?>">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="socio-tituloeleitor">Título de Eleitor</label>
+                                    <input type="text" class="form-control" id="socio-tituloeleitor" name="Socio[TituloEleitor]" value="<?= Html::encode($socio->TituloEleitor) ?>">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="socio-dataexpiracaotituloeleitor">Data Expiração Título Eleitor</label>
+                                    <input type="date" class="form-control" id="socio-dataexpiracaotituloeleitor" name="Socio[DataExpiracaoTituloEleitor]" value="<?= Html::encode($socio->DataExpiracaoTituloEleitor) ?>">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="socio-uftituloeleitor">UF Título Eleitor</label>
+                                    <input type="text" class="form-control" id="socio-uftituloeleitor" name="Socio[UFTituloEleitor]" value="<?= Html::encode($socio->UFTituloEleitor) ?>">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="socio-nomemae">Nome da Mãe</label>
+                                    <input type="text" class="form-control" id="socio-nomemae" name="Socio[NomeMae]" value="<?= Html::encode($socio->NomeMae) ?>">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="socio-nomepai">Nome do Pai</label>
+                                    <input type="text" class="form-control" id="socio-nomepai" name="Socio[NomePai]" value="<?= Html::encode($socio->NomePai) ?>">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="socio-nomeconjuge">Nome do Cônjuge</label>
+                                    <input type="text" class="form-control" id="socio-nomeconjuge" name="Socio[NomeConjuge]" value="<?= Html::encode($socio->NomeConjuge) ?>">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="socio-datanascimentoconjuge">Data Nascimento Cônjuge</label>
+                                    <input type="date" class="form-control" id="socio-datanascimentoconjuge" name="Socio[DataNascimentoConjuge]" value="<?= Html::encode($socio->DataNascimentoConjuge) ?>">
+                                </div>
+                            </div>
+                            <h4 class="mt-4">Dados da Empresa</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="socio-empresa-nome">Nome*</label>
+                                    <input type="text" class="form-control" id="socio-empresa-nome" name="SocioDadosEmpresa[Nome]" value="<?= Html::encode($empresa->Nome) ?>">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="socio-empresa-logradouro">Logradouro*</label>
+                                    <input type="text" class="form-control" id="socio-empresa-logradouro" name="SocioDadosEmpresa[Logradouro]" value="<?= Html::encode($empresa->Logradouro) ?>">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="socio-empresa-numero">Número*</label>
+                                    <input type="text" class="form-control" id="socio-empresa-numero" name="SocioDadosEmpresa[Numero]" value="<?= Html::encode($empresa->Numero) ?>">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="socio-empresa-complemento">Complemento</label>
+                                    <input type="text" class="form-control" id="socio-empresa-complemento" name="SocioDadosEmpresa[Complemento]" value="<?= Html::encode($empresa->Complemento) ?>">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="socio-empresa-bairro">Bairro*</label>
+                                    <input type="text" class="form-control" id="socio-empresa-bairro" name="SocioDadosEmpresa[Bairro]" value="<?= Html::encode($empresa->Bairro) ?>">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="socio-empresa-cidade">Cidade*</label>
+                                    <input type="text" class="form-control" id="socio-empresa-cidade" name="SocioDadosEmpresa[Cidade]" value="<?= Html::encode($empresa->Cidade) ?>">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="socio-empresa-cep">CEP*</label>
+                                    <input type="text" class="form-control" id="socio-empresa-cep" name="SocioDadosEmpresa[CEP]" value="<?= Html::encode($empresa->CEP) ?>">
+                                </div>
+                                <div class="col-md-1">
+                                    <label for="socio-empresa-uf">UF*</label>
+                                    <input type="text" class="form-control" id="socio-empresa-uf" name="SocioDadosEmpresa[UF]" value="<?= Html::encode($empresa->UF) ?>">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="socio-empresa-telefone">Telefone*</label>
+                                    <input type="text" class="form-control" id="socio-empresa-telefone" name="SocioDadosEmpresa[Telefone]" value="<?= Html::encode($empresa->Telefone) ?>">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="socio-empresa-celular">Celular*</label>
+                                    <input type="text" class="form-control" id="socio-empresa-celular" name="SocioDadosEmpresa[Celular]" value="<?= Html::encode($empresa->Celular) ?>">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="socio-empresa-email">Email*</label>
+                                    <input type="text" class="form-control" id="socio-empresa-email" name="SocioDadosEmpresa[Email]" value="<?= Html::encode($empresa->Email) ?>">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="socio-empresa-cargoatual">Cargo Atual*</label>
+                                    <input type="text" class="form-control" id="socio-empresa-cargoatual" name="SocioDadosEmpresa[CargoAtual]" value="<?= Html::encode($empresa->CargoAtual) ?>">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="socio-empresa-datainiciocargoatual">Data Início Cargo Atual*</label>
+                                    <input type="date" class="form-control" id="socio-empresa-datainiciocargoatual" name="SocioDadosEmpresa[DataInicioCargoAtual]" value="<?= Html::encode($empresa->DataInicioCargoAtual) ?>">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="socio-empresa-numeroctps">Número CTPS*</label>
+                                    <input type="text" class="form-control" id="socio-empresa-numeroctps" name="SocioDadosEmpresa[NumeroCTPS]" value="<?= Html::encode($empresa->NumeroCTPS) ?>">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="socio-empresa-seriectps">Série CTPS*</label>
+                                    <input type="text" class="form-control" id="socio-empresa-seriectps" name="SocioDadosEmpresa[SerieCTPS]" value="<?= Html::encode($empresa->SerieCTPS) ?>">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="socio-empresa-numeroregistroautonomo">Número Registro Autônomo*</label>
+                                    <input type="text" class="form-control" id="socio-empresa-numeroregistroautonomo" name="SocioDadosEmpresa[NumeroRegistroAutonomo]" value="<?= Html::encode($empresa->NumeroRegistroAutonomo) ?>">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="socio-empresa-grauinstrucao">Grau de Instrução*</label>
+                                    <select class="form-select" id="socio-empresa-grauinstrucao" name="SocioDadosEmpresa[GrauInstrucao]">
+                                        <option value="" disabled selected>Selecione</option>
+                                        <option value="Ensino Fundamental" <?= Html::encode($empresa->GrauInstrucao) === 'Ensino Fundamental' ? 'selected' : '' ?>>Ensino Fundamental (1º Grau)</option>
+                                        <option value="Ensino Médio" <?= Html::encode($empresa->GrauInstrucao) === 'Ensino Médio' ? 'selected' : '' ?>>Ensino Médio (2º Grau)</option>
+                                        <option value="Ensino Técnico" <?= Html::encode($empresa->GrauInstrucao) === 'Ensino Técnico' ? 'selected' : '' ?>>Ensino Técnico</option>
+                                        <option value="Superior" <?= Html::encode($empresa->GrauInstrucao) === 'Superior' ? 'selected' : '' ?>>Superior</option>
+                                        <option value="Pós-graduação" <?= Html::encode($empresa->GrauInstrucao) === 'Pós-graduação' ? 'selected' : '' ?>>Pós-graduação</option>
+                                        <option value="Mestrado" <?= Html::encode($empresa->GrauInstrucao) === 'Mestrado' ? 'selected' : '' ?>>Mestrado</option>
+                                        <option value="Doutorado" <?= Html::encode($empresa->GrauInstrucao) === 'Doutorado' ? 'selected' : '' ?>>Doutorado</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="socio-empresa-numeroregistrodrte">Número Registro DRTE*</label>
+                                    <input type="text" class="form-control" id="socio-empresa-numeroregistrodrte" name="SocioDadosEmpresa[NumeroRegistroDRTE]" value="<?= Html::encode($empresa->NumeroRegistroDRTE) ?>">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="socio-empresa-observacoes">Observações</label>
+                                    <textarea class="form-control" id="socio-empresa-observacoes" name="SocioDadosEmpresa[Observacoes]" rows="3"><?= Html::encode($empresa->Observacoes) ?></textarea>
+                                </div>
+                            </div>
+                            <h4 class="mt-4">Endereço Residencial</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="socio-endereco-logradouro">Logradouro*</label>
+                                    <input type="text" class="form-control" id="socio-endereco-logradouro" name="SocioEndereco[Logradouro]" value="<?= Html::encode($endereco->Logradouro) ?>">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="socio-endereco-numero">Número*</label>
+                                    <input type="text" class="form-control" id="socio-endereco-numero" name="SocioEndereco[Numero]" value="<?= Html::encode($endereco->Numero) ?>">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="socio-endereco-complemento">Complemento</label>
+                                    <input type="text" class="form-control" id="socio-endereco-complemento" name="SocioEndereco[Complemento]" value="<?= Html::encode($endereco->Complemento) ?>">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="socio-endereco-bairro">Bairro*</label>
+                                    <input type="text" class="form-control" id="socio-endereco-bairro" name="SocioEndereco[Bairro]" value="<?= Html::encode($endereco->Bairro) ?>">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="socio-endereco-cidade">Cidade*</label>
+                                    <input type="text" class="form-control" id="socio-endereco-cidade" name="SocioEndereco[Cidade]" value="<?= Html::encode($endereco->Cidade) ?>">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="socio-endereco-cep">CEP*</label>
+                                    <input type="text" class="form-control" id="socio-endereco-cep" name="SocioEndereco[CEP]" value="<?= Html::encode($endereco->CEP) ?>">
+                                </div>
+                                <div class="col-md-1">
+                                    <label for="socio-endereco-uf">UF*</label>
+                                    <input type="text" class="form-control" id="socio-endereco-uf" name="SocioEndereco[UF]" value="<?= Html::encode($endereco->UF) ?>">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="socio-endereco-telefone">Telefone*</label>
+                                    <input type="text" class="form-control" id="socio-endereco-telefone" name="SocioEndereco[Telefone]" value="<?= Html::encode($endereco->Telefone) ?>">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="socio-endereco-celular">Celular*</label>
+                                    <input type="text" class="form-control" id="socio-endereco-celular" name="SocioEndereco[Celular]" value="<?= Html::encode($endereco->Celular) ?>">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="socio-endereco-email">Email*</label>
+                                    <input type="text" class="form-control" id="socio-endereco-email" name="SocioEndereco[Email]" value="<?= Html::encode($endereco->Email) ?>">
+                                </div>
+                            </div>
+                            <h4 class="mt-4">Filhos</h4>
+                            <div id="filhos-list">
+                                <?php foreach ($filhos as $i => $filho): ?>
+                                    <div class="row filho-item mb-2" data-index="<?= $i ?>">
+                                        <div class="col-md-6">
+                                            <label for="socio-filho-<?= $i ?>-nome">Nome do Filho*</label>
+                                            <input type="text" class="form-control" id="socio-filho-<?= $i ?>-nome" name="SocioFilho[<?= $i ?>][Nome]" value="<?= Html::encode($filho->Nome) ?>">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="socio-filho-<?= $i ?>-datanascimento">Data de Nascimento*</label>
+                                            <input type="date" class="form-control" id="socio-filho-<?= $i ?>-datanascimento" name="SocioFilho[<?= $i ?>][DataNascimento]" value="<?= Html::encode($filho->DataNascimento) ?>">
+                                        </div>
+                                        <div class="col-md-2 d-flex align-items-end">
+                                            <button type="button" class="btn btn-danger btn-remove-filho w-100" style="height:38px;" onclick="removeFilho(this)">Remover</button>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <button type="button" class="btn btn-secondary mb-4" onclick="addFilho()">Adicionar Filho</button>
+                            <div class="mt-4">
+                                <button type="submit" class="btn btn-success">Enviar Cadastro</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
