@@ -1,5 +1,5 @@
-# Locaweb .htaccess para Yii2 - Raiz do Projeto
-# Redireciona automaticamente para frontend ou backend
+# Yii2 Advanced Template - .htaccess Principal
+# Separação de rotas entre Frontend e Backend
 
 RewriteEngine On
 
@@ -11,12 +11,12 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 # RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 # RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 
-# Redireciona para frontend por padrão
-# Se você quiser que o backend seja acessível via /admin, descomente as linhas abaixo
-# RewriteCond %{REQUEST_URI} ^/admin(.*)$
-# RewriteRule ^admin(.*)$ backend/web/$1 [L]
+# SEPARAÇÃO DE ROTAS
+# 1. Rotas do Backend - redireciona /backend/web para backend/web/
+RewriteCond %{REQUEST_URI} ^/backend/web(.*)$
+RewriteRule ^backend/web(.*)$ backend/web/$1 [L]
 
-# Redireciona tudo para o frontend
+# 2. Rotas do Frontend - redireciona tudo o resto para frontend/web/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ frontend/web/$1 [L]
@@ -44,12 +44,13 @@ RewriteRule ^(.*)$ frontend/web/$1 [L]
     Deny from all
 </FilesMatch>
 
-# Bloqueio de acesso a diretórios sensíveis
-RewriteRule ^(runtime|vendor|tests|migrations|console|common|backend|frontend)/ - [F,L]
+# Bloqueio de acesso a diretórios sensíveis (exceto backend/web e frontend/web)
+RewriteRule ^(runtime|vendor|tests|migrations|console|common)/ - [F,L]
 
 # Headers de segurança básicos
 <IfModule mod_headers.c>
     Header always set X-Content-Type-Options nosniff
     Header always set X-Frame-Options SAMEORIGIN
     Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule> 

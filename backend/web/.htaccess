@@ -1,17 +1,9 @@
-# Locaweb .htaccess para Yii2 Backend
-# Otimizado para servidores Locaweb
+# Yii2 Backend .htaccess
+# Configuração específica para backend
 
 RewriteEngine On
 
-# Força HTTPS (descomente se tiver SSL)
-# RewriteCond %{HTTPS} off
-# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# Remove www (descomente se necessário)
-# RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-# RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
-
-# Yii2 URL Rewriting
+# Yii2 URL Rewriting - ESSENCIAL
 # Se o arquivo ou diretório existe, use diretamente
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -19,24 +11,17 @@ RewriteCond %{REQUEST_FILENAME} !-d
 # Caso contrário, redirecione para index.php
 RewriteRule . index.php [L]
 
-# Configurações de Segurança para Locaweb
+# Configurações de Segurança Básicas
 <IfModule mod_headers.c>
     # Headers de segurança básicos
     Header always set X-Content-Type-Options nosniff
     Header always set X-Frame-Options DENY
     Header always set X-XSS-Protection "1; mode=block"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
-    
-    # Content Security Policy (ajustado para Locaweb)
-    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none';"
-    
-    # HSTS (descomente se tiver SSL)
-    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 </IfModule>
 
-# Compressão GZIP (otimizada para Locaweb)
+# Compressão GZIP
 <IfModule mod_deflate.c>
-    # Ativa compressão
     AddOutputFilterByType DEFLATE text/plain
     AddOutputFilterByType DEFLATE text/html
     AddOutputFilterByType DEFLATE text/xml
@@ -48,10 +33,9 @@ RewriteRule . index.php [L]
     AddOutputFilterByType DEFLATE application/javascript
     AddOutputFilterByType DEFLATE application/x-javascript
     AddOutputFilterByType DEFLATE application/json
-    AddOutputFilterByType DEFLATE application/xml+rss
 </IfModule>
 
-# Cache de Navegador (otimizado para Locaweb)
+# Cache de Navegador
 <IfModule mod_expires.c>
     ExpiresActive On
     
@@ -63,7 +47,6 @@ RewriteRule . index.php [L]
     ExpiresByType image/webp "access plus 1 month"
     ExpiresByType image/svg+xml "access plus 1 month"
     ExpiresByType image/x-icon "access plus 1 year"
-    ExpiresByType image/ico "access plus 1 year"
     
     # CSS e JavaScript
     ExpiresByType text/css "access plus 1 month"
@@ -76,14 +59,9 @@ RewriteRule . index.php [L]
     ExpiresByType font/woff2 "access plus 1 year"
     ExpiresByType application/font-woff "access plus 1 year"
     ExpiresByType application/font-woff2 "access plus 1 year"
-    ExpiresByType application/x-font-woff "access plus 1 year"
     
     # HTML
     ExpiresByType text/html "access plus 1 hour"
-    
-    # Outros
-    ExpiresByType application/pdf "access plus 1 month"
-    ExpiresByType application/x-shockwave-flash "access plus 1 month"
 </IfModule>
 
 # Proteção de Arquivos Sensíveis
@@ -115,40 +93,10 @@ RewriteRule . index.php [L]
     Deny from all
 </FilesMatch>
 
-# Bloqueio de acesso a diretórios sensíveis
-RewriteRule ^(runtime|vendor|tests|migrations|console|common|backend)/ - [F,L]
+# Bloqueio de acesso a diretórios sensíveis (SEM backend)
+RewriteRule ^(runtime|vendor|tests|migrations|console|common)/ - [F,L]
 
 # Páginas de erro personalizadas
 ErrorDocument 404 /index.php?r=site/error
 ErrorDocument 500 /index.php?r=site/error
-ErrorDocument 403 /index.php?r=site/error
-
-# Configurações específicas para Locaweb
-# Limitação de upload (se necessário)
-# php_value upload_max_filesize 10M
-# php_value post_max_size 10M
-# php_value max_execution_time 300
-# php_value max_input_time 300
-
-# Proteção contra ataques comuns
-<IfModule mod_rewrite.c>
-    # Bloqueia tentativas de acesso a arquivos de configuração
-    RewriteCond %{REQUEST_URI} \.(env|config|ini|log)$ [NC]
-    RewriteRule .* - [F,L]
-    
-    # Bloqueia tentativas de SQL injection básicas
-    RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
-    RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
-    RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2}) [OR]
-    RewriteCond %{QUERY_STRING} proc/self/environ [OR]
-    RewriteCond %{QUERY_STRING} mosConfig [OR]
-    RewriteCond %{QUERY_STRING} base64_(en|de)code[^(]*\([^)]*\) [OR]
-    RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
-    RewriteCond %{QUERY_STRING} (\<|%3C).*iframe.*(\>|%3E) [NC]
-    RewriteRule .* - [F,L]
-</IfModule>
-
-# Configurações de sessão (se necessário)
-# php_value session.cookie_httponly 1
-# php_value session.cookie_secure 1
-# php_value session.use_strict_mode 1 
+ErrorDocument 403 /index.php?r=site/error 
