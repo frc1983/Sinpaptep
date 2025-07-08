@@ -79,6 +79,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['width' => '150'],
                 'contentOptions' => ['class' => 'text-center'],
                 'template' => '{view} {update} {delete}',
+                'urlCreator' => function ($action, $model, $key, $index) {
+                    if ($action === 'view') {
+                        return ['view', 'Id' => $model->Id];
+                    }
+                    if ($action === 'update') {
+                        return ['update', 'Id' => $model->Id];
+                    }
+                    if ($action === 'delete') {
+                        return ['delete', 'Id' => $model->Id];
+                    }
+                },
                 'buttons' => [
                     'view' => function ($url, $model) {
                         return Html::a('<i class="fas fa-eye"></i>', $url, [

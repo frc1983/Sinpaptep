@@ -18,9 +18,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('<i class="fas fa-edit"></i> Atualizar', ['update', 'id' => $model->Id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('<i class="fas fa-plus"></i> Adicionar Imagem', ['adicionar-imagem', 'parceiroId' => $model->Id], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('<i class="fas fa-trash"></i> Excluir', ['delete', 'id' => $model->Id], [
+        <?= Html::a('<i class="fas fa-edit"></i> Atualizar', ['update', 'Id' => $model->Id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('<i class="fas fa-trash"></i> Excluir', ['delete', 'Id' => $model->Id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Tem certeza que deseja excluir este parceiro?',
@@ -104,10 +103,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="text-center text-muted">
                             <i class="fas fa-images fa-3x mb-3"></i>
                             <p>Nenhuma imagem cadastrada para este parceiro.</p>
-                            <?= Html::a('<i class="fas fa-plus"></i> Adicionar Primeira Imagem', 
-                                ['adicionar-imagem', 'parceiroId' => $model->Id], 
-                                ['class' => 'btn btn-success']
-                            ) ?>
+                            <p class="small">Use o botão "Atualizar" para adicionar imagens.</p>
                         </div>
                     <?php endif; ?>
                 </div>

@@ -55,7 +55,7 @@ class ParceiroImagem extends ActiveRecord
             [['Descricao'], 'string', 'max' => 500],
             [['Imagem'], 'string', 'max' => 255],
             [['ParceiroId'], 'exist', 'skipOnError' => true, 'targetClass' => Parceiro::class, 'targetAttribute' => ['ParceiroId' => 'Id']],
-            [['imagemFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, gif', 'maxSize' => 1024 * 1024 * 5], // 5MB
+            [['imagemFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, gif', 'maxSize' => 1024 * 1024 * 5],
         ];
     }
 
@@ -91,26 +91,43 @@ class ParceiroImagem extends ActiveRecord
     public function upload()
     {
         if ($this->imagemFile === null) {
-            return true;
+            return false;
+        }
+
+        // Verificar se o arquivo temporário existe
+        if (!file_exists($this->imagemFile->tempName)) {
+            Yii::error('Arquivo temporário não encontrado: ' . $this->imagemFile->tempName);
+            return false;
         }
 
         $uploadPath = Yii::getAlias('@webroot/uploads/parceiros/');
-        
-        // Criar diretório se não existir
         if (!is_dir($uploadPath)) {
-            mkdir($uploadPath, 0755, true);
+            if (!mkdir($uploadPath, 0755, true)) {
+                Yii::error('Não foi possível criar o diretório: ' . $uploadPath);
+                return false;
+            }
+        }
+        if (!is_writable($uploadPath)) {
+            Yii::error('Diretório não é gravável: ' . $uploadPath);
+            return false;
         }
 
-        $fileName = 'parceiro_imagem_' . time() . '_' . $this->imagemFile->baseName . '.' . $this->imagemFile->extension;
+        $fileName = 'parceiro_imagem_' . time() . '_' . uniqid() . '.' . $this->imagemFile->extension;
         $filePath = $uploadPath . $fileName;
 
-        if ($this->imagemFile->saveAs($filePath)) {
-            // Armazenar o caminho completo no servidor
-            $this->Imagem = $filePath;
-            return true;
+        try {
+            if ($this->imagemFile->saveAs($filePath)) {
+                // Salva apenas o nome do arquivo no banco
+                $this->Imagem = $fileName;
+                return true;
+            } else {
+                Yii::error('Falha ao salvar arquivo: ' . $filePath);
+                return false;
+            }
+        } catch (\Exception $e) {
+            Yii::error('Exceção ao salvar arquivo: ' . $e->getMessage());
+            return false;
         }
-
-        return false;
     }
 
     /**
