@@ -29,6 +29,35 @@ class SocioController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Socio::find(),
+            'sort' => [
+                'defaultOrder' => ['Id' => SORT_DESC],
+                'attributes' => [
+                    'Id' => [
+                        'asc' => ['Id' => SORT_ASC],
+                        'desc' => ['Id' => SORT_DESC],
+                        'default' => SORT_DESC,
+                        'label' => 'ID',
+                    ],
+                    'Nome' => [
+                        'asc' => ['Nome' => SORT_ASC],
+                        'desc' => ['Nome' => SORT_DESC],
+                        'default' => SORT_ASC,
+                        'label' => 'Nome',
+                    ],
+                    'CPF' => [
+                        'asc' => ['CPF' => SORT_ASC],
+                        'desc' => ['CPF' => SORT_DESC],
+                        'default' => SORT_ASC,
+                        'label' => 'CPF',
+                    ],
+                    'Email' => [
+                        'asc' => ['Email' => SORT_ASC],
+                        'desc' => ['Email' => SORT_DESC],
+                        'default' => SORT_ASC,
+                        'label' => 'Email',
+                    ],
+                ],
+            ],
             'pagination' => [
                 'pageSize' => 20,
             ],
@@ -56,7 +85,7 @@ class SocioController extends Controller
             $socio->load($post);
             $empresa->load($post);
             $endereco->load($post);
-            $filhosData = $post['SocioFilho'] ?? [];
+            $filhosData = $post['Filho'] ?? [];
             $filhos = [];
             foreach ($filhosData as $filhoData) {
                 $f = new SocioFilho();
@@ -103,7 +132,7 @@ class SocioController extends Controller
             $socio->load($post);
             $empresa->load($post);
             $endereco->load($post);
-            $filhosData = $post['SocioFilho'] ?? [];
+            $filhosData = $post['Filho'] ?? [];
             $filhos = [];
             foreach ($filhosData as $filhoData) {
                 $f = new SocioFilho();

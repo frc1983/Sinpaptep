@@ -1,0 +1,173 @@
+/* SINPAPTEP Button Icons - Paleta Verde Institucional */
+
+:root {
+    --sinpaptep-primary: #20713a;      /* Verde principal */
+    --sinpaptep-secondary: #38a169;    /* Verde claro */
+    --sinpaptep-accent: #f6c026;       /* Amarelo/dourado */
+    --sinpaptep-dark: #174c2a;         /* Verde escuro */
+    --sinpaptep-light: #f4fdf6;        /* Verde muito claro */
+    --sinpaptep-white: #ffffff;
+    --sinpaptep-gray: #e2e8f0;
+    --sinpaptep-success: #38a169;
+    --sinpaptep-danger: #e53e3e;
+    --sinpaptep-warning: #f6c026;
+    --sinpaptep-info: #3182ce;
+}
+
+/* Regra geral: ícones em botões herdam a cor do texto do botão */
+.btn .fas,
+.btn .fa,
+.btn .far,
+.btn .fal,
+.btn .fab {
+    color: inherit !important;
+}
+
+/* Botões sólidos - ícones brancos */
+.btn-primary .fas,
+.btn-primary .fa,
+.btn-success .fas,
+.btn-success .fa,
+.btn-danger .fas,
+.btn-danger .fa,
+.btn-info .fas,
+.btn-info .fa,
+.btn-secondary .fas,
+.btn-secondary .fa {
+    color: var(--sinpaptep-white) !important;
+}
+
+/* Botões outline - ícones com cor do botão */
+.btn-outline-primary .fas,
+.btn-outline-primary .fa {
+    color: var(--sinpaptep-primary) !important;
+}
+
+.btn-outline-secondary .fas,
+.btn-outline-secondary .fa {
+    color: var(--sinpaptep-primary) !important;
+}
+
+/* Botões warning - ícones escuros */
+.btn-warning .fas,
+.btn-warning .fa,
+.btn-outline-warning .fas,
+.btn-outline-warning .fa {
+    color: var(--sinpaptep-dark) !important;
+}
+
+/* Hover states para botões outline */
+.btn-outline-primary:hover .fas,
+.btn-outline-primary:hover .fa {
+    color: var(--sinpaptep-white) !important;
+}
+
+.btn-outline-secondary:hover .fas,
+.btn-outline-secondary:hover .fa {
+    color: var(--sinpaptep-white) !important;
+}
+
+/* Ícones em botões pequenos */
+.btn-sm .fas,
+.btn-sm .fa {
+    font-size: 0.875em;
+}
+
+/* Ícones em grupos de botões */
+.btn-group .btn .fas,
+.btn-group .btn .fa {
+    margin-right: 0.25rem;
+}
+
+/* Ícones em botões sem texto (apenas ícone) */
+.btn .fas:only-child,
+.btn .fa:only-child {
+    margin-right: 0;
+}
+
+/* Efeitos de transição suaves */
+.btn .fas,
+.btn .fa {
+    transition: color 0.2s ease-in-out;
+}
+
+/* Garantir que os ícones herdam a cor do botão pai */
+.btn .fas,
+.btn .fa {
+    color: inherit !important;
+}
+
+/* Estilo especial para botões de ação em grids */
+.btn-group .btn .fas,
+.btn-group .btn .fa {
+    color: inherit !important;
+}
+
+/* Hover effects para botões de ação */
+.btn:hover .fas,
+.btn:hover .fa {
+    color: inherit !important;
+}
+
+/* Ícones específicos para ações - garantir cores corretas */
+.btn-info .fa-eye {
+    color: var(--sinpaptep-white) !important;
+}
+
+.btn-primary .fa-edit {
+    color: var(--sinpaptep-white) !important;
+}
+
+.btn-danger .fa-trash {
+    color: var(--sinpaptep-white) !important;
+}
+
+.btn-success .fa-print {
+    color: var(--sinpaptep-white) !important;
+}
+
+.btn-success .fa-plus {
+    color: var(--sinpaptep-white) !important;
+}
+
+.btn-success .fa-save {
+    color: var(--sinpaptep-white) !important;
+}
+
+.btn-outline-secondary .fa-arrow-left {
+    color: var(--sinpaptep-primary) !important;
+}
+
+.btn-outline-secondary:hover .fa-arrow-left {
+    color: var(--sinpaptep-white) !important;
+}
+
+/* Botões de ação em grids - cores específicas */
+.btn-group .btn-info .fa-eye {
+    color: var(--sinpaptep-white) !important;
+}
+
+.btn-group .btn-primary .fa-edit {
+    color: var(--sinpaptep-white) !important;
+}
+
+.btn-group .btn-danger .fa-trash {
+    color: var(--sinpaptep-white) !important;
+}
+
+/* Garantir que ícones em botões outline tenham a cor correta */
+.btn-outline-primary .fa-edit {
+    color: var(--sinpaptep-primary) !important;
+}
+
+.btn-outline-primary:hover .fa-edit {
+    color: var(--sinpaptep-white) !important;
+}
+
+.btn-outline-secondary .fa-arrow-left {
+    color: var(--sinpaptep-primary) !important;
+}
+
+.btn-outline-secondary:hover .fa-arrow-left {
+    color: var(--sinpaptep-white) !important;
+} 

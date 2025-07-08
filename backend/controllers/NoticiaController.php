@@ -26,8 +26,42 @@ class NoticiaController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Noticia::find(),
-            //'sort' => ['defaultOrder' => ['data_publicacao' => SORT_DESC]],
+            'query' => Noticia::find()
+                ->select(['Noticia.*', 'Categoria_Noticia.Nome as CategoriaNome'])
+                ->leftJoin('Categoria_Noticia', 'Noticia.Id_Categoria = Categoria_Noticia.Id')
+                ->with(['imagens']),
+            'sort' => [
+                'defaultOrder' => ['Id' => SORT_DESC],
+                'attributes' => [
+                    'Id' => [
+                        'asc' => ['Noticia.Id' => SORT_ASC],
+                        'desc' => ['Noticia.Id' => SORT_DESC],
+                        'default' => SORT_DESC,
+                        'label' => 'ID',
+                    ],
+                    'Titulo' => [
+                        'asc' => ['Noticia.Titulo' => SORT_ASC],
+                        'desc' => ['Noticia.Titulo' => SORT_DESC],
+                        'default' => SORT_ASC,
+                        'label' => 'Título',
+                    ],
+                    'Sub_Titulo' => [
+                        'asc' => ['Noticia.Sub_Titulo' => SORT_ASC],
+                        'desc' => ['Noticia.Sub_Titulo' => SORT_DESC],
+                        'default' => SORT_ASC,
+                        'label' => 'Subtítulo',
+                    ],
+                    'categoria' => [
+                        'asc' => ['Categoria_Noticia.Nome' => SORT_ASC],
+                        'desc' => ['Categoria_Noticia.Nome' => SORT_DESC],
+                        'default' => SORT_ASC,
+                        'label' => 'Categoria',
+                    ],
+                ],
+            ],
+            'pagination' => [
+                'pageSize' => 20,
+            ],
         ]);
         return $this->render('index', [
             'dataProvider' => $dataProvider,

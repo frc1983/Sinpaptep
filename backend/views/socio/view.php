@@ -1,7 +1,7 @@
 <?php
 use yii\bootstrap5\Html;
 
-$this->title = 'Detalhes do Sócio';
+$this->title = $socio->Nome;
 $this->params['breadcrumbs'][] = ['label' => 'Sócios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -12,21 +12,24 @@ function formatDateBr($date) {
 }
 ?>
 <div class="socio-view">
-    <h1 class="mb-4">Detalhes do Sócio</h1>
-    <div class="mb-3">
-        <?= Html::a('Editar', ['update', 'id' => $socio->Id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Excluir', ['delete', 'id' => $socio->Id], [
-            'class' => 'btn btn-danger',
-            'data-confirm' => 'Tem certeza que deseja excluir este sócio?',
-            'data-method' => 'post',
-        ]) ?>
-        <?= Html::a('Voltar', ['index'], ['class' => 'btn btn-outline-secondary']) ?>
-        <?= Html::a('Imprimir', ['imprimir', 'id' => $socio->Id], [
-            'class' => 'btn btn-outline-dark',
-            'target' => '_blank',
-            'title' => 'Imprimir ficha do sócio',
-        ]) ?>
-    </div>
+    <p>
+        <div class="btn-group" role="group">
+            <?= Html::a('<i class="fas fa-edit"></i> Editar', ['update', 'id' => $socio->Id], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('<i class="fas fa-trash"></i> Excluir', ['delete', 'id' => $socio->Id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Tem certeza que deseja excluir este sócio?',
+                    'method' => 'post',
+                ],
+            ]) ?>
+            <?= Html::a('<i class="fas fa-print"></i> Imprimir', ['imprimir', 'id' => $socio->Id], [
+                'class' => 'btn btn-success',
+                'target' => '_blank',
+                'title' => 'Imprimir ficha do sócio',
+            ]) ?>
+            <?= Html::a('<i class="fas fa-arrow-left"></i> Voltar', ['index'], ['class' => 'btn btn-outline-secondary']) ?>
+        </div>
+    </p>
     <div class="row">
         <div class="col-lg-6 mb-4">
             <div class="card border-0 shadow-sm">

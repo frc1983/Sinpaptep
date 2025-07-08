@@ -26,7 +26,26 @@ class CategoriaController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Categoria::find(),
-            'sort' => ['defaultOrder' => ['Nome' => SORT_ASC]],
+            'sort' => [
+                'defaultOrder' => ['Id' => SORT_DESC],
+                'attributes' => [
+                    'Id' => [
+                        'asc' => ['Id' => SORT_ASC],
+                        'desc' => ['Id' => SORT_DESC],
+                        'default' => SORT_DESC,
+                        'label' => 'ID',
+                    ],
+                    'Nome' => [
+                        'asc' => ['Nome' => SORT_ASC],
+                        'desc' => ['Nome' => SORT_DESC],
+                        'default' => SORT_ASC,
+                        'label' => 'Nome',
+                    ],
+                ],
+            ],
+            'pagination' => [
+                'pageSize' => 20,
+            ],
         ]);
         return $this->render('index', [
             'dataProvider' => $dataProvider,

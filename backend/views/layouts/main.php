@@ -21,6 +21,7 @@ AppAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode(Yii::$app->name) ?> Admin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="<?= Yii::getAlias('@web') ?>/css/button-icons.css">
     <?php $this->head() ?>
 </head>
 <body class="d-flex flex-column h-100">

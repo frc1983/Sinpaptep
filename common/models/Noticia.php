@@ -41,7 +41,19 @@ class Noticia extends ActiveRecord
             [['Titulo', 'Sub_Titulo'], 'string', 'max' => 255],
             [['imagemFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg', 'maxFiles' => 10],
             [['Id_Categoria'], 'exist', 'skipOnError' => true, 'targetClass' => Categoria::class, 'targetAttribute' => ['Id_Categoria' => 'Id']],
+            ['Texto', 'validateTexto'],
         ];
+    }
+
+    /**
+     * Validates the Texto field to ensure it's not empty after stripping HTML
+     */
+    public function validateTexto($attribute, $params)
+    {
+        $textoSemHtml = strip_tags($this->$attribute);
+        if (trim($textoSemHtml) === '') {
+            $this->addError($attribute, 'O campo Texto não pode estar vazio.');
+        }
     }
 
     /**
@@ -125,21 +137,69 @@ class Noticia extends ActiveRecord
     {
         $texto = $this->Texto;
         
-        // Allow only basic HTML tags
-        $allowedTags = '<strong><em><u><b><i><span>';
-        $textoLimpo = strip_tags($texto, $allowedTags);
-        
         // Remove HTML tags for length calculation
         $textoSemTags = strip_tags($texto);
         
         if (strlen($textoSemTags) <= $length) {
-            return $textoLimpo;
+            return $texto; // Return full HTML if text is short enough
         }
         
         // Truncate text
         $textoTruncado = substr($textoSemTags, 0, $length);
         
         // Find the last complete word
+        $ultimoEspaco = strrpos($textoTruncado, ' ');
+        if ($ultimoEspaco !== false) {
+            $textoTruncado = substr($textoTruncado, 0, $ultimoEspaco);
+        }
+        
+        // Simple approach: truncate and preserve basic HTML
+        $allowedTags = ['strong', 'em', 'u', 'b', 'i', 'span', 'p', 'br', 'div'];
+        $textoLimpo = strip_tags($texto, '<' . implode('><', $allowedTags) . '>');
+        
+        // Find the position in the original text
+        $posicao = strpos($textoLimpo, $textoTruncado);
+        if ($posicao !== false) {
+            $resultado = substr($textoLimpo, 0, $posicao + strlen($textoTruncado));
+            return $resultado . '...';
+        }
+        
+        return $textoTruncado . '...';
+    }
+
+    /**
+     * Get text as safe HTML for display
+     *
+     * @return string
+     */
+    public function getTextoSeguro()
+    {
+        return \yii\helpers\HtmlPurifier::process($this->Texto, [
+            'HTML.Allowed' => 'p,br,strong,em,u,b,i,span,div,h1,h2,h3,h4,h5,h6,ul,ol,li,a[href|title],img[src|alt|title|width|height],blockquote,code,pre,table,thead,tbody,tr,td,th',
+            'HTML.SafeIframe' => true,
+            'URI.SafeIframeRegexp' => '%^(http://|https://|//)(www.youtube.com/embed/|player.vimeo.com/video/)%',
+        ]);
+    }
+
+    /**
+     * Get text as safe HTML for list display (with limited tags)
+     *
+     * @param int $length
+     * @return string
+     */
+    public function getTextoListaSeguro($length = 150)
+    {
+        $texto = \yii\helpers\HtmlPurifier::process($this->Texto, [
+            'HTML.Allowed' => 'strong,em,u,b,i,span,br',
+        ]);
+        
+        $textoSemTags = strip_tags($texto);
+        
+        if (strlen($textoSemTags) <= $length) {
+            return $texto;
+        }
+        
+        $textoTruncado = substr($textoSemTags, 0, $length);
         $ultimoEspaco = strrpos($textoTruncado, ' ');
         if ($ultimoEspaco !== false) {
             $textoTruncado = substr($textoTruncado, 0, $ultimoEspaco);

@@ -1,18 +1,21 @@
 <?php
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use common\models\Categoria;
 
-$this->title = 'Nova Notícia';
+/* @var $this yii\web\View */
+/* @var $model common\models\Noticia */
+
+$this->title = 'Criar Notícia';
+$this->params['breadcrumbs'][] = ['label' => 'Notícias', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<h1><?= Html::encode($this->title) ?></h1>
 <div class="noticia-create">
-    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
-    <?= $form->field($model, 'Id_Categoria')->dropDownList(\common\models\Categoria::find()->select(['Nome', 'Id'])->indexBy('Id')->column(), ['prompt' => 'Selecione uma categoria']) ?>
-    <?= $form->field($model, 'Titulo')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'Sub_Titulo')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'Texto')->textarea(['rows' => 6]) ?>
-    <?= $form->field($model, 'imagemFile[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
-    <div class="form-group">
-        <?= Html::submitButton('Salvar', ['class' => 'btn btn-success']) ?>
-    </div>
-    <?php ActiveForm::end(); ?> 
+
+    <h1><?= Html::encode($this->title) ?></h1>
+
+    <?= $this->render('_form', [
+        'model' => $model,
+    ]) ?>
+
+</div> 

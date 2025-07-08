@@ -41,16 +41,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="card h-100 parceiro-card shadow-sm">
                         <div class="card-body text-center p-4">
-                            <!-- Logo do parceiro -->
-                            <?php if ($parceiro->Logo): ?>
-                                <div class="parceiro-logo mb-3">
-                                    <img src="/Sinpaptep/backend/web/uploads/parceiros/<?= htmlspecialchars($parceiro->Logo) ?>" 
+                            <!-- Imagens do parceiro -->
+                            <?php 
+                            $imagens = $parceiro->getImagens();
+                            if (!empty($imagens)): 
+                                $primeiraImagem = $imagens[0]; // Pega a primeira imagem
+                            ?>
+                                <div class="parceiro-imagem mb-3">
+                                    <img src="/Sinpaptep/backend/web/uploads/parceiros/<?= htmlspecialchars($primeiraImagem->Imagem) ?>" 
                                          alt="<?= htmlspecialchars($parceiro->Nome) ?>" 
                                          class="img-fluid" 
                                          style="max-height: 120px; max-width: 200px; object-fit: contain;">
                                 </div>
                             <?php else: ?>
-                                <div class="parceiro-logo-placeholder mb-3">
+                                <div class="parceiro-imagem-placeholder mb-3">
                                     <i class="fas fa-building fa-4x text-muted"></i>
                                 </div>
                             <?php endif; ?>
@@ -119,14 +123,14 @@ $this->params['breadcrumbs'][] = $this->title;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
 }
 
-.parceiro-logo {
+.parceiro-imagem {
     min-height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.parceiro-logo-placeholder {
+.parceiro-imagem-placeholder {
     min-height: 120px;
     display: flex;
     align-items: center;

@@ -25,8 +25,12 @@ $this->title = 'Início';
                         <?php if (!empty($anunciantes)): ?>
                             <?php foreach ($anunciantes as $anunciante): ?>
                                 <div class="mb-3 text-center">
-                                    <?php if ($anunciante->Logo): ?>
-                                        <img src="/Sinpaptep/backend/web/uploads/parceiros/<?= Html::encode($anunciante->Logo) ?>" style="width:100%; max-width:120px; max-height:60px; object-fit:contain;" alt="<?= Html::encode($anunciante->Nome) ?>">
+                                    <?php 
+                                    $imagens = $anunciante->getImagens();
+                                    if (!empty($imagens)): 
+                                        $primeiraImagem = $imagens[0];
+                                    ?>
+                                        <img src="/Sinpaptep/backend/web/uploads/parceiros/<?= Html::encode($primeiraImagem->Imagem) ?>" style="width:100%; max-width:120px; max-height:60px; object-fit:contain;" alt="<?= Html::encode($anunciante->Nome) ?>">
                                     <?php else: ?>
                                         <span class="text-muted small"><?= Html::encode($anunciante->Nome) ?></span>
                                     <?php endif; ?>
@@ -103,7 +107,7 @@ $this->title = 'Início';
                                         <?php endif; ?>
                                         
                                         <p class="card-text text-muted">
-                                            <?= \yii\helpers\HtmlPurifier::process($noticia->getTextoResumidoHtml(120)) ?>
+                                            <?= $noticia->getTextoListaSeguro(120) ?>
                                         </p>
                                         
                                         <div class="mt-auto">

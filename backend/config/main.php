@@ -85,6 +85,10 @@ return [
                 'pagina/delete/<id:\d+>' => 'pagina/delete',
             ],
         ],
+        'assetManager' => [
+            'basePath' => '@webroot/assets',
+            'baseUrl' => '@web/assets',
+        ],
     ],
     'params' => $params,
 ];

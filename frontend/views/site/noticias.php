@@ -64,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?php endif; ?>
                             
                             <p class="card-text text-muted">
-                                <?= \yii\helpers\HtmlPurifier::process($noticia->getTextoResumidoHtml(150)) ?>
+                                <?= $noticia->getTextoListaSeguro(150) ?>
                             </p>
                             
                             <div class="mt-auto">

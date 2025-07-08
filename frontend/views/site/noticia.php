@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </header>
                     
                     <div class="noticia-content">
-                        <?= \yii\helpers\HtmlPurifier::process($noticia->Texto) ?>
+                        <?= $noticia->getTextoSeguro() ?>
                     </div>
                     
                     <div class="mt-4 pt-3 border-top">

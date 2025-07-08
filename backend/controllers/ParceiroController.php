@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\models\Parceiro;
+use common\models\ParceiroImagem;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -56,8 +57,12 @@ class ParceiroController extends Controller
      */
     public function actionView($Id)
     {
+        $model = $this->findModel($Id);
+        $imagens = ParceiroImagem::getImagensByParceiroId($Id);
+
         return $this->render('view', [
-            'model' => $this->findModel($Id),
+            'model' => $model,
+            'imagens' => $imagens,
         ]);
     }
 
@@ -75,19 +80,9 @@ class ParceiroController extends Controller
             if (isset($post['Parceiro'])) {
                 unset($post['Parceiro']['created_at'], $post['Parceiro']['updated_at']);
             }
-            if ($model->load($post)) {
-                $model->scenario = $model->isNewRecord ? 'create' : 'update';
-                $model->logoFile = UploadedFile::getInstance($model, 'logoFile');
-                if (empty($model->logoFile)) {
-                    $model->logoFile = null;
-                }
-                if ($model->logoFile) {
-                    $model->upload();
-                }
-                if ($model->save()) {
-                    Yii::$app->session->setFlash('success', 'Parceiro criado com sucesso!');
-                    return $this->redirect(['view', 'Id' => $model->Id]);
-                }
+            if ($model->load($post) && $model->save()) {
+                Yii::$app->session->setFlash('success', 'Parceiro criado com sucesso!');
+                return $this->redirect(['view', 'Id' => $model->Id]);
             }
         } else {
             $model->loadDefaultValues();
@@ -114,19 +109,9 @@ class ParceiroController extends Controller
             if (isset($post['Parceiro'])) {
                 unset($post['Parceiro']['created_at'], $post['Parceiro']['updated_at']);
             }
-            if ($model->load($post)) {
-                $model->scenario = $model->isNewRecord ? 'create' : 'update';
-                $model->logoFile = UploadedFile::getInstance($model, 'logoFile');
-                if (empty($model->logoFile)) {
-                    $model->logoFile = null;
-                }
-                if ($model->logoFile) {
-                    $model->upload();
-                }
-                if ($model->save()) {
-                    Yii::$app->session->setFlash('success', 'Parceiro atualizado com sucesso!');
-                    return $this->redirect(['view', 'Id' => $model->Id]);
-                }
+            if ($model->load($post) && $model->save()) {
+                Yii::$app->session->setFlash('success', 'Parceiro atualizado com sucesso!');
+                return $this->redirect(['view', 'Id' => $model->Id]);
             }
         }
 
@@ -146,12 +131,10 @@ class ParceiroController extends Controller
     {
         $model = $this->findModel($Id);
         
-        // Remover arquivo de logo se existir
-        if ($model->Logo) {
-            $logoPath = Yii::getAlias('@webroot/uploads/parceiros/') . $model->Logo;
-            if (file_exists($logoPath)) {
-                unlink($logoPath);
-            }
+        // Remover todas as imagens associadas
+        $imagens = ParceiroImagem::getImagensByParceiroId($Id);
+        foreach ($imagens as $imagem) {
+            $imagem->delete(); // Isso também remove o arquivo físico
         }
         
         $model->delete();
@@ -176,18 +159,51 @@ class ParceiroController extends Controller
         throw new NotFoundHttpException('O parceiro solicitado não foi encontrado.');
     }
 
-    public function actionRemoverLogo($id)
+
+
+    /**
+     * Adiciona uma nova imagem ao parceiro
+     * @param int $parceiroId
+     * @return string|\yii\web\Response
+     */
+    public function actionAdicionarImagem($parceiroId)
     {
-        $model = $this->findModel($id);
-        if ($model->Logo) {
-            $logoPath = Yii::getAlias('@webroot/uploads/parceiros/') . $model->Logo;
-            if (file_exists($logoPath)) {
-                unlink($logoPath);
+        $parceiro = $this->findModel($parceiroId);
+        $model = new ParceiroImagem();
+        $model->ParceiroId = $parceiroId;
+
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post())) {
+                $model->imagemFile = UploadedFile::getInstance($model, 'imagemFile');
+                
+                if ($model->imagemFile && $model->upload() && $model->save()) {
+                    Yii::$app->session->setFlash('success', 'Imagem adicionada com sucesso!');
+                    return $this->redirect(['view', 'Id' => $parceiroId]);
+                }
             }
-            $model->Logo = null;
-            $model->save(false);
-            Yii::$app->session->setFlash('success', 'Logo removido com sucesso!');
         }
-        return $this->redirect(['update', 'Id' => $model->Id]);
+
+        return $this->render('adicionar-imagem', [
+            'model' => $model,
+            'parceiro' => $parceiro,
+        ]);
+    }
+
+    /**
+     * Remove uma imagem do parceiro
+     * @param int $id
+     * @return \yii\web\Response
+     */
+    public function actionRemoverImagem($id)
+    {
+        $model = ParceiroImagem::findOne($id);
+        if ($model) {
+            $parceiroId = $model->ParceiroId;
+            $model->delete();
+            Yii::$app->session->setFlash('success', 'Imagem removida com sucesso!');
+            return $this->redirect(['view', 'Id' => $parceiroId]);
+        }
+        
+        throw new NotFoundHttpException('Imagem não encontrada.');
     }
 } 
