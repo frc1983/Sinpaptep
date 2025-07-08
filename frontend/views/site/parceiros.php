@@ -37,21 +37,45 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
         <!-- Lista de parceiros -->
         <div class="row g-4">
-            <?php foreach ($parceiros as $parceiro): ?>
+            <?php foreach (
+                $parceiros as $parceiro
+            ): ?>
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="card h-100 parceiro-card shadow-sm">
                         <div class="card-body text-center p-4">
                             <!-- Imagens do parceiro -->
                             <?php 
                             $imagens = $parceiro->getImagens();
-                            if (!empty($imagens)): 
-                                $primeiraImagem = $imagens[0]; // Pega a primeira imagem
+                            if (!empty($imagens)):
+                                $carouselId = 'parceiro-carousel-' . $parceiro->Id;
+                                $modalId = 'parceiro-modal-' . $parceiro->Id;
                             ?>
                                 <div class="parceiro-imagem mb-3">
-                                    <img src="/Sinpaptep/backend/web/uploads/parceiros/<?= htmlspecialchars($primeiraImagem->Imagem) ?>" 
-                                         alt="<?= htmlspecialchars($parceiro->Nome) ?>" 
-                                         class="img-fluid" 
-                                         style="max-height: 120px; max-width: 200px; object-fit: contain;">
+                                    <div id="<?= $carouselId ?>" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                            <?php foreach ($imagens as $idx => $img): ?>
+                                                <div class="carousel-item<?= $idx === 0 ? ' active' : '' ?>">
+                                                    <img src="/Sinpaptep/backend/web/uploads/parceiros/<?= htmlspecialchars($img->Imagem) ?>"
+                                                         alt="<?= htmlspecialchars($parceiro->Nome) ?>"
+                                                         class="img-fluid parceiro-imagem-clickable"
+                                                         style="max-height: 120px; max-width: 200px; object-fit: contain; margin: 0 auto; cursor: pointer;"
+                                                         data-bs-toggle="modal" 
+                                                         data-bs-target="#<?= $modalId ?>"
+                                                         title="Clique para ampliar">
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                        <?php if (count($imagens) > 1): ?>
+                                            <button class="carousel-control-prev" type="button" data-bs-target="#<?= $carouselId ?>" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Anterior</span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button" data-bs-target="#<?= $carouselId ?>" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Próxima</span>
+                                            </button>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                             <?php else: ?>
                                 <div class="parceiro-imagem-placeholder mb-3">
@@ -112,10 +136,67 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php endif; ?>
 </div>
 
+<!-- Modais para visualização grande das imagens -->
+<?php foreach ($parceiros as $parceiro): ?>
+    <?php 
+    $imagens = $parceiro->getImagens();
+    if (!empty($imagens)):
+        $modalId = 'parceiro-modal-' . $parceiro->Id;
+        $modalCarouselId = 'modal-carousel-' . $parceiro->Id;
+    ?>
+        <div class="modal fade" id="<?= $modalId ?>" tabindex="-1" aria-labelledby="<?= $modalId ?>-label" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="<?= $modalId ?>-label">
+                            <i class="fas fa-images me-2"></i>
+                            <?= htmlspecialchars($parceiro->Nome) ?>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div id="<?= $modalCarouselId ?>" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <?php foreach ($imagens as $idx => $img): ?>
+                                    <div class="carousel-item<?= $idx === 0 ? ' active' : '' ?>">
+                                        <img src="/Sinpaptep/backend/web/uploads/parceiros/<?= htmlspecialchars($img->Imagem) ?>"
+                                             alt="<?= htmlspecialchars($parceiro->Nome) ?>"
+                                             class="img-fluid w-100"
+                                             style="max-height: 70vh; object-fit: contain;">
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <?php if (count($imagens) > 1): ?>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#<?= $modalCarouselId ?>" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Anterior</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#<?= $modalCarouselId ?>" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Próxima</span>
+                                </button>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <span class="text-muted">
+                            <i class="fas fa-info-circle me-1"></i>
+                            Imagem <?= count($imagens) > 1 ? '1 de ' . count($imagens) : '' ?>
+                        </span>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+<?php endforeach; ?>
+
 <style>
 .parceiro-card {
     transition: all 0.3s ease;
     border: 1px solid rgba(0,0,0,.125);
+    position: relative;
+    overflow: hidden;
 }
 
 .parceiro-card:hover {
@@ -128,6 +209,7 @@ $this->params['breadcrumbs'][] = $this->title;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .parceiro-imagem-placeholder {
@@ -148,9 +230,161 @@ $this->params['breadcrumbs'][] = $this->title;
     flex-grow: 1;
 }
 
+/* Estilos personalizados para o carrossel dentro do card */
+.parceiro-card .carousel {
+    position: relative;
+    width: 100%;
+}
+
+.parceiro-card .carousel-inner {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.parceiro-card .carousel-item {
+    text-align: center;
+    padding: 10px;
+}
+
+.parceiro-card .carousel-control-prev,
+.parceiro-card .carousel-control-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background-color: rgba(32, 113, 58, 0.8);
+    border: none;
+    border-radius: 50%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.parceiro-card .carousel-control-prev {
+    left: 5px;
+}
+
+.parceiro-card .carousel-control-next {
+    right: 5px;
+}
+
+.parceiro-card .carousel-control-prev:hover,
+.parceiro-card .carousel-control-next:hover {
+    background-color: rgba(32, 113, 58, 1);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.parceiro-card .carousel-control-prev-icon,
+.parceiro-card .carousel-control-next-icon {
+    width: 15px;
+    height: 15px;
+    filter: brightness(0) invert(1);
+}
+
+/* Estilos para imagens clicáveis */
+.parceiro-imagem-clickable {
+    transition: all 0.3s ease;
+}
+
+.parceiro-imagem-clickable:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Estilos para o modal */
+.modal-content {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #20713a, #2d8a4a);
+    color: white;
+    border-bottom: none;
+    border-radius: 12px 12px 0 0;
+}
+
+.modal-header .btn-close {
+    filter: brightness(0) invert(1);
+}
+
+.modal-body {
+    background-color: #f8f9fa;
+}
+
+.modal-footer {
+    background-color: #f8f9fa;
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+}
+
+/* Estilos para o carrossel do modal */
+.modal .carousel {
+    background-color: #f8f9fa;
+}
+
+.modal .carousel-control-prev,
+.modal .carousel-control-next {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(32, 113, 58, 0.9);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.modal .carousel-control-prev {
+    left: 20px;
+}
+
+.modal .carousel-control-next {
+    right: 20px;
+}
+
+.modal .carousel-control-prev:hover,
+.modal .carousel-control-next:hover {
+    background-color: rgba(32, 113, 58, 1);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.modal .carousel-control-prev-icon,
+.modal .carousel-control-next-icon {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+}
+
 @media (max-width: 768px) {
     .parceiro-card {
         margin-bottom: 1rem;
+    }
+    
+    .parceiro-card .carousel-control-prev,
+    .parceiro-card .carousel-control-next {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .parceiro-card .carousel-control-prev-icon,
+    .parceiro-card .carousel-control-next-icon {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .modal .carousel-control-prev,
+    .modal .carousel-control-next {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .modal .carousel-control-prev-icon,
+    .modal .carousel-control-next-icon {
+        width: 16px;
+        height: 16px;
     }
 }
 
