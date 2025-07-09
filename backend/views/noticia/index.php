@@ -14,114 +14,66 @@ $this->params['breadcrumbs'][] = $this->title;
         <p>
             <?= Html::a('<i class="fas fa-plus"></i> Nova Notícia', ['create'], ['class' => 'btn btn-success']) ?>
         </p>
-        <?= GridView::widget([
-    'dataProvider' => $dataProvider,
-    'filterModel' => null,
-    'tableOptions' => ['class' => 'table table-striped table-bordered'],
-    'headerRowOptions' => ['class' => 'table-primary'],
-    'columns' => [
-        [
-            'attribute' => 'Id',
-            'label' => 'ID',
-            'contentOptions' => ['class' => 'text-center', 'width' => '60'],
-            'content' => function ($model) {
-                return '<span class="badge" style="background-color: var(--sinpaptep-gray); color: var(--sinpaptep-dark);">#' . $model->Id . '</span>';
-            },
-            'format' => 'raw',
-        ],
-        [
-            'attribute' => 'categoria',
-            'label' => 'Categoria',
-            'contentOptions' => ['width' => '120'],
-            'content' => function ($model) {
-                $categoriaNome = $model->CategoriaNome ?? $model->getCategoriaNome();
-                return '<span class="badge" style="background-color: var(--sinpaptep-primary); color: var(--sinpaptep-white);">' . 
-                       Html::encode($categoriaNome) . '</span>';
-            },
-            'format' => 'raw',
-        ],
-        [
-            'attribute' => 'Titulo',
-            'label' => 'Título',
-            'content' => function ($model) {
-                return '<strong>' . Html::encode($model->Titulo) . '</strong>';
-            },
-            'format' => 'raw',
-        ],
-        [
-            'attribute' => 'Sub_Titulo',
-            'label' => 'Subtítulo',
-            'contentOptions' => ['width' => '200'],
-            'content' => function ($model) {
-                if ($model->Sub_Titulo) {
-                    return '<em>' . Html::encode($model->Sub_Titulo) . '</em>';
-                } else {
-                    return '<span class="text-muted">-</span>';
-                }
-            },
-            'format' => 'raw',
-        ],
-        [
-            'label' => 'Resumo',
-            'contentOptions' => ['width' => '300'],
-            'content' => function ($model) {
-                return "";
-            },
-            'format' => 'raw',
-        ],
-        [
-            'label' => 'Imagens',
-            'contentOptions' => ['class' => 'text-center', 'width' => '120'],
-            'content' => function ($model) {
-                $count = $model->imagens ? count($model->imagens) : 0;
-                if ($count > 0) {
-                    return '<span class="badge" style="background-color: var(--sinpaptep-success); color: var(--sinpaptep-white);">' .
-                           '<i class="fas fa-image"></i> ' . $count . '</span>';
-                } else {
-                    return '<span class="badge" style="background-color: var(--sinpaptep-gray); color: var(--sinpaptep-dark);">' .
-                           '<i class="fas fa-image"></i> 0</span>';
-                }
-            },
-            'format' => 'raw',
-        ],
-        [
-            'class' => ActionColumn::class,
-            'header' => 'Ações',
-            'headerOptions' => ['width' => '150'],
-            'contentOptions' => ['class' => 'text-center'],
-            'template' => '{view} {update} {delete}',
-            'buttons' => [
-                'view' => function ($url, $model) {
-                    return Html::a('<i class="fas fa-eye"></i>', $url, [
-                        'class' => 'btn btn-info btn-sm',
-                        'title' => 'Visualizar'
-                    ]);
-                },
-                'update' => function ($url, $model) {
-                    return Html::a('<i class="fas fa-edit"></i>', $url, [
-                        'class' => 'btn btn-primary btn-sm',
-                        'title' => 'Editar'
-                    ]);
-                },
-                'delete' => function ($url, $model) {
-                    return Html::a('<i class="fas fa-trash"></i>', $url, [
-                        'class' => 'btn btn-danger btn-sm',
-                        'title' => 'Excluir',
-                        'data' => [
-                            'confirm' => 'Tem certeza que deseja excluir esta notícia?',
-                            'method' => 'post',
-                        ],
-                    ]);
-                },
-            ],
-        ],
-    ],
-    'pager' => [
-        'options' => ['class' => 'pagination justify-content-center'],
-        'linkContainerOptions' => ['class' => 'page-item'],
-        'linkOptions' => ['class' => 'page-link'],
-    ],
-]); ?> 
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered align-middle">
+                <thead class="table-primary">
+                    <tr>
+                        <th class="text-center" style="width:60px;">ID</th>
+                        <th style="width:120px;">Categoria</th>
+                        <th>Título</th>
+                        <th style="width:200px;">Subtítulo</th>
+                        <th style="width:120px;">Imagens</th>
+                        <th class="text-center" style="width:150px;">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($dataProvider->getModels() as $model): ?>
+                        <tr>
+                            <td class="text-center">
+                                <span class="badge" style="background-color: var(--sinpaptep-gray); color: var(--sinpaptep-dark);">#<?= $model->Id ?></span>
+                            </td>
+                            <td>
+                                <span class="badge" style="background-color: var(--sinpaptep-primary); color: var(--sinpaptep-white);">
+                                    <?= Html::encode($model->CategoriaNome ?? $model->getCategoriaNome()) ?>
+                                </span>
+                            </td>
+                            <td><strong><?= Html::encode($model->Titulo) ?></strong></td>
+                            <td><?= $model->Sub_Titulo ? '<em>' . Html::encode($model->Sub_Titulo) . '</em>' : '<span class="text-muted">-</span>' ?></td>
+                            <td class="text-center">
+                                <?php $count = $model->imagens ? count($model->imagens) : 0; ?>
+                                <?php if ($count > 0): ?>
+                                    <span class="badge" style="background-color: var(--sinpaptep-success); color: var(--sinpaptep-white);">
+                                        <i class="fas fa-image"></i> <?= $count ?>
+                                    </span>
+                                <?php else: ?>
+                                    <span class="badge" style="background-color: var(--sinpaptep-gray); color: var(--sinpaptep-dark);">
+                                        <i class="fas fa-image"></i> 0
+                                    </span>
+                                <?php endif; ?>
+                            </td>
+                            <td class="text-center">
+                                <?= Html::a('<i class="fas fa-eye"></i>', ['view', 'id' => $model->Id], [
+                                    'class' => 'btn btn-info btn-sm',
+                                    'title' => 'Visualizar'
+                                ]) ?>
+                                <?= Html::a('<i class="fas fa-edit"></i>', ['update', 'id' => $model->Id], [
+                                    'class' => 'btn btn-primary btn-sm',
+                                    'title' => 'Editar'
+                                ]) ?>
+                                <?= Html::a('<i class="fas fa-trash"></i>', ['delete', 'id' => $model->Id], [
+                                    'class' => 'btn btn-danger btn-sm',
+                                    'title' => 'Excluir',
+                                    'data' => [
+                                        'confirm' => 'Tem certeza que deseja excluir esta notícia?',
+                                        'method' => 'post',
+                                    ],
+                                ]) ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 <style>

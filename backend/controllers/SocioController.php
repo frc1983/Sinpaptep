@@ -222,11 +222,6 @@ class SocioController extends Controller
         return $this->render('imprimir', compact('socio', 'empresa', 'endereco', 'filhos'));
     }
 
-    public function actionBoletos()
-    {
-        return $this->render('boletos');
-    }
-
     protected function findModel($id)
     {
         if (($model = Socio::findOne($id)) !== null) {

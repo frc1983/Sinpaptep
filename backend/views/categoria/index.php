@@ -14,67 +14,43 @@ $this->params['breadcrumbs'][] = $this->title;
         <p>
             <?= Html::a('<i class="fas fa-plus"></i> Nova Categoria', ['create'], ['class' => 'btn btn-success']) ?>
         </p>
-        <?= GridView::widget([
-            'dataProvider' => $dataProvider,
-            'filterModel' => null,
-            'tableOptions' => ['class' => 'table table-striped table-bordered'],
-            'headerRowOptions' => ['class' => 'table-primary'],
-            'columns' => [
-                [
-                    'attribute' => 'Id',
-                    'label' => 'ID',
-                    'contentOptions' => ['class' => 'text-center', 'width' => '80'],
-                    'content' => function ($model) {
-                        return '<span class="badge" style="background-color: var(--sinpaptep-gray); color: var(--sinpaptep-dark);">#' . $model->Id . '</span>';
-                    },
-                    'format' => 'raw',
-                ],
-                [
-                    'attribute' => 'Nome',
-                    'label' => 'Nome',
-                    'content' => function ($model) {
-                        return '<strong>' . Html::encode($model->Nome) . '</strong>';
-                    },
-                    'format' => 'raw',
-                ],
-                [
-                    'class' => ActionColumn::class,
-                    'header' => 'Ações',
-                    'headerOptions' => ['width' => '150'],
-                    'contentOptions' => ['class' => 'text-center'],
-                    'template' => '{view} {update} {delete}',
-                    'buttons' => [
-                        'view' => function ($url, $model) {
-                            return Html::a('<i class="fas fa-eye"></i>', $url, [
-                                'class' => 'btn btn-info btn-sm',
-                                'title' => 'Visualizar'
-                            ]);
-                        },
-                        'update' => function ($url, $model) {
-                            return Html::a('<i class="fas fa-edit"></i>', $url, [
-                                'class' => 'btn btn-primary btn-sm',
-                                'title' => 'Editar'
-                            ]);
-                        },
-                        'delete' => function ($url, $model) {
-                            return Html::a('<i class="fas fa-trash"></i>', $url, [
-                                'class' => 'btn btn-danger btn-sm',
-                                'title' => 'Excluir',
-                                'data' => [
-                                    'confirm' => 'Tem certeza que deseja excluir esta categoria?',
-                                    'method' => 'post',
-                                ],
-                            ]);
-                        },
-                    ],
-                ],
-            ],
-            'pager' => [
-                'options' => ['class' => 'pagination justify-content-center'],
-                'linkContainerOptions' => ['class' => 'page-item'],
-                'linkOptions' => ['class' => 'page-link'],
-            ],
-        ]); ?>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered align-middle">
+                <thead class="table-primary">
+                    <tr>
+                        <th class="text-center" style="width:80px;">ID</th>
+                        <th>Nome</th>
+                        <th class="text-center" style="width:150px;">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($dataProvider->getModels() as $model): ?>
+                        <tr>
+                            <td class="text-center">
+                                <span class="badge" style="background-color: var(--sinpaptep-gray); color: var(--sinpaptep-dark);">#<?= $model->Id ?></span>
+                            </td>
+                            <td><strong><?= Html::encode($model->Nome) ?></strong></td>
+                            <td class="text-center">
+                                <?= Html::a('<i class="fas fa-eye"></i>', ['view', 'id' => $model->Id], [
+                                    'class' => 'btn btn-info btn-sm',
+                                    'title' => 'Visualizar']) ?>
+                                <?= Html::a('<i class="fas fa-edit"></i>', ['update', 'id' => $model->Id], [
+                                    'class' => 'btn btn-primary btn-sm',
+                                    'title' => 'Editar']) ?>
+                                <?= Html::a('<i class="fas fa-trash"></i>', ['delete', 'id' => $model->Id], [
+                                    'class' => 'btn btn-danger btn-sm',
+                                    'title' => 'Excluir',
+                                    'data' => [
+                                        'confirm' => 'Tem certeza que deseja excluir esta categoria?',
+                                        'method' => 'post',
+                                    ],
+                                ]) ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 <style>
