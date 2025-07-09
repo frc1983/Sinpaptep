@@ -37,10 +37,10 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Notícias', 'url' => ['/noticia/index']],
-        ['label' => 'Categorias', 'url' => ['/categoria/index']],
-        ['label' => 'Parceiros Anunciantes', 'url' => ['/parceiro/index']],
+        ['label' => '<i class="fas fa-home me-1"></i> Home', 'url' => ['/site/index'], 'encode' => false],
+        ['label' => '<i class="fas fa-newspaper me-1"></i> Notícias', 'url' => ['/noticia/index'], 'encode' => false],
+        ['label' => '<i class="fas fa-list-alt me-1"></i> Categorias', 'url' => ['/categoria/index'], 'encode' => false],
+        ['label' => '<i class="fas fa-handshake me-1"></i> Parceiros Anunciantes', 'url' => ['/parceiro/index'], 'encode' => false],
         ['label' => '<i class="fas fa-users me-1"></i> Sócios', 'url' => ['/socio/index'], 'encode' => false],
         ['label' => '<i class="fas fa-barcode me-1"></i> Boletos', 'url' => ['/socio/boletos'], 'encode' => false],
     ];

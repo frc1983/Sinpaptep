@@ -87,7 +87,7 @@ return [
             ],
         ],
         'assetManager' => [
-            'basePath' => '@webroot/assets',
+            'basePath' => '@app/web/assets',
             'baseUrl' => '@web/assets',
         ],
     ],

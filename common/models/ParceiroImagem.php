@@ -8,7 +8,7 @@ use yii\db\ActiveRecord;
 use yii\web\UploadedFile;
 
 /**
- * This is the model class for table "parceiro_imagem".
+ * This is the model class for table "Parceiro_Imagem".
  *
  * @property int $Id
  * @property int $ParceiroId
@@ -31,7 +31,7 @@ class ParceiroImagem extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'parceiro_imagem';
+        return 'Parceiro_Imagem';
     }
 
     /**
@@ -112,7 +112,7 @@ class ParceiroImagem extends ActiveRecord
             return false;
         }
 
-        $fileName = 'parceiro_imagem_' . time() . '_' . uniqid() . '.' . $this->imagemFile->extension;
+        $fileName = 'Parceiro_Imagem_' . time() . '_' . uniqid() . '.' . $this->imagemFile->extension;
         $filePath = $uploadPath . $fileName;
 
         try {
@@ -136,9 +136,11 @@ class ParceiroImagem extends ActiveRecord
     public function getImagemUrl()
     {
         if ($this->Imagem) {
-            // Se já é um caminho completo, extrair apenas o nome do arquivo para a URL
-            $fileName = basename($this->Imagem);
-            return Yii::getAlias('@web/uploads/parceiros/') . $fileName;
+            $prefix = '/backend/web/uploads/parceiros/';
+            if (isset($_SERVER['HTTP_HOST']) && (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false)) {
+                $prefix = '/Sinpaptep' . $prefix;
+            }
+            return $prefix . basename($this->Imagem);
         }
         return null;
     }

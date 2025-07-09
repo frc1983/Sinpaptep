@@ -30,7 +30,7 @@ $this->title = 'Início';
                                     if (!empty($imagens)): 
                                         $primeiraImagem = $imagens[0];
                                     ?>
-                                        <img src="/Sinpaptep/backend/web/uploads/parceiros/<?= Html::encode($primeiraImagem->Imagem) ?>" style="width:100%; max-width:120px; max-height:60px; object-fit:contain;" alt="<?= Html::encode($anunciante->Nome) ?>">
+                                        <img src="<?= Html::encode($primeiraImagem->getImagemUrl()) ?>" style="width:100%; max-width:120px; max-height:60px; object-fit:contain;" alt="<?= Html::encode($anunciante->Nome) ?>">
                                     <?php else: ?>
                                         <span class="text-muted small"><?= Html::encode($anunciante->Nome) ?></span>
                                     <?php endif; ?>

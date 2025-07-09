@@ -171,3 +171,8 @@
 .btn-outline-secondary:hover .fa-arrow-left {
     color: var(--sinpaptep-white) !important;
 } 
+
+/* Forçar ícones brancos na navbar escura do backend */
+.navbar .fa, .navbar .fas, .navbar .far, .navbar .fab {
+    color: #fff !important;
+} 

@@ -151,4 +151,20 @@ class Imagem extends ActiveRecord
         $extensao = $this->getExtensao();
         return in_array($extensao, ['jpg', 'jpeg', 'png', 'gif', 'webp']);
     }
+
+    /**
+     * Retorna a URL da imagem com o prefixo correto para localhost ou produção
+     * @return string|null
+     */
+    public function getUrlComPrefixo()
+    {
+        if ($this->Url) {
+            $prefix = '/backend/web/';
+            if (isset($_SERVER['HTTP_HOST']) && (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false)) {
+                $prefix = '/Sinpaptep' . $prefix;
+            }
+            return $prefix . ltrim($this->Url, '/');
+        }
+        return null;
+    }
 } 

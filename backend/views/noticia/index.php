@@ -4,13 +4,17 @@ use yii\grid\GridView;
 use yii\grid\ActionColumn;
 
 $this->title = 'Notícias';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<h1><?= Html::encode($this->title) ?></h1>
-<p>
-    <?= Html::a('<i class="fas fa-plus"></i> Nova Notícia', ['create'], ['class' => 'btn btn-success']) ?>
-</p>
-
-<?= GridView::widget([
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-header" style="background: linear-gradient(135deg, #20713a, #2d8a4a); color: white;">
+        <b><i class="fas fa-newspaper me-2 icon-highlight"></i>Notícias</b>
+    </div>
+    <div class="card-body">
+        <p>
+            <?= Html::a('<i class="fas fa-plus"></i> Nova Notícia', ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
+        <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => null,
     'tableOptions' => ['class' => 'table table-striped table-bordered'],
@@ -118,3 +122,13 @@ $this->title = 'Notícias';
         'linkOptions' => ['class' => 'page-link'],
     ],
 ]); ?> 
+    </div>
+</div>
+<style>
+.icon-highlight {
+  color: #fff !important;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.25), 0 0px 2px #157347;
+  font-size: 1.3em;
+  vertical-align: -2px;
+}
+</style> 

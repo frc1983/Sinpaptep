@@ -55,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <div class="carousel-inner">
                                             <?php foreach ($imagens as $idx => $img): ?>
                                                 <div class="carousel-item<?= $idx === 0 ? ' active' : '' ?>">
-                                                    <img src="/Sinpaptep/backend/web/uploads/parceiros/<?= htmlspecialchars($img->Imagem) ?>"
+                                                    <img src="<?= htmlspecialchars($img->getImagemUrl()) ?>"
                                                          alt="<?= htmlspecialchars($parceiro->Nome) ?>"
                                                          class="img-fluid parceiro-imagem-clickable"
                                                          style="max-height: 120px; max-width: 200px; object-fit: contain; margin: 0 auto; cursor: pointer;"
@@ -159,7 +159,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <div class="carousel-inner">
                                 <?php foreach ($imagens as $idx => $img): ?>
                                     <div class="carousel-item<?= $idx === 0 ? ' active' : '' ?>">
-                                        <img src="/Sinpaptep/backend/web/uploads/parceiros/<?= htmlspecialchars($img->Imagem) ?>"
+                                        <img src="<?= htmlspecialchars($img->getImagemUrl()) ?>"
                                              alt="<?= htmlspecialchars($parceiro->Nome) ?>"
                                              class="img-fluid w-100"
                                              style="max-height: 70vh; object-fit: contain;">
