@@ -24,7 +24,7 @@ class SiteController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login', 'error', 'reset-password'],
                         'allow' => true,
                     ],
                     [
@@ -100,5 +100,26 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    /**
+     * Redefinição de senha
+     */
+    public function actionResetPassword($token)
+    {
+        try {
+            $model = new \backend\models\ResetPasswordForm($token);
+        } catch (\yii\base\InvalidArgumentException $e) {
+            throw new \yii\web\BadRequestHttpException($e->getMessage());
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
+            Yii::$app->session->setFlash('success', 'Nova senha salva com sucesso.');
+            return $this->goHome();
+        }
+
+        return $this->render('resetPassword', [
+            'model' => $model,
+        ]);
     }
 }

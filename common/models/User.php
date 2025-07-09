@@ -29,6 +29,8 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
 
+    public $password;
+
 
     /**
      * {@inheritdoc}
@@ -55,7 +57,27 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED], 'message' => 'Status inválido.'],
+            [['username', 'email', 'status'], 'required', 'message' => 'Este campo é obrigatório.'],
+            [['username', 'email'], 'string', 'max' => 255],
+            [['email'], 'email', 'message' => 'Informe um e-mail válido.'],
+            [['email'], 'unique', 'targetClass' => self::class, 'message' => 'Este e-mail já está cadastrado para outro usuário.'],
+            [['username'], 'match', 'pattern' => '/^[a-zA-Z0-9_.]+$/', 'message' => 'O nome de usuário só pode conter letras, números, underline (_) e ponto (.)'],
+            [['password'], 'safe'],
+            [['password'], 'string', 'min' => 8, 'tooShort' => 'A senha deve conter pelo menos 8 caracteres.'],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => 'Nome de Usuário',
+            'email' => 'Email',
+            'password' => 'Senha',
+            'status' => 'Status',
+            'created_at' => 'Criado em',
+            'updated_at' => 'Atualizado em',
         ];
     }
 
@@ -209,5 +231,17 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if (!empty($this->password)) {
+                $this->setPassword($this->password);
+                $this->generateAuthKey();
+            }
+            return true;
+        }
+        return false;
     }
 }

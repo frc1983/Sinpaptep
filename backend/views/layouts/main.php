@@ -43,6 +43,7 @@ AppAsset::register($this);
         ['label' => '<i class="fas fa-handshake me-1"></i> Parceiros Anunciantes', 'url' => ['/parceiro/index'], 'encode' => false],
         ['label' => '<i class="fas fa-users me-1"></i> Sócios', 'url' => ['/socio/index'], 'encode' => false],
         ['label' => '<i class="fas fa-barcode me-1"></i> Boletos', 'url' => ['/boletos/index'], 'encode' => false],
+        ['label' => '<i class="fas fa-user me-1"></i> Usuários', 'url' => ['/user/index'], 'encode' => false],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
