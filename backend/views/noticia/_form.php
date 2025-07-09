@@ -98,7 +98,7 @@ use dosamigos\tinymce\TinyMce;
                                 <?php foreach ($model->imagens as $img): ?>
                                     <div class="col-6 mb-2">
                                         <div class="card">
-                                            <img src="<?= Yii::getAlias('@web') . '/' . $img->Url ?>" 
+                                            <img src="<?= $img->getUrlComPrefixo() ?>" 
                                                  class="card-img-top" 
                                                  style="height: 80px; object-fit: cover;"
                                                  alt="Imagem da notícia">

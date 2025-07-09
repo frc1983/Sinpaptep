@@ -65,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'label' => 'Resumo',
             'contentOptions' => ['width' => '300'],
             'content' => function ($model) {
-                return $model->getTextoListaSeguro(100);
+                return "";
             },
             'format' => 'raw',
         ],

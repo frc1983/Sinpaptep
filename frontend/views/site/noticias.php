@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="card h-100 shadow-sm">
                         <?php if ($noticia->getImagens()->one()): ?>
-                            <img src="<?= Html::encode('/Sinpaptep/backend/web/' . $noticia->getImagens()->one()->Url) ?>" 
+                            <img src="<?= Html::encode($noticia->getImagens()->one()->getUrlComPrefixo()) ?>" 
                                  class="card-img-top" 
                                  alt="<?= Html::encode($noticia->Titulo) ?>"
                                  style="height: 200px; object-fit: cover;">

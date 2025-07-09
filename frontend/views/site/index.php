@@ -77,7 +77,7 @@ $this->title = 'Início';
                             <div class="col-md-3 mb-4">
                                 <div class="card h-100 shadow-sm border-0">
                                     <?php if ($noticia->imagem): ?>
-                                        <img src="/Sinpaptep/backend/web/<?= $noticia->imagem->Url ?>" 
+                                        <img src="<?= $noticia->imagem ? $noticia->imagem->getUrlComPrefixo() : '' ?>" 
                                              class="card-img-top noticia-card-img" 
                                              alt="<?= Html::encode($noticia->Titulo) ?>">
                                     <?php else: ?>

@@ -59,7 +59,7 @@ $this->title = $model->Titulo;
                         <div class="row">
                             <?php foreach ($model->imagens as $img): ?>
                                 <div class="col-6 mb-2">
-                                    <img src="<?= Yii::getAlias('@web') . '/' . $img->Url ?>" 
+                                    <img src="<?= $img->getUrlComPrefixo() ?>" 
                                          class="img-fluid rounded" 
                                          style="max-height: 120px; object-fit: cover;"
                                          alt="Imagem da notícia">

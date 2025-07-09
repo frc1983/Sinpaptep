@@ -21,12 +21,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php if ($imagens && count($imagens) > 0): ?>
                     <div class="noticia-galeria mb-3">
                         <div class="noticia-galeria-principal text-center mb-2">
-                            <img id="galeria-img-principal" src="<?= Html::encode('/Sinpaptep/backend/web/' . $imagens[0]->Url) ?>" class="img-fluid rounded shadow-sm" style="max-height:400px; object-fit:contain; background:#f4fdf6;">
+                            <img id="galeria-img-principal" src="<?= Html::encode($imagens[0]->getUrlComPrefixo()) ?>" class="img-fluid rounded shadow-sm" style="max-height:400px; object-fit:contain; background:#f4fdf6;">
                         </div>
                         <?php if (count($imagens) > 1): ?>
                             <div class="noticia-galeria-thumbs d-flex flex-wrap gap-2 justify-content-center">
                                 <?php foreach ($imagens as $idx => $img): ?>
-                                    <img src="<?= Html::encode('/Sinpaptep/backend/web/' . $img->Url) ?>" class="img-thumbnail galeria-thumb" style="height:60px; width:auto; cursor:pointer; object-fit:cover; background:#f4fdf6;" onclick="document.getElementById('galeria-img-principal').src=this.src;">
+                                    <img src="<?= Html::encode($img->getUrlComPrefixo()) ?>" class="img-thumbnail galeria-thumb" style="height:60px; width:auto; cursor:pointer; object-fit:cover; background:#f4fdf6;" onclick="document.getElementById('galeria-img-principal').src=this.src;">
                                 <?php endforeach; ?>
                             </div>
                         <?php endif; ?>

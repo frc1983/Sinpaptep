@@ -14,7 +14,7 @@ $this->title = 'Início';
                         <div class="panel-body">
                             <h4><?= Html::a(Html::encode($noticia->Titulo), ['site/noticia', 'id' => $noticia->Id]) ?></h4>
                             <?php if ($noticia->imagem): ?>
-                                <img src="<?= Yii::getAlias('@web') . '/' . $noticia->imagem->Url ?>" style="max-width:100%; height:auto; margin-bottom:10px;">
+                                <img src="<?= Yii::getAlias('@web') . '/' . $noticia->imagem->getUrlComPrefixo() ?>" style="max-width:100%; height:auto; margin-bottom:10px;">
                             <?php endif; ?>
                             <p style="font-size: 0.95em;">
                                 <?= Html::encode(\yii\helpers\StringHelper::truncateWords(strip_tags($noticia->Texto), 20)) ?>
