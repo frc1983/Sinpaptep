@@ -42,16 +42,42 @@ $this->title = 'Sócios';
             },
         ],
         [
-            'attribute' => 'Email',
-            'label' => 'Email',
+            'attribute' => 'Celular',
+            'label' => 'Celular',
+            'contentOptions' => ['width' => '150'],
             'content' => function ($model) {
-                if ($model->Email) {
-                    return Html::mailto(Html::encode($model->Email), $model->Email, ['class' => 'text-primary']);
-                } else {
-                    return '<span class="text-muted">-</span>';
+                if ($model->Celular) {
+                    return Html::a(Html::encode($model->Celular), 'tel:' . $model->Celular, ['class' => 'text-primary']);
                 }
+                return '<span class="text-danger">Obrigatório</span>';
             },
             'format' => 'raw',
+        ],
+        [
+            'attribute' => 'Telefone',
+            'label' => 'Telefone',
+            'contentOptions' => ['width' => '150'],
+            'content' => function ($model) {
+                if ($model->Telefone) {
+                    return Html::a(Html::encode($model->Telefone), 'tel:' . $model->Telefone, ['class' => 'text-primary']);
+                }
+                return '<span class="text-muted">-</span>';
+            },
+            'format' => 'raw',
+        ],
+        [
+            'attribute' => 'CidadeNascimento',
+            'label' => 'Cidade de Nascimento',
+            'content' => function ($model) {
+                return Html::encode($model->CidadeNascimento);
+            },
+        ],
+        [
+            'attribute' => 'DataNascimento',
+            'label' => 'Data de Nascimento',
+            'content' => function ($model) {
+                return Html::encode($model->DataNascimento);
+            },
         ],
         [
             'class' => ActionColumn::class,

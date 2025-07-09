@@ -128,10 +128,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?= $form->field($empresa, 'UF')->textInput() ?>
                             </div>
                             <div class="col-md-3">
-                                <?= $form->field($empresa, 'Telefone')->textInput() ?>
+                                <?= $form->field($empresa, 'Telefone')->textInput(['placeholder' => '(11) 3333-3333']) ?>
                             </div>
                             <div class="col-md-3">
-                                <?= $form->field($empresa, 'Celular')->textInput() ?>
+                                <?= $form->field($empresa, 'Celular')->textInput(['placeholder' => '(11) 99999-9999']) ?>
                             </div>
                             <div class="col-md-3">
                                 <?= $form->field($empresa, 'Email')->textInput() ?>
@@ -193,10 +193,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?= $form->field($endereco, 'UF')->textInput() ?>
                             </div>
                             <div class="col-md-3">
-                                <?= $form->field($endereco, 'Telefone')->textInput() ?>
+                                <?= $form->field($endereco, 'Telefone')->textInput(['placeholder' => '(11) 3333-3333']) ?>
                             </div>
                             <div class="col-md-3">
-                                <?= $form->field($endereco, 'Celular')->textInput() ?>
+                                <?= $form->field($endereco, 'Celular')->textInput(['placeholder' => '(11) 99999-9999']) ?>
                             </div>
                             <div class="col-md-3">
                                 <?= $form->field($endereco, 'Email')->textInput() ?>

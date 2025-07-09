@@ -39,12 +39,25 @@ class SocioDadosEmpresa extends ActiveRecord
     public function rules()
     {
         return [
-            [['Nome', 'Logradouro', 'Numero', 'Bairro', 'Cidade', 'CEP', 'UF', 'Telefone', 'Email', 'CargoAtual', 'DataInicioCargoAtual', 'NumeroCTPS', 'SerieCTPS', 'GrauInstrucao'], 'required'],
+            [['Nome', 'Logradouro', 'Numero', 'Bairro', 'Cidade', 'CEP', 'UF', 'Email', 'CargoAtual', 'DataInicioCargoAtual', 'NumeroCTPS', 'SerieCTPS', 'GrauInstrucao', 'Celular'], 'required'],
             [['Id_Socio', 'Numero'], 'integer'],
             ['CEP', 'string', 'max' => 8],
             [['DataInicioCargoAtual'], 'date', 'format' => 'php:Y-m-d'],
             [['Nome', 'Logradouro', 'Complemento', 'Bairro', 'Cidade', 'UF', 'Telefone', 'Celular', 'Email', 'CargoAtual', 'NumeroCTPS', 'SerieCTPS', 'NumeroRegistroAutonomo', 'GrauInstrucao', 'NumeroRegistroDRTE', 'Observacoes'], 'string', 'max' => 255],
+            [['Telefone', 'Celular'], 'filter', 'filter' => function($value) { return preg_replace('/\D/', '', $value); }],
+            [['Telefone', 'Celular'], 'validatePhone'],
         ];
+    }
+
+    /**
+     * Validação personalizada para telefone e celular
+     */
+    public function validatePhone($attribute, $params)
+    {
+        $value = preg_replace('/\D/', '', $this->$attribute);
+        if (strlen($value) < 10 || strlen($value) > 11) {
+            $this->addError($attribute, 'Telefone/Celular deve ter 10 ou 11 dígitos.');
+        }
     }
 
     public function attributeLabels()

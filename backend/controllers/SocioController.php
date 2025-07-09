@@ -82,20 +82,41 @@ class SocioController extends Controller
         $filhos = [new SocioFilho()];
         if (Yii::$app->request->isPost) {
             $post = Yii::$app->request->post();
+            
+            // Log para debug
+            Yii::error('POST data: ' . print_r($post, true));
+            
             $socio->load($post);
             $empresa->load($post);
             $endereco->load($post);
-            $filhosData = $post['Filho'] ?? [];
+            $filhosData = $post['SocioFilho'] ?? [];
             $filhos = [];
             foreach ($filhosData as $filhoData) {
-                $f = new SocioFilho();
-                $f->load(['SocioFilho' => $filhoData]);
-                $filhos[] = $f;
+                if (!empty($filhoData['Nome']) || !empty($filhoData['DataNascimento'])) {
+                    $f = new SocioFilho();
+                    $f->load(['SocioFilho' => $filhoData]);
+                    $filhos[] = $f;
+                }
             }
+            if (empty($filhos)) {
+                $filhos = [new SocioFilho()];
+            }
+            
+            // Log para debug
+            Yii::error('Socio errors: ' . print_r($socio->errors, true));
+            Yii::error('Empresa errors: ' . print_r($empresa->errors, true));
+            Yii::error('Endereco errors: ' . print_r($endereco->errors, true));
+            
             $valid = $socio->validate() && $empresa->validate() && $endereco->validate();
             foreach ($filhos as $f) {
-                $valid = $f->validate() && $valid;
+                if (!empty($f->Nome) || !empty($f->DataNascimento)) {
+                    $valid = $f->validate() && $valid;
+                    Yii::error('Filho errors: ' . print_r($f->errors, true));
+                }
             }
+            
+            Yii::error('Validation result: ' . ($valid ? 'true' : 'false'));
+            
             if ($valid) {
                 $transaction = Yii::$app->db->beginTransaction();
                 try {
@@ -105,14 +126,17 @@ class SocioController extends Controller
                     if (!$empresa->save(false)) throw new \Exception('Erro ao salvar empresa');
                     if (!$endereco->save(false)) throw new \Exception('Erro ao salvar endereço');
                     foreach ($filhos as $f) {
-                        $f->Id_Socio = $socio->Id;
-                        if (!$f->save(false)) throw new \Exception('Erro ao salvar filho');
+                        if (!empty($f->Nome) && !empty($f->DataNascimento)) {
+                            $f->Id_Socio = $socio->Id;
+                            if (!$f->save(false)) throw new \Exception('Erro ao salvar filho');
+                        }
                     }
                     $transaction->commit();
                     Yii::$app->session->setFlash('success', 'Sócio cadastrado com sucesso!');
                     return $this->redirect(['view', 'id' => $socio->Id]);
                 } catch (\Exception $e) {
                     $transaction->rollBack();
+                    Yii::error('Exception: ' . $e->getMessage());
                     Yii::$app->session->setFlash('error', 'Erro ao salvar cadastro: ' . $e->getMessage());
                 }
             }
@@ -132,16 +156,23 @@ class SocioController extends Controller
             $socio->load($post);
             $empresa->load($post);
             $endereco->load($post);
-            $filhosData = $post['Filho'] ?? [];
+            $filhosData = $post['SocioFilho'] ?? [];
             $filhos = [];
             foreach ($filhosData as $filhoData) {
-                $f = new SocioFilho();
-                $f->load(['SocioFilho' => $filhoData]);
-                $filhos[] = $f;
+                if (!empty($filhoData['Nome']) || !empty($filhoData['DataNascimento'])) {
+                    $f = new SocioFilho();
+                    $f->load(['SocioFilho' => $filhoData]);
+                    $filhos[] = $f;
+                }
+            }
+            if (empty($filhos)) {
+                $filhos = [new SocioFilho()];
             }
             $valid = $socio->validate() && $empresa->validate() && $endereco->validate();
             foreach ($filhos as $f) {
-                $valid = $f->validate() && $valid;
+                if (!empty($f->Nome) || !empty($f->DataNascimento)) {
+                    $valid = $f->validate() && $valid;
+                }
             }
             if ($valid) {
                 $transaction = Yii::$app->db->beginTransaction();
@@ -153,8 +184,10 @@ class SocioController extends Controller
                     if (!$endereco->save(false)) throw new \Exception('Erro ao salvar endereço');
                     SocioFilho::deleteAll(['Id_Socio' => $socio->Id]);
                     foreach ($filhos as $f) {
-                        $f->Id_Socio = $socio->Id;
-                        if (!$f->save(false)) throw new \Exception('Erro ao salvar filho');
+                        if (!empty($f->Nome) && !empty($f->DataNascimento)) {
+                            $f->Id_Socio = $socio->Id;
+                            if (!$f->save(false)) throw new \Exception('Erro ao salvar filho');
+                        }
                     }
                     $transaction->commit();
                     Yii::$app->session->setFlash('success', 'Sócio atualizado com sucesso!');

@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-lg-6 mb-4">
             <div class="card border-0 shadow-sm">
-                <div class="card-header bg-primary text-white"><b>Dados Pessoais</b></div>
+                <div class="card-header" style="background: linear-gradient(135deg, #20713a, #2d8a4a); color: white;"><b><i class="fas fa-user me-2 icon-highlight"></i>Dados Pessoais</b></div>
                 <div class="card-body">
                     <div class="mb-3">
                         <label for="socio-nome">Nome</label>
@@ -86,7 +86,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="col-lg-6 mb-4">
             <div class="card border-0 shadow-sm mb-4">
-                <div class="card-header bg-info text-white"><b>Dados da Empresa</b></div>
+                <div class="card-header" style="background: linear-gradient(135deg, #28a745, #20c997); color: white;"><b><i class="fas fa-building me-2 icon-highlight"></i>Dados da Empresa</b></div>
                 <div class="card-body">
                     <div class="mb-3">
                         <label for="empresa-nome">Nome da Empresa</label>
@@ -122,11 +122,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <div class="mb-3">
                         <label for="empresa-telefone">Telefone</label>
-                        <input type="text" class="form-control" id="empresa-telefone" name="Empresa[Telefone]" maxlength="14" value="<?= Html::encode($empresa->Telefone ?? '') ?>">
+                        <input type="tel" class="form-control" id="empresa-telefone" name="Empresa[Telefone]" maxlength="14" value="<?= Html::encode($empresa->Telefone ?? '') ?>" placeholder="(11) 3333-3333">
                     </div>
                     <div class="mb-3">
-                        <label for="empresa-celular">Celular</label>
-                        <input type="text" class="form-control" id="empresa-celular" name="Empresa[Celular]" maxlength="15" value="<?= Html::encode($empresa->Celular ?? '') ?>">
+                        <label for="empresa-celular">Celular <span class="text-danger">*</span></label>
+                        <input type="tel" class="form-control" id="empresa-celular" name="Empresa[Celular]" maxlength="15" value="<?= Html::encode($empresa->Celular ?? '') ?>" placeholder="(11) 99999-9999">
                     </div>
                     <div class="mb-3">
                         <label for="empresa-email">E-mail</label>
@@ -154,7 +154,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <div class="mb-3">
                         <label for="empresa-grau-instrucao">Grau de Instrução</label>
-                        <input type="text" class="form-control" id="empresa-grau-instrucao" name="Empresa[GrauInstrucao]" maxlength="255" value="<?= Html::encode($empresa->GrauInstrucao ?? '') ?>">
+                        <select class="form-control" id="empresa-grau-instrucao" name="Empresa[GrauInstrucao]">
+                            <option value="">Selecione</option>
+                            <option value="Ensino Fundamental" <?= ($empresa->GrauInstrucao == 'Ensino Fundamental') ? 'selected' : '' ?>>Ensino Fundamental (1º Grau)</option>
+                            <option value="Ensino Médio" <?= ($empresa->GrauInstrucao == 'Ensino Médio') ? 'selected' : '' ?>>Ensino Médio (2º Grau)</option>
+                            <option value="Ensino Técnico" <?= ($empresa->GrauInstrucao == 'Ensino Técnico') ? 'selected' : '' ?>>Ensino Técnico</option>
+                            <option value="Superior" <?= ($empresa->GrauInstrucao == 'Superior') ? 'selected' : '' ?>>Superior</option>
+                            <option value="Pós-graduação" <?= ($empresa->GrauInstrucao == 'Pós-graduação') ? 'selected' : '' ?>>Pós-graduação</option>
+                            <option value="Mestrado" <?= ($empresa->GrauInstrucao == 'Mestrado') ? 'selected' : '' ?>>Mestrado</option>
+                            <option value="Doutorado" <?= ($empresa->GrauInstrucao == 'Doutorado') ? 'selected' : '' ?>>Doutorado</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="empresa-numero-registro-drte">Nº Registro DRTE</label>
@@ -167,7 +176,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
             <div class="card border-0 shadow-sm">
-                <div class="card-header bg-secondary text-white"><b>Endereço Residencial</b></div>
+                <div class="card-header" style="background: linear-gradient(135deg, #20713a, #2d8a4a); color: white;"><b><i class="fas fa-home me-2 icon-highlight"></i>Endereço Residencial</b></div>
                 <div class="card-body">
                     <div class="mb-3">
                         <label for="endereco-logradouro">Logradouro</label>
@@ -199,11 +208,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <div class="mb-3">
                         <label for="endereco-telefone">Telefone</label>
-                        <input type="text" class="form-control" id="endereco-telefone" name="Endereco[Telefone]" maxlength="14" value="<?= Html::encode($endereco->Telefone ?? '') ?>">
+                        <input type="tel" class="form-control" id="endereco-telefone" name="Endereco[Telefone]" maxlength="14" value="<?= Html::encode($endereco->Telefone ?? '') ?>" placeholder="(11) 3333-3333">
                     </div>
                     <div class="mb-3">
-                        <label for="endereco-celular">Celular</label>
-                        <input type="text" class="form-control" id="endereco-celular" name="Endereco[Celular]" maxlength="15" value="<?= Html::encode($endereco->Celular ?? '') ?>">
+                        <label for="endereco-celular">Celular <span class="text-danger">*</span></label>
+                        <input type="tel" class="form-control" id="endereco-celular" name="Endereco[Celular]" maxlength="15" value="<?= Html::encode($endereco->Celular ?? '') ?>" placeholder="(11) 99999-9999">
                     </div>
                     <div class="mb-3">
                         <label for="endereco-email">E-mail</label>
@@ -214,7 +223,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     <div class="card border-0 shadow-sm mb-4">
-        <div class="card-header bg-dark text-white"><b>Filhos</b></div>
+        <div class="card-header" style="background: linear-gradient(135deg, #198754, #157347); color: white;"><b><i class="fas fa-child me-2 icon-highlight"></i>Filhos</b></div>
         <div class="card-body">
             <div id="filhos-list">
                 <?php foreach ($filhos as $i => $filho): ?>
@@ -222,13 +231,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="filho-nome-<?= $i ?>">Nome do Filho</label>
-                                <input type="text" class="form-control" id="filho-nome-<?= $i ?>" name="Filho[<?= $i ?>][Nome]" maxlength="255" value="<?= Html::encode($filho->Nome ?? '') ?>">
+                                <input type="text" class="form-control" id="filho-nome-<?= $i ?>" name="SocioFilho[<?= $i ?>][Nome]" maxlength="255" value="<?= Html::encode($filho->Nome ?? '') ?>">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="filho-data-nascimento-<?= $i ?>">Data de Nascimento</label>
-                                <input type="date" class="form-control" id="filho-data-nascimento-<?= $i ?>" name="Filho[<?= $i ?>][DataNascimento]" value="<?= Html::encode($filho->DataNascimento ?? '') ?>">
+                                <input type="date" class="form-control" id="filho-data-nascimento-<?= $i ?>" name="SocioFilho[<?= $i ?>][DataNascimento]" value="<?= Html::encode($filho->DataNascimento ?? '') ?>">
                             </div>
                         </div>
                         <div class="col-md-2 d-flex align-items-end">
@@ -255,15 +264,15 @@ function addFilho() {
     var idx = document.querySelectorAll('.filho-item').length;
     var html = `<div class="row filho-item mb-2" data-index="${idx}">
         <div class="col-md-6">
-            <div class="form-group field-sociofilho-${idx}-nome required">
-                <label class="form-label" for="sociofilho-${idx}-nome">Nome do Filho</label>
-                <input type="text" id="sociofilho-${idx}-nome" class="form-control" name="SocioFilho[${idx}][Nome]">
+            <div class="mb-3">
+                <label for="filho-nome-${idx}">Nome do Filho</label>
+                <input type="text" class="form-control" id="filho-nome-${idx}" name="SocioFilho[${idx}][Nome]" maxlength="255">
             </div>
         </div>
         <div class="col-md-4">
-            <div class="form-group field-sociofilho-${idx}-datanascimento required">
-                <label class="form-label" for="sociofilho-${idx}-datanascimento">Data de Nascimento</label>
-                <input type="date" id="sociofilho-${idx}-datanascimento" class="form-control" name="SocioFilho[${idx}][DataNascimento]">
+            <div class="mb-3">
+                <label for="filho-data-nascimento-${idx}">Data de Nascimento</label>
+                <input type="date" class="form-control" id="filho-data-nascimento-${idx}" name="SocioFilho[${idx}][DataNascimento]">
             </div>
         </div>
         <div class="col-md-2 d-flex align-items-end">
@@ -277,5 +286,29 @@ function addFilho() {
 function removeFilho(btn) {
     var item = btn.closest('.filho-item');
     item.remove();
+    reindexarFilhos();
+}
+
+function reindexarFilhos() {
+    var filhos = document.querySelectorAll('.filho-item');
+    filhos.forEach(function(filho, index) {
+        filho.setAttribute('data-index', index);
+        
+        // Reindexar nome
+        var nomeInput = filho.querySelector('input[name*="[Nome]"]');
+        if (nomeInput) {
+            nomeInput.name = `SocioFilho[${index}][Nome]`;
+            nomeInput.id = `filho-nome-${index}`;
+            filho.querySelector('label[for*="filho-nome"]').setAttribute('for', `filho-nome-${index}`);
+        }
+        
+        // Reindexar data de nascimento
+        var dataInput = filho.querySelector('input[name*="[DataNascimento]"]');
+        if (dataInput) {
+            dataInput.name = `SocioFilho[${index}][DataNascimento]`;
+            dataInput.id = `filho-data-nascimento-${index}`;
+            filho.querySelector('label[for*="filho-data-nascimento"]').setAttribute('for', `filho-data-nascimento-${index}`);
+        }
+    });
 }
 </script> 
