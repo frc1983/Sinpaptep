@@ -1,6 +1,7 @@
 /* SINPAPTEP-RS Theme - Paleta Verde Institucional */
 :root {
     --sinpaptep-primary: #20713a;
+    --sinpaptep-primary-dark: #174c2a;
     --sinpaptep-secondary: #38a169;
     --sinpaptep-accent: #f6c026;
     --sinpaptep-dark: #174c2a;
@@ -53,9 +54,20 @@ input[type="checkbox"].form-check-input {
     accent-color: var(--sinpaptep-primary);
 }
 
-/* Ícones FontAwesome */
+/* Ícones FontAwesome - Cores específicas para botões */
+.btn .fas,
+.btn .fa {
+    color: inherit !important;
+}
+
+/* Ícones fora de botões mantêm a cor verde institucional */
 .fa, .fas, .far, .fal, .fab {
     color: var(--sinpaptep-primary) !important;
+}
+
+/* Exceção para ícones em botões */
+.btn .fa, .btn .fas, .btn .far, .btn .fal, .btn .fab {
+    color: inherit !important;
 }
 
 /* Logo institucional */
@@ -216,4 +228,52 @@ a, a svg, a .bi, a svg[fill] {
 a:hover, a:hover svg, a:hover .bi, a:hover svg[fill] {
     color: var(--sinpaptep-accent) !important;
     fill: var(--sinpaptep-accent) !important;
+}
+
+/* Estilos personalizados para headers das grids */
+.table-primary {
+    background-color: var(--sinpaptep-primary) !important;
+    color: var(--sinpaptep-white) !important;
+    border-color: var(--sinpaptep-primary) !important;
+}
+
+.table-primary th {
+    background-color: var(--sinpaptep-primary) !important;
+    color: var(--sinpaptep-white) !important;
+    border-color: var(--sinpaptep-primary) !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.table-primary th a {
+    color: var(--sinpaptep-white) !important;
+    text-decoration: none;
+}
+
+.table-primary th a:hover {
+    color: var(--sinpaptep-white) !important;
+    text-decoration: underline;
+}
+
+/* Melhorar a aparência dos links de ordenação */
+.table-primary th .sort-link {
+    color: var(--sinpaptep-white) !important;
+}
+
+.table-primary th .sort-link:hover {
+    color: var(--sinpaptep-white) !important;
+    text-decoration: underline;
+}
+
+/* Estilo para indicadores de ordenação */
+.table-primary th .sort-indicator {
+    color: var(--sinpaptep-white) !important;
+}
+
+/* Hover effect para os headers */
+.table-primary th:hover {
+    background-color: var(--sinpaptep-primary-dark) !important;
+    transition: background-color 0.3s ease;
 }

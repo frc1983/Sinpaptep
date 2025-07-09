@@ -63,4 +63,28 @@ class Socio extends ActiveRecord
             'DataNascimentoConjuge' => 'Data de Nascimento do Cônjuge',
         ];
     }
+
+    /**
+     * Relação com os dados da empresa
+     */
+    public function getDadosEmpresa()
+    {
+        return $this->hasOne(SocioDadosEmpresa::class, ['Id_Socio' => 'Id']);
+    }
+
+    /**
+     * Getter para Telefone (da empresa)
+     */
+    public function getTelefone()
+    {
+        return $this->dadosEmpresa ? $this->dadosEmpresa->Telefone : null;
+    }
+
+    /**
+     * Getter para Celular (da empresa)
+     */
+    public function getCelular()
+    {
+        return $this->dadosEmpresa ? $this->dadosEmpresa->Celular : null;
+    }
 } 

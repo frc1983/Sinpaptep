@@ -1,7 +1,7 @@
 <?php
 use yii\bootstrap5\Html;
 
-$this->title = 'Detalhes do Sócio';
+$this->title = $socio->Nome;
 $this->params['breadcrumbs'][] = ['label' => 'Sócios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -12,25 +12,28 @@ function formatDateBr($date) {
 }
 ?>
 <div class="socio-view">
-    <h1 class="mb-4">Detalhes do Sócio</h1>
-    <div class="mb-3">
-        <?= Html::a('Editar', ['update', 'id' => $socio->Id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Excluir', ['delete', 'id' => $socio->Id], [
-            'class' => 'btn btn-danger',
-            'data-confirm' => 'Tem certeza que deseja excluir este sócio?',
-            'data-method' => 'post',
-        ]) ?>
-        <?= Html::a('Voltar', ['index'], ['class' => 'btn btn-outline-secondary']) ?>
-        <?= Html::a('Imprimir', ['imprimir', 'id' => $socio->Id], [
-            'class' => 'btn btn-outline-dark',
-            'target' => '_blank',
-            'title' => 'Imprimir ficha do sócio',
-        ]) ?>
-    </div>
+    <p>
+        <div class="btn-group" role="group">
+            <?= Html::a('<i class="fas fa-edit"></i> Editar', ['update', 'id' => $socio->Id], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('<i class="fas fa-trash"></i> Excluir', ['delete', 'id' => $socio->Id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Tem certeza que deseja excluir este sócio?',
+                    'method' => 'post',
+                ],
+            ]) ?>
+            <?= Html::a('<i class="fas fa-print"></i> Imprimir', ['imprimir', 'id' => $socio->Id], [
+                'class' => 'btn btn-success',
+                'target' => '_blank',
+                'title' => 'Imprimir ficha do sócio',
+            ]) ?>
+            <?= Html::a('<i class="fas fa-arrow-left"></i> Voltar', ['index'], ['class' => 'btn btn-outline-secondary']) ?>
+        </div>
+    </p>
     <div class="row">
         <div class="col-lg-6 mb-4">
             <div class="card border-0 shadow-sm">
-                <div class="card-header bg-primary text-white"><b>Dados Pessoais</b></div>
+                <div class="card-header" style="background: linear-gradient(135deg, #20713a, #2d8a4a); color: white;"><b><i class="fas fa-user me-2 icon-highlight"></i>Dados Pessoais</b></div>
                 <div class="card-body">
                     <dl class="row mb-0">
                         <dt class="col-sm-5">Nome</dt><dd class="col-sm-7"><?= Html::encode($socio->Nome) ?></dd>
@@ -54,7 +57,7 @@ function formatDateBr($date) {
         </div>
         <div class="col-lg-6 mb-4">
             <div class="card border-0 shadow-sm mb-4">
-                <div class="card-header bg-info text-white"><b>Dados da Empresa</b></div>
+                <div class="card-header" style="background: linear-gradient(135deg, #28a745, #20c997); color: white;"><b><i class="fas fa-building me-2 icon-highlight"></i>Dados da Empresa</b></div>
                 <div class="card-body">
                     <?php if ($empresa): ?>
                     <dl class="row mb-0">
@@ -84,7 +87,7 @@ function formatDateBr($date) {
                 </div>
             </div>
             <div class="card border-0 shadow-sm">
-                <div class="card-header bg-secondary text-white"><b>Endereço Residencial</b></div>
+                <div class="card-header" style="background: linear-gradient(135deg, #20713a, #2d8a4a); color: white;"><b><i class="fas fa-home me-2 icon-highlight"></i>Endereço Residencial</b></div>
                 <div class="card-body">
                     <?php if ($endereco): ?>
                     <dl class="row mb-0">
@@ -107,7 +110,7 @@ function formatDateBr($date) {
         </div>
     </div>
     <div class="card border-0 shadow-sm mb-4">
-        <div class="card-header bg-dark text-white"><b>Filhos</b></div>
+        <div class="card-header" style="background: linear-gradient(135deg, #198754, #157347); color: white;"><b><i class="fas fa-child me-2 icon-highlight"></i>Filhos</b></div>
         <div class="card-body">
             <?php if ($filhos && count($filhos) > 0): ?>
                 <ul class="list-group list-group-flush">
@@ -123,4 +126,12 @@ function formatDateBr($date) {
             <?php endif; ?>
         </div>
     </div>
-</div> 
+</div>
+<style>
+.icon-highlight {
+  color: #fff !important;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.25), 0 0px 2px #157347;
+  font-size: 1.3em;
+  vertical-align: -2px;
+}
+</style> 

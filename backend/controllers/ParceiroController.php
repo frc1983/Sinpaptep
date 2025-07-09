@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\models\Parceiro;
+use common\models\ParceiroImagem;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -56,8 +57,12 @@ class ParceiroController extends Controller
      */
     public function actionView($Id)
     {
+        $model = $this->findModel($Id);
+        $imagens = ParceiroImagem::getImagensByParceiroId($Id);
+
         return $this->render('view', [
-            'model' => $this->findModel($Id),
+            'model' => $model,
+            'imagens' => $imagens,
         ]);
     }
 
@@ -71,23 +76,28 @@ class ParceiroController extends Controller
         $model = new Parceiro();
 
         if ($this->request->isPost) {
-            $post = $this->request->post();
-            if (isset($post['Parceiro'])) {
-                unset($post['Parceiro']['created_at'], $post['Parceiro']['updated_at']);
-            }
-            if ($model->load($post)) {
-                $model->scenario = $model->isNewRecord ? 'create' : 'update';
-                $model->logoFile = UploadedFile::getInstance($model, 'logoFile');
-                if (empty($model->logoFile)) {
-                    $model->logoFile = null;
+            try {
+                $post = $this->request->post();
+                if (isset($post['Parceiro'])) {
+                    unset($post['Parceiro']['created_at'], $post['Parceiro']['updated_at']);
                 }
-                if ($model->logoFile) {
-                    $model->upload();
-                }
-                if ($model->save()) {
+                
+                if ($model->load($post) && $model->save()) {
+                    // Processar upload de imagens
+                    $result = $this->processImageUploads($model->Id);
+                    
+                    if ($result['errors'] > 0) {
+                        Yii::$app->session->setFlash('warning', "{$result['uploaded']} imagens salvas com sucesso. {$result['errors']} imagens não puderam ser salvas.");
+                    } elseif ($result['uploaded'] > 0) {
+                        Yii::$app->session->setFlash('success', "{$result['uploaded']} imagens salvas com sucesso!");
+                    }
+                    
                     Yii::$app->session->setFlash('success', 'Parceiro criado com sucesso!');
                     return $this->redirect(['view', 'Id' => $model->Id]);
                 }
+            } catch (\Exception $e) {
+                Yii::error('Erro ao criar parceiro: ' . $e->getMessage());
+                Yii::$app->session->setFlash('error', 'Erro ao criar parceiro: ' . $e->getMessage());
             }
         } else {
             $model->loadDefaultValues();
@@ -110,23 +120,28 @@ class ParceiroController extends Controller
         $model = $this->findModel($Id);
 
         if ($this->request->isPost) {
-            $post = $this->request->post();
-            if (isset($post['Parceiro'])) {
-                unset($post['Parceiro']['created_at'], $post['Parceiro']['updated_at']);
-            }
-            if ($model->load($post)) {
-                $model->scenario = $model->isNewRecord ? 'create' : 'update';
-                $model->logoFile = UploadedFile::getInstance($model, 'logoFile');
-                if (empty($model->logoFile)) {
-                    $model->logoFile = null;
+            try {
+                $post = $this->request->post();
+                if (isset($post['Parceiro'])) {
+                    unset($post['Parceiro']['created_at'], $post['Parceiro']['updated_at']);
                 }
-                if ($model->logoFile) {
-                    $model->upload();
-                }
-                if ($model->save()) {
+                
+                if ($model->load($post) && $model->save()) {
+                    // Processar upload de imagens
+                    $result = $this->processImageUploads($model->Id);
+                    
+                    if ($result['errors'] > 0) {
+                        Yii::$app->session->setFlash('warning', "{$result['uploaded']} imagens salvas com sucesso. {$result['errors']} imagens não puderam ser salvas.");
+                    } elseif ($result['uploaded'] > 0) {
+                        Yii::$app->session->setFlash('success', "{$result['uploaded']} imagens salvas com sucesso!");
+                    }
+                    
                     Yii::$app->session->setFlash('success', 'Parceiro atualizado com sucesso!');
                     return $this->redirect(['view', 'Id' => $model->Id]);
                 }
+            } catch (\Exception $e) {
+                Yii::error('Erro ao atualizar parceiro: ' . $e->getMessage());
+                Yii::$app->session->setFlash('error', 'Erro ao atualizar parceiro: ' . $e->getMessage());
             }
         }
 
@@ -146,12 +161,10 @@ class ParceiroController extends Controller
     {
         $model = $this->findModel($Id);
         
-        // Remover arquivo de logo se existir
-        if ($model->Logo) {
-            $logoPath = Yii::getAlias('@webroot/uploads/parceiros/') . $model->Logo;
-            if (file_exists($logoPath)) {
-                unlink($logoPath);
-            }
+        // Remover todas as imagens associadas
+        $imagens = ParceiroImagem::getImagensByParceiroId($Id);
+        foreach ($imagens as $imagem) {
+            $imagem->delete(); // Isso também remove o arquivo físico
         }
         
         $model->delete();
@@ -176,18 +189,82 @@ class ParceiroController extends Controller
         throw new NotFoundHttpException('O parceiro solicitado não foi encontrado.');
     }
 
-    public function actionRemoverLogo($id)
+
+
+
+
+    /**
+     * Processa o upload de múltiplas imagens
+     * @param int $parceiroId
+     * @return array ['uploaded' => int, 'errors' => int]
+     */
+    private function processImageUploads($parceiroId)
     {
-        $model = $this->findModel($id);
-        if ($model->Logo) {
-            $logoPath = Yii::getAlias('@webroot/uploads/parceiros/') . $model->Logo;
-            if (file_exists($logoPath)) {
-                unlink($logoPath);
+        $uploadedCount = 0;
+        $errorCount = 0;
+        
+        $imagemFiles = UploadedFile::getInstancesByName('Parceiro[imagemFile]');
+        Yii::info('Arquivos recebidos: ' . print_r($imagemFiles, true));
+        if ($imagemFiles && is_array($imagemFiles)) {
+            foreach ($imagemFiles as $index => $file) {
+                Yii::info("Arquivo recebido: {$file->name}, temp: {$file->tempName}, existe: " . (file_exists($file->tempName) ? 'sim' : 'nao'));
+                try {
+                    // Verificar se o arquivo é válido
+                    if (!$file || !$file->tempName || !file_exists($file->tempName)) {
+                        Yii::error("Arquivo inválido ou temporário não encontrado: índice {$index}");
+                        $errorCount++;
+                        continue;
+                    }
+                    
+                    // Verificar se o arquivo não está vazio
+                    if ($file->size === 0) {
+                        Yii::error("Arquivo vazio: {$file->name}");
+                        $errorCount++;
+                        continue;
+                    }
+                    
+                    $parceiroImagem = new ParceiroImagem();
+                    $parceiroImagem->ParceiroId = $parceiroId;
+                    $parceiroImagem->imagemFile = $file;
+                    
+                    // Primeiro faz o upload, depois salva
+                    if ($parceiroImagem->upload()) {
+                        if ($parceiroImagem->save(false)) {
+                            $uploadedCount++;
+                            Yii::info("Imagem salva com sucesso: {$file->name}");
+                        } else {
+                            $errorCount++;
+                            Yii::error("Falha ao salvar no banco: {$file->name} - " . json_encode($parceiroImagem->errors));
+                        }
+                    } else {
+                        $errorCount++;
+                        Yii::error("Falha no upload: {$file->name}");
+                    }
+                } catch (\Exception $e) {
+                    $errorCount++;
+                    Yii::error("Erro ao salvar imagem {$file->name}: " . $e->getMessage());
+                }
             }
-            $model->Logo = null;
-            $model->save(false);
-            Yii::$app->session->setFlash('success', 'Logo removido com sucesso!');
         }
-        return $this->redirect(['update', 'Id' => $model->Id]);
+        
+        return ['uploaded' => $uploadedCount, 'errors' => $errorCount];
+    }
+
+    /**
+     * Remove uma imagem do parceiro
+     * @param int $id
+     * @return \yii\web\Response
+     */
+    public function actionRemoverImagem($id)
+    {
+        $model = ParceiroImagem::findOne($id);
+        if ($model) {
+            $parceiroId = $model->ParceiroId;
+            $model->delete();
+            Yii::$app->session->setFlash('success', 'Imagem removida com sucesso!');
+            return $this->redirect(['view', 'Id' => $parceiroId]);
+        }
+        
+        throw new NotFoundHttpException('Imagem não encontrada.');
     }
 } 

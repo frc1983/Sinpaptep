@@ -27,6 +27,32 @@ class AnuncianteController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Anunciante::find(),
+            'sort' => [
+                'defaultOrder' => ['id' => SORT_DESC],
+                'attributes' => [
+                    'id' => [
+                        'asc' => ['id' => SORT_ASC],
+                        'desc' => ['id' => SORT_DESC],
+                        'default' => SORT_DESC,
+                        'label' => 'ID',
+                    ],
+                    'nome' => [
+                        'asc' => ['nome' => SORT_ASC],
+                        'desc' => ['nome' => SORT_DESC],
+                        'default' => SORT_ASC,
+                        'label' => 'Nome',
+                    ],
+                    'link' => [
+                        'asc' => ['link' => SORT_ASC],
+                        'desc' => ['link' => SORT_DESC],
+                        'default' => SORT_ASC,
+                        'label' => 'Link',
+                    ],
+                ],
+            ],
+            'pagination' => [
+                'pageSize' => 20,
+            ],
         ]);
         return $this->render('index', [
             'dataProvider' => $dataProvider,

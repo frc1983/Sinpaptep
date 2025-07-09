@@ -13,15 +13,10 @@ use yii\web\UploadedFile;
  * @property int $Id
  * @property string $Nome
  * @property string|null $Descricao
- * @property string|null $Logo
  * @property string|null $Site
  */
 class Parceiro extends ActiveRecord
 {
-    /**
-     * @var UploadedFile
-     */
-    public $logoFile;
 
     /**
      * {@inheritdoc}
@@ -39,7 +34,7 @@ class Parceiro extends ActiveRecord
         return [
             [['Nome'], 'required'],
             [['Descricao'], 'string', 'max' => 5000],
-            [['Nome', 'Logo', 'Site'], 'string', 'max' => 255],
+            [['Nome', 'Site'], 'string', 'max' => 255],
             [['Site'], 'url', 'defaultScheme' => 'https'],
         ];
     }
@@ -53,48 +48,28 @@ class Parceiro extends ActiveRecord
             'Id' => 'ID',
             'Nome' => 'Nome',
             'Descricao' => 'Descrição',
-            'Logo' => 'Logo',
             'Site' => 'Site',
-            'logoFile' => 'Arquivo do Logo',
         ];
     }
 
+
+
     /**
-     * Upload do arquivo de logo
+     * Gets query for [[ParceiroImagens]].
+     *
+     * @return \yii\db\ActiveQuery
      */
-    public function upload()
+    public function getParceiroImagens()
     {
-        if ($this->logoFile === null) {
-            return true;
-        }
-
-        $uploadPath = Yii::getAlias('@webroot/uploads/parceiros/');
-        
-        // Criar diretório se não existir
-        if (!is_dir($uploadPath)) {
-            mkdir($uploadPath, 0755, true);
-        }
-
-        $fileName = 'parceiro_' . time() . '_' . $this->logoFile->baseName . '.' . $this->logoFile->extension;
-        $filePath = $uploadPath . $fileName;
-
-        if ($this->logoFile->saveAs($filePath)) {
-            $this->Logo = $fileName;
-            return true;
-        }
-
-        return false;
+        return $this->hasMany(ParceiroImagem::class, ['ParceiroId' => 'Id']);
     }
 
     /**
-     * Obter URL completa do logo
+     * Obter todas as imagens do parceiro
      */
-    public function getLogoUrl()
+    public function getImagens()
     {
-        if ($this->Logo) {
-            return Yii::getAlias('@web/uploads/parceiros/') . $this->Logo;
-        }
-        return null;
+        return $this->parceiroImagens;
     }
 
     /**
@@ -114,16 +89,37 @@ class Parceiro extends ActiveRecord
      */
     public function search($params)
     {
-        $query = Parceiro::find();
+        $query = Parceiro::find()->with(['parceiroImagens']);
 
         // add conditions that should always apply here
 
         $dataProvider = new \yii\data\ActiveDataProvider([
             'query' => $query,
             'sort' => [
-                'defaultOrder' => [
-                    'Nome' => SORT_ASC,
-                ]
+                'defaultOrder' => ['Id' => SORT_DESC],
+                'attributes' => [
+                    'Id' => [
+                        'asc' => ['Id' => SORT_ASC],
+                        'desc' => ['Id' => SORT_DESC],
+                        'default' => SORT_DESC,
+                        'label' => 'ID',
+                    ],
+                    'Nome' => [
+                        'asc' => ['Nome' => SORT_ASC],
+                        'desc' => ['Nome' => SORT_DESC],
+                        'default' => SORT_ASC,
+                        'label' => 'Nome',
+                    ],
+                    'Site' => [
+                        'asc' => ['Site' => SORT_ASC],
+                        'desc' => ['Site' => SORT_DESC],
+                        'default' => SORT_ASC,
+                        'label' => 'Site',
+                    ],
+                ],
+            ],
+            'pagination' => [
+                'pageSize' => 20,
             ],
         ]);
 

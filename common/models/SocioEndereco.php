@@ -34,7 +34,20 @@ class SocioEndereco extends ActiveRecord
             [['Id_Socio', 'Numero'], 'integer'],
             ['CEP', 'string', 'max' => 8],
             [['Logradouro', 'Complemento', 'Bairro', 'Cidade', 'UF', 'Telefone', 'Celular', 'Email'], 'string', 'max' => 255],
+            [['Telefone', 'Celular'], 'filter', 'filter' => function($value) { return preg_replace('/\D/', '', $value); }],
+            [['Telefone', 'Celular'], 'validatePhone'],
         ];
+    }
+
+    /**
+     * Validação personalizada para telefone e celular
+     */
+    public function validatePhone($attribute, $params)
+    {
+        $value = preg_replace('/\D/', '', $this->$attribute);
+        if (strlen($value) < 10 || strlen($value) > 11) {
+            $this->addError($attribute, 'Telefone/Celular deve ter 10 ou 11 dígitos.');
+        }
     }
 
     public function attributeLabels()

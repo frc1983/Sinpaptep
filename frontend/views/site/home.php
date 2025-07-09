@@ -30,8 +30,12 @@ $this->title = 'Início';
         <?php foreach ($anunciantes as $anunciante): ?>
             <div style="margin-bottom:20px;">
                 <a href="<?= Html::encode($anunciante->Site) ?>" target="_blank">
-                    <?php if ($anunciante->Logo): ?>
-                        <img src="/Sinpaptep/backend/web/uploads/parceiros/<?= Html::encode($anunciante->Logo) ?>" style="width:100%; max-width:250px;">
+                    <?php 
+                    $imagens = $anunciante->getImagens();
+                    if (!empty($imagens)): 
+                        $primeiraImagem = $imagens[0];
+                    ?>
+                        <img src="/Sinpaptep/backend/web/uploads/parceiros/<?= Html::encode($primeiraImagem->Imagem) ?>" style="width:100%; max-width:250px;">
                     <?php else: ?>
                         <?= Html::encode($anunciante->Nome) ?>
                     <?php endif; ?>

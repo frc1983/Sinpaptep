@@ -21,6 +21,7 @@ AppAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode(Yii::$app->name) ?> Admin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="<?= Yii::getAlias('@web') ?>/css/button-icons.css">
     <?php $this->head() ?>
 </head>
 <body class="d-flex flex-column h-100">
@@ -41,6 +42,7 @@ AppAsset::register($this);
         ['label' => 'Categorias', 'url' => ['/categoria/index']],
         ['label' => 'Parceiros Anunciantes', 'url' => ['/parceiro/index']],
         ['label' => '<i class="fas fa-users me-1"></i> Sócios', 'url' => ['/socio/index'], 'encode' => false],
+        ['label' => '<i class="fas fa-barcode me-1"></i> Boletos', 'url' => ['/socio/boletos'], 'encode' => false],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];

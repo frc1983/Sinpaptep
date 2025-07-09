@@ -1,51 +1,126 @@
 <?php
-use yii\bootstrap5\Html;
+use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\bootstrap5\ButtonGroup;
+use yii\grid\ActionColumn;
 
 $this->title = 'Sócios';
-$this->params['breadcrumbs'][] = $this->title;
-
-function formatDateBr($date) {
-    if (!$date || $date == '0000-00-00') return '';
-    $d = DateTime::createFromFormat('Y-m-d', $date);
-    return $d ? $d->format('d/m/Y') : $date;
-}
 ?>
-<div class="socio-index">
-    <h1 class="mb-4">Sócios</h1>
-    <p>
-        <?= Html::a('Novo Sócio', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            'Id',
-            'Nome',
-            'CPF',
-            'CidadeNascimento',
-            [
-                'attribute' => 'DataNascimento',
-                'label' => 'Data de Nascimento',
-                'value' => function($model) { return formatDateBr($model->DataNascimento); },
-            ],
-            [
-                'class' => 'yii\grid\ActionColumn',
-                'template' => '{view} {update} {delete} {imprimir}',
-                'buttons' => [
-                    'imprimir' => function ($url, $model, $key) {
-                        $svg = '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 24 24" style="vertical-align:middle;"><path d="M17 17H7v4h10v-4zm2-2V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v8H3v4a2 2 0 0 0 2 2h2v-4h10v4h2a2 2 0 0 0 2-2v-4h-2zm-2-8v2H7V7h10z"/></svg>';
-                        return Html::a($svg, ['imprimir', 'id' => $model->Id], [
-                            'title' => 'Imprimir ficha',
-                            'target' => '_blank',
-                            'data-pjax' => '0',
-                            'aria-label' => 'Imprimir ficha',
-                        ]);
-                    },
-                ],
+<h1><?= Html::encode($this->title) ?></h1>
+<p>
+    <?= Html::a('<i class="fas fa-plus"></i> Novo Sócio', ['create'], ['class' => 'btn btn-success']) ?>
+</p>
+
+<?= GridView::widget([
+    'dataProvider' => $dataProvider,
+    'filterModel' => null,
+    'tableOptions' => ['class' => 'table table-striped table-bordered'],
+    'headerRowOptions' => ['class' => 'table-primary'],
+    'columns' => [
+        [
+            'attribute' => 'Id',
+            'label' => 'ID',
+            'contentOptions' => ['class' => 'text-center', 'width' => '80'],
+            'content' => function ($model) {
+                return '<span class="badge" style="background-color: var(--sinpaptep-gray); color: var(--sinpaptep-dark);">#' . $model->Id . '</span>';
+            },
+            'format' => 'raw',
+        ],
+        [
+            'attribute' => 'Nome',
+            'label' => 'Nome',
+            'content' => function ($model) {
+                return '<strong>' . Html::encode($model->Nome) . '</strong>';
+            },
+            'format' => 'raw',
+        ],
+        [
+            'attribute' => 'CPF',
+            'label' => 'CPF',
+            'contentOptions' => ['width' => '150'],
+            'content' => function ($model) {
+                return Html::encode($model->CPF);
+            },
+        ],
+        [
+            'attribute' => 'Celular',
+            'label' => 'Celular',
+            'contentOptions' => ['width' => '150'],
+            'content' => function ($model) {
+                if ($model->Celular) {
+                    return Html::a(Html::encode($model->Celular), 'tel:' . $model->Celular, ['class' => 'text-primary']);
+                }
+                return '<span class="text-danger">Obrigatório</span>';
+            },
+            'format' => 'raw',
+        ],
+        [
+            'attribute' => 'Telefone',
+            'label' => 'Telefone',
+            'contentOptions' => ['width' => '150'],
+            'content' => function ($model) {
+                if ($model->Telefone) {
+                    return Html::a(Html::encode($model->Telefone), 'tel:' . $model->Telefone, ['class' => 'text-primary']);
+                }
+                return '<span class="text-muted">-</span>';
+            },
+            'format' => 'raw',
+        ],
+        [
+            'attribute' => 'CidadeNascimento',
+            'label' => 'Cidade de Nascimento',
+            'content' => function ($model) {
+                return Html::encode($model->CidadeNascimento);
+            },
+        ],
+        [
+            'attribute' => 'DataNascimento',
+            'label' => 'Data de Nascimento',
+            'content' => function ($model) {
+                return Html::encode($model->DataNascimento);
+            },
+        ],
+        [
+            'class' => ActionColumn::class,
+            'header' => 'Ações',
+            'headerOptions' => ['width' => '180'],
+            'contentOptions' => ['class' => 'text-center'],
+            'template' => '{view} {update} {delete} {print}',
+            'buttons' => [
+                'view' => function ($url, $model) {
+                    return Html::a('<i class="fas fa-eye"></i>', $url, [
+                        'class' => 'btn btn-info btn-sm',
+                        'title' => 'Visualizar'
+                    ]);
+                },
+                'update' => function ($url, $model) {
+                    return Html::a('<i class="fas fa-edit"></i>', $url, [
+                        'class' => 'btn btn-primary btn-sm',
+                        'title' => 'Editar'
+                    ]);
+                },
+                'delete' => function ($url, $model) {
+                    return Html::a('<i class="fas fa-trash"></i>', $url, [
+                        'class' => 'btn btn-danger btn-sm',
+                        'title' => 'Excluir',
+                        'data' => [
+                            'confirm' => 'Tem certeza que deseja excluir este sócio?',
+                            'method' => 'post',
+                        ],
+                    ]);
+                },
+                'print' => function ($url, $model) {
+                    return Html::a('<i class="fas fa-print"></i>', ['imprimir', 'id' => $model->Id], [
+                        'class' => 'btn btn-secondary btn-sm',
+                        'title' => 'Imprimir',
+                        'target' => '_blank'
+                    ]);
+                },
             ],
         ],
-        'tableOptions' => ['class' => 'table table-striped table-bordered table-hover'],
-    ]) ?>
-</div> 
+    ],
+    'pager' => [
+        'options' => ['class' => 'pagination justify-content-center'],
+        'linkContainerOptions' => ['class' => 'page-item'],
+        'linkOptions' => ['class' => 'page-link'],
+    ],
+]); ?> 

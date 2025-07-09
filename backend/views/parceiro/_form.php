@@ -1,67 +1,111 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
 /** @var common\models\Parceiro $model */
-/** @var yii\widgets\ActiveForm $form */
 ?>
 
 <div class="parceiro-form">
-
-    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
-
-    <div class="row">
-        <div class="col-md-8">
-            <?= $form->field($model, 'Nome')->textInput(['maxlength' => true]) ?>
-
-            <?= $form->field($model, 'Descricao')->textarea(['rows' => 6, 'maxlength' => 5000]) ?>
-
-            <?= $form->field($model, 'Site')->textInput(['maxlength' => true, 'placeholder' => 'https://exemplo.com']) ?>
+    <?php if ($model->hasErrors()): ?>
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                <?php foreach ($model->getFirstErrors() as $attr => $err): ?>
+                    <li><strong><?= $model->getAttributeLabel($attr) ?>:</strong> <?= $err ?></li>
+                <?php endforeach; ?>
+            </ul>
         </div>
-        
-        <div class="col-md-4">
-            <?= $form->field($model, 'logoFile')->fileInput(['accept' => 'image/*']) ?>
+    <?php endif; ?>
+    <form method="post" enctype="multipart/form-data">
+        <?= Html::hiddenInput(Yii::$app->request->csrfParam, Yii::$app->request->csrfToken) ?>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="mb-3">
+                    <label for="parceiro-nome" class="form-label">Nome *</label>
+                    <input type="text" class="form-control" id="parceiro-nome" name="Parceiro[Nome]" maxlength="255" value="<?= Html::encode($model->Nome) ?>" required>
+                    <div class="form-text">Nome do parceiro (máximo 255 caracteres)</div>
+                </div>
+                <div class="mb-3">
+                    <label for="parceiro-descricao" class="form-label">Descrição</label>
+                    <textarea class="form-control" id="parceiro-descricao" name="Parceiro[Descricao]" rows="6" maxlength="5000" placeholder="Descrição detalhada do parceiro..."><?= Html::encode($model->Descricao) ?></textarea>
+                    <div class="form-text">Descrição opcional do parceiro (máximo 5000 caracteres)</div>
+                </div>
+                <div class="mb-3">
+                    <label for="parceiro-site" class="form-label">Site</label>
+                    <input type="url" class="form-control" id="parceiro-site" name="Parceiro[Site]" maxlength="255" placeholder="https://exemplo.com" value="<?= Html::encode($model->Site) ?>">
+                    <div class="form-text">URL do site do parceiro (opcional)</div>
+                </div>
+            </div>
             
-            <?php if ($model->Logo): ?>
-                <div class="form-group">
-                    <label class="control-label">Logo Atual:</label>
-                    <div class="mt-2">
-                        <?= Html::img($model->getLogoUrl(), [
-                            'class' => 'img-fluid',
-                            'style' => 'max-height: 150px; max-width: 200px; object-fit: contain; border: 1px solid #ddd; border-radius: 4px;',
-                            'alt' => $model->Nome
-                        ]) ?>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Imagens</h5>
                     </div>
-                    <div class="mt-2">
-                        <?= Html::a('<i class="fas fa-trash"></i> Remover Logo', ['remover-logo', 'id' => $model->Id], [
-                            'class' => 'btn btn-danger btn-sm',
-                            'data' => [
-                                'confirm' => 'Tem certeza que deseja remover o logo?',
-                                'method' => 'post',
-                            ],
-                        ]) ?>
+                    <div class="card-body">
+                        <?php if ($model->imagens): ?>
+                            <div class="mb-3">
+                                <label class="form-label">Imagens Atuais</label>
+                                <div class="row">
+                                    <?php foreach ($model->imagens as $img): ?>
+                                        <div class="col-6 mb-2">
+                                            <div class="card">
+                                                <img src="<?= $img->getImagemUrl() ?>" 
+                                                     class="card-img-top" 
+                                                     style="height: 80px; object-fit: cover;"
+                                                     alt="Imagem do parceiro">
+                                                <div class="card-body p-2">
+                                                    <?= Html::a('<i class="fas fa-trash"></i>', 
+                                                        ['/parceiro/remover-imagem', 'id' => $img->Id], 
+                                                        [
+                                                            'class' => 'btn btn-danger btn-sm w-100',
+                                                            'onclick' => 'return confirm("Remover esta imagem?")',
+                                                            'title' => 'Remover imagem'
+                                                        ]
+                                                    ) ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                        
+                        <div class="mb-3">
+                            <label for="parceiro-imagem" class="form-label">Adicionar Imagens</label>
+                            <input type="file" class="form-control" id="parceiro-imagem" name="Parceiro[imagemFile][]" multiple accept="image/*">
+                            <div class="form-text">
+                                Formatos: PNG, JPG, JPEG<br>
+                                Máximo: 10 arquivos<br>
+                                Tamanho recomendado: 800x600px
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-info">
+                            <small>
+                                <i class="fas fa-info-circle"></i>
+                                <strong>Dicas:</strong><br>
+                                • Adicione imagens para melhor visualização<br>
+                                • Use formatos web otimizados<br>
+                                • Mantenha proporções adequadas
+                            </small>
+                        </div>
                     </div>
                 </div>
-            <?php endif; ?>
-            
-            <div class="alert alert-info">
-                <small>
-                    <i class="fas fa-info-circle"></i>
-                    <strong>Formatos aceitos:</strong> PNG, JPG, JPEG, GIF, WEBP<br>
-                    <strong>Tamanho máximo:</strong> 2MB<br>
-                    <strong>Dimensões recomendadas:</strong> 300x150px
-                </small>
             </div>
         </div>
-    </div>
-
-    <div class="form-group mt-4">
-        <?= Html::submitButton('<i class="fas fa-save"></i> Salvar', ['class' => 'btn btn-success']) ?>
-        <?= Html::a('<i class="fas fa-arrow-left"></i> Voltar', ['index'], ['class' => 'btn btn-secondary']) ?>
-    </div>
-
-    <?php ActiveForm::end(); ?>
-
+        
+        <div class="form-group mt-4">
+            <?php if ($model->isNewRecord): ?>
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-save"></i> Salvar Parceiro
+                </button>
+            <?php else: ?>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Atualizar Parceiro
+                </button>
+            <?php endif; ?>
+            <?= Html::a('<i class="fas fa-arrow-left"></i> Voltar', ['index'], ['class' => 'btn btn-secondary']) ?>
+        </div>
+    </form>
 </div> 
