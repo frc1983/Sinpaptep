@@ -1,12 +1,12 @@
-<?
+<?php
 
 /*
  * const.inc
- * Contém valores constantes usadas em todo o sistema.
+ * Contm valores constantes usadas em todo o sistema.
  * @author      wlung
  * @since       18/06/2003
  * @version     1.0
- * (C) Opus Comunicação de Dados, 2003.
+ * (C) Opus Comunicaï¿½ï¿½o de Dados, 2003.
  */
  
 

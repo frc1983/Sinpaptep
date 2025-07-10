@@ -1,30 +1,21 @@
-<?
-
-#
+<?php
 # Propriedades do sistema Boleto Bancario
-#
-
 
 # campo opcional - path do arquivo Log. Exemplo: c:/log/logweb
 $log_path="";
 
-
 # campo opcional - URL do logomarca da empresa
 # $url_logomarca="http://www.sindicatopublicitariosrs.com.br/imgs/marca-sinpaptep.jpg";
-
 
 # codigo de cedente (tamanho 6 - numerico)
 $cod_cedente="608455";
 
-
 # agencia de vinculacao (tamanho 4 - numerico)
 $agencia_vinculacao="0437";
-
 
 # nome do cedente (tamanho 40 - alfanumerico)
 $nome_cedente="Sindicato dos Publicitários do RS";
 $cnpj_cedente="90.900.127/0001-50";
-
 
 # campo opcional - multa padrao (valor em forma de porcentagem)
 $multa="2,0";
@@ -32,10 +23,8 @@ $multa="2,0";
 # valor da despesa bancária - geração do boleto
 $despesa_bancaria = "0,00";
 
-
 # campo opcional - juros ao dia (valor em forma de porcentagem)
 $juros_dia="0,03";
-
 
 # campo opcional - mensagem padrao recibo do sacado (10 campos de 70 caracteres cada)
 $msg_sacado1 ="";
@@ -48,6 +37,3 @@ $msg_sacado7 ="";
 $msg_sacado8 ="";
 $msg_sacado9 ="";
 $msg_sacado10="";
-
-
-?>

@@ -129,8 +129,31 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
             
-            <div class="mt-4">
+            <div class="mt-4 d-flex gap-2">
                 <?= Html::a('<i class="fas fa-arrow-left me-1"></i> Voltar', ['index'], ['class' => 'btn btn-secondary']) ?>
+                <?php
+                $isLocalhost = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false);
+                $boletoUrl = $isLocalhost ? '/Sinpaptep/backend/BoletoWebCaixa/BoletoWebCaixa.php' : '/backend/BoletoWebCaixa/BoletoWebCaixa.php';
+                ?>
+                <form method="POST" action="<?= $boletoUrl ?>" target="_blank" style="display:inline;">
+                    <input type="hidden" name="sacadoNome" value="<?= Html::encode($model->Nome) ?>">
+                    <input type="hidden" name="sacadoCNPJ" value="<?= Html::encode($model->CNPJ) ?>">
+                    <input type="hidden" name="sacadoEndereco" value="<?= Html::encode($model->Endereco) ?>">
+                    <input type="hidden" name="sacadoCep" value="<?= Html::encode($model->CEP) ?>">
+                    <input type="hidden" name="sacadoCidade" value="<?= Html::encode($model->Cidade) ?>">
+                    <input type="hidden" name="sacadoEstado" value="RS">
+                    <input type="hidden" name="valor" value="<?= Html::encode(number_format($model->Valor, 2, ',', '.')) ?>">
+                    <input type="hidden" name="dataVencimento" value="<?= $model->DataVencimento ? date('d/m/Y', strtotime($model->DataVencimento)) : '' ?>">
+                    <input type="hidden" name="multa" value="<?= Html::encode(number_format($model->Multa, 2, ',', '.')) ?>">
+                    <input type="hidden" name="despesa_bancaria" value="<?= Html::encode(number_format($model->DespesaBancaria, 2, ',', '.')) ?>">
+                    <input type="hidden" name="numDocumento" value="<?= Html::encode($model->Id) ?>">
+                    <input type="hidden" name="nossoNumero" value="00000001">
+                    <input type="hidden" name="msgCompensacao1" value="Contribuição assistencial <?= date('Y') ?>">
+                    <input type="hidden" name="msgCompensacao2" value="Contribuição de 4% sobre o salário dos empregados">
+                    <input type="hidden" name="msgCompensacao3" value="">
+                    <input type="hidden" name="msgCompensacao4" value="Após vencimento, pagável apenas nas agências da Caixa">
+                    <button type="submit" class="btn btn-success"><i class="fas fa-print me-1"></i> Imprimir Boleto</button>
+                </form>
             </div>
         </div>
     </div>

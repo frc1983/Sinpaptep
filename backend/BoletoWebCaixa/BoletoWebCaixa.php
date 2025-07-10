@@ -1,11 +1,15 @@
-<?
-include 'includes/barcode.inc';
-include 'includes/dados.inc';
-include 'includes/log.inc';
-
+<?php
+include_once 'includes/campo.inc';
+include_once 'includes/barcode.inc';
+include_once 'includes/dados.inc';
+include_once 'includes/log.inc';
 
 // obter data da emissao do boleto ou data de hoje
 $todayDate = date("d/m/Y", time());
+
+// Garantir que as variáveis estejam definidas
+if (!isset($multa)) $multa = "0,00";
+if (!isset($juros_dia)) $juros_dia = "0,00";
 
 $fatorVenc_Valor = fillWithCharLeft(fatorVencimento($vencimento),'0',4) . fillWithCharLeft(stripNotNumber($valor), '0', 10);
 $impressao_agencia_cod_cedente = $agencia_vinculacao . "/" . $cod_cedente . "-" . DVCampoLivre($cod_cedente);
@@ -54,76 +58,60 @@ $campo .= DVCampo($campo);
 $barcodeNum .= substr($campo,0,5) . "." . substr($campo,5) . " ";
 
 // campo4
-$barcodeNum .= $DVGeral . " ";
+$barcodeNum .= (isset($DVGeral) ? $DVGeral : "") . " ";
 
 //campo5
-$barcodeNum .= $fatorVenc_Valor;
+$barcodeNum .= (isset($fatorVenc_Valor) ? $fatorVenc_Valor : "");
 /** fim da montagem de codigo de barra numerico**/
 
 //se chegou ate aqui, quer dizer que foi sucesso. Registrar no arquivo de LOG
-printLog();
+//printLog();
 ?>
 
 <HTML>
 <HEAD>
 <TITLE>Boleto Web Caixa</TITLE>
 <meta http-equiv=Content-Type content="text/html; charset=utf-8">
-<script>var todayDateServidor = "<?=todayDate?>";</script>
+<script>var todayDateServidor = "<?=$todayDate?>";</script>
 <script language=JavaScript type=text/javascript src='js/janela.js'></script>
 <script language=JavaScript type=text/javascript src='js/barcode.js'></script>
 <link rel=stylesheet href="./css/boleto.css">
 <link rel=stylesheet href="./css/barcode.css">
 <script language="JavaScript">
-	var BARCODE_IMG=showBarcodeImage("<?=getBinaryCode($barcodeComp)?>");
+	var BARCODE_IMG=showBarcodeImage("<?=isset($barcodeComp) ? getBinaryCode($barcodeComp) : ""?>");
 </script>
 </HEAD>
 
 <body topmargin=3 rightmargin=10 bgcolor='#FFFFFF' text='#000000' onLoad="javascript:abrirJanela('aviso.html','500','520','0')">
-<?
-
-
-if (isset($url_logomarca) && trim($url_logomarca)!="")
-	$strExt = strtolower(substr($url_logomarca, strrpos($url_logomarca, ".")));
-
-	if ( $strExt == ".jpg" || $strExt == ".jpeg" || $strExt == ".gif")
-	    print "<img src=\"".$url_logomarca."\">\n";
-
-?>
-<table border=0 cellPadding=0 cellSpacing=0 width='100%'>
-<?
-	for ($i=0; $i<sizeof($msg_sacado); $i++)
-		if (isset($msg_sacado[$i])) print "<tr><td nowrap class=cellBody>".$msg_sacado[$i]."</td></tr>\n";
-?>
-</table><BR>
 <center>
 <table border=0 cellPadding=0 cellSpacing=0 width='100%'>
 	<tr>
-		<td class=numBanco><img border=0 src=images/cef.gif> | <?=$BANCO?>-<?=$BANCO_DV?> |</td>
+		<td class=numBanco><img border=0 src=images/cef.gif> | <?=isset($BANCO) ? $BANCO : "104"?>-<?=isset($BANCO_DV) ? $BANCO_DV : "0"?> |</td>
 		<td class=ipte width='*'>Recibo do Sacado</td>
 	</tr>
 </table>
 <table border=1 cellPadding=0 cellSpacing=0 width='100%'>
 	<tr class=cellTitle>
-		<td width='25%'>Vencimento<br><div align=center><span class=cellBodyD><? if ($vencimento!="00/00/0000") print $vencimento; ?></span></div></td>
-		<td colspan=2>Cedente<br><span class=cellBody>&nbsp;<?=$nome_cedente?></span></td>
-                <td width='25%'>CNPJ Cedente<br><span class=cellBodyD>&nbsp;<?=$cnpj_cedente?></span></td>
+		<td width='25%'>Vencimento<br><div align=center><span class=cellBodyD><? if (isset($vencimento) && $vencimento!="00/00/0000") print $vencimento; ?></span></div></td>
+		<td colspan=2>Cedente<br><span class=cellBody>&nbsp;<?=isset($nome_cedente) ? $nome_cedente : ""?></span></td>
+                <td width='25%'>CNPJ Cedente<br><span class=cellBodyD>&nbsp;<?=isset($cnpj_cedente) ? $cnpj_cedente : ""?></span></td>
 	</tr>
 	<tr class=cellTitle>
-		<td width='25%'>(=) Valor do Documento<br><div align=center><span class=cellBodyD><?=$valor?></span></div></td>
-                <td width='25%'>Ag&ecirc;ncia/C&oacute;digo do Cedente<br><span class=cellBody>&nbsp;<?=$impressao_agencia_cod_cedente?></span></td>
-		<td width='25%'>N&uacute;mero do Documento<br><span class=cellBody>&nbsp;<?=$num_doc?></span></td>
-		<td width='25%'>Nosso N&uacute;mero/C&oacute;digo Documento<br><span class=cellBody>&nbsp;<?=$impressao_nossoNum?></span></td>
+		<td width='25%'>(=) Valor do Documento<br><div align=center><span class=cellBodyD><?=isset($valor) ? $valor : ""?></span></div></td>
+                <td width='25%'>Ag&ecirc;ncia/C&oacute;digo do Cedente<br><span class=cellBody>&nbsp;<?=isset($impressao_agencia_cod_cedente) ? $impressao_agencia_cod_cedente : ""?></span></td>
+		<td width='25%'>N&uacute;mero do Documento<br><span class=cellBody>&nbsp;<?=isset($num_doc) ? $num_doc : ""?></span></td>
+		<td width='25%'>Nosso N&uacute;mero/C&oacute;digo Documento<br><span class=cellBody>&nbsp;<?=isset($impressao_nossoNum) ? $impressao_nossoNum : ""?></span></td>
 	</tr>
 </table>
 <table border=0 cellPadding=0 cellSpacing=0 width='100%'>
 	<tr class=cellTitle>
 
       <td width=30 height="19">Sacado</td>
-      <td class=cellBody><?=$sNome?>&nbsp;<?=$sCNPJ?></td>
+      <td class=cellBody><?=isset($sNome) ? $sNome : ""?>&nbsp;<?=isset($sCNPJ) ? $sCNPJ : ""?></td>
 		<td align=right nowrap>------------------------ Autentica&ccedil;&atilde;o Mec&acirc;nica ------------------------</td>
 	</tr>
-	<tr class=cellBody><td>&nbsp;</td><td colSpan=2><?=$sEndereco?></td></tr>
-	<tr class=cellBody><td>&nbsp;</td><td colSpan=2><?=$sCEP?>&nbsp;<?=$sCidade?> - <?=$sEstado?></td></tr>
+	<tr class=cellBody><td>&nbsp;</td><td colSpan=2><?=isset($sEndereco) ? $sEndereco : ""?></td></tr>
+	<tr class=cellBody><td>&nbsp;</td><td colSpan=2><?=isset($sCEP) ? $sCEP : ""?>&nbsp;<?=isset($sCidade) ? $sCidade : ""?> - <?=isset($sEstado) ? $sEstado : ""?></td></tr>
 	<tr class=cellTitle><td colspan=3  valign="bottom" height="19">Sacador/Avalista</td></tr>
 </table>
 
@@ -131,51 +119,53 @@ if (isset($url_logomarca) && trim($url_logomarca)!="")
 
 <table border=0 cellPadding=0 cellSpacing=0 width='100%'>
 	<tr>
-		<td class=numBanco nowrap><img border=0 src=images/cef.gif> | <?=$BANCO?>-<?=$BANCO_DV?> |</td>
-		<td class=ipte nowrap><?=$barcodeNum?></td>
+		<td class=numBanco nowrap><img border=0 src=images/cef.gif> | <?=isset($BANCO) ? $BANCO : "104"?>-<?=isset($BANCO_DV) ? $BANCO_DV : "0"?> |</td>
+		<td class=ipte nowrap><?=isset($barcodeNum) ? $barcodeNum : ""?></td>
 	</tr>
 </table>
 <table border=1 cellPadding=0 cellSpacing=0 width='100%'>
 	<tr class=cellTitle>
 		<td colSpan=5 width=500>Local de Pagamento<br><span class=cellBody>&nbsp;Preferencialmente nas Casas Lot&eacute;ricas at&eacute; o valor limite</span></td>
-		<td width=170>Vencimento<br><div align=right><span class=cellBodyD><?=($vencimento==("00/00/0000")?"":$vencimento)?></span></div></td>
+		<td width=170>Vencimento<br><div align=right><span class=cellBodyD><?=(isset($vencimento) && $vencimento==("00/00/0000")?"":(isset($vencimento) ? $vencimento : ""))?></span></div></td>
 	</tr>
 	<tr class=cellTitle>
-		<td colspan=5 width=500>Cedente<br><span class=cellBody>&nbsp;<?=$nome_cedente?></span></td>
-		<td width=170>Ag&ecirc;ncia/C&oacute;digo do Cedente<br><div align=right><span class=cellBody><?=$impressao_agencia_cod_cedente?></span></div></td>
+		<td colspan=5 width=500>Cedente<br><span class=cellBody>&nbsp;<?=isset($nome_cedente) ? $nome_cedente : ""?></span></td>
+		<td width=170>Ag&ecirc;ncia/C&oacute;digo do Cedente<br><div align=right><span class=cellBody><?=isset($impressao_agencia_cod_cedente) ? $impressao_agencia_cod_cedente : ""?></span></div></td>
 	</tr>
 	<tr class=cellTitle>
-		<td width=85>Data de Emiss&atilde;o<br><span class=cellBody>&nbsp;<?=$todayDate?></span></td>
-		<td width=115>N&uacute;mero do Documento<br><span class=cellBody>&nbsp;<?=$num_doc?></span></td>
+		<td width=85>Data de Emiss&atilde;o<br><span class=cellBody>&nbsp;<?=isset($todayDate) ? $todayDate : ""?></span></td>
+		<td width=115>N&uacute;mero do Documento<br><span class=cellBody>&nbsp;<?=isset($num_doc) ? $num_doc : ""?></span></td>
 		<td width=110>Esp&eacute;cie Doc<br><span class=cellBody>&nbsp;&nbsp;</span></td>
 		<td width=70>Aceite<br><span class=cellBody>&nbsp;</span></td>
-		<td width=120>Data do Processamento<br><span class=cellBody>&nbsp;<?=$todayDate?></span></td>
-		<td width=170 nowrap>Nosso N&uacute;mero/C&oacute;digo Documento<br><div align=right><span class=cellBody><?=$impressao_nossoNum?></span></div></td>
+		<td width=120>Data do Processamento<br><span class=cellBody>&nbsp;<?=isset($todayDate) ? $todayDate : ""?></span></td>
+		<td width=170 nowrap>Nosso N&uacute;mero/C&oacute;digo Documento<br><div align=right><span class=cellBody><?=isset($impressao_nossoNum) ? $impressao_nossoNum : ""?></span></div></td>
 	</tr>
 	<tr class=cellTitle>
 		<td width=85>Uso do Banco<br><span class=cellBody>&nbsp;&nbsp;</span></td>
-		<td width=115>Carteira<br><span class=cellBody>&nbsp;<?=$CARTEIRA?></span></td>
-		<td width=110>Esp&eacute;cie<br><span class=cellBody>&nbsp;<?=$MOEDA?><br></span></td>
+		<td width=115>Carteira<br><span class=cellBody>&nbsp;<?=isset($CARTEIRA) ? $CARTEIRA : ""?></span></td>
+		<td width=110>Esp&eacute;cie<br><span class=cellBody>&nbsp;<?=isset($MOEDA) ? $MOEDA : ""?><br></span></td>
 		<td width=70>Quantidade<br><span class=cellBody>&nbsp;&nbsp;</span></td>
 		<td width=110>Valor<br><span class=cellBody>&nbsp;</span></td>
-		<td width=170>(=) Valor do Documento<br><div align=right><span class=cellBodyD><?=$valor?></span></div></td>
+		<td width=170>(=) Valor do Documento<br><div align=right><span class=cellBodyD><?=isset($valor) ? $valor : ""?></span></div></td>
 	</tr>
 	<tr class=cellTitle>
 		<td colSpan=5 rowSpan=5>Instru&ccedil;&otilde;es - Texto de responsabilidade do cedente<br>
         <span class=cellBody>
-        <?  $BR_TAG="";
-			for ($i=0; $i<sizeof($msg_compensacao); $i++) {
-				if (!trim($msg_compensacao[$i])=="")
-						print "&nbsp;".trim($msg_compensacao[$i])."<br>";
-				else $BR_TAG .= "<BR>";
+        <?php  $BR_TAG="";
+			if (isset($msg_compensacao) && is_array($msg_compensacao)) {
+				for ($i=0; $i<sizeof($msg_compensacao); $i++) {
+					if (isset($msg_compensacao[$i]) && !trim($msg_compensacao[$i])=="")
+							print "&nbsp;".trim($msg_compensacao[$i])."<br>";
+					else $BR_TAG .= "<BR>";
+				}
 			}
             print $BR_TAG;
 	?>
         <br>
-        <? $msg_multa_juros = "";
-            if (!trim($multa)=="")
+        <?php $msg_multa_juros = "";
+            if (isset($multa) && !trim($multa)=="")
                     $msg_multa_juros .= "multa de ".$multa."%";
-            if (!trim($juros_dia)=="") {
+            if (isset($juros_dia) && !trim($juros_dia)=="") {
                     $msg_multa_juros .= ((trim($msg_multa_juros)=="")? "":" e ") . "juros de " . $juros_dia . "%";
             }
             if (!trim($msg_multa_juros=="")) {
@@ -183,7 +173,7 @@ if (isset($url_logomarca) && trim($url_logomarca)!="")
             } else print "&nbsp;";
 	?>
         </span>
-        <p><span class=cellTitleB>Unidade Cedente: <?=$agencia_vinculacao?></span>
+        <p><span class=cellTitleB>Unidade Cedente: <?=isset($agencia_vinculacao) ? $agencia_vinculacao : ""?></span>
 		</td>
       <td width=170>(-) Desconto/Abatimento<br>&nbsp;</td>
 	</tr>
@@ -194,9 +184,9 @@ if (isset($url_logomarca) && trim($url_logomarca)!="")
 	<tr>
 		<td colspan=7 width='100%'>
 			<table border=0 cellPadding=0 cellSpacing=0 width='100%'>
-				<tr><td class=cellTitle width=20 height=19>Sacado</td><td class=cellBody><?=$sNome?>&nbsp;-&nbsp;CNPJ:&nbsp;<?=$sCNPJ?></td></tr>
-				<tr class=cellBody><td>&nbsp;</td><td ><?=$sEndereco?></td></tr>
-				<tr class=cellBody><td>&nbsp;</td><td ><?=$sCEP?>&nbsp;<?=$sCidade?> - <?=$sEstado?></td></tr>
+				<tr><td class=cellTitle width=20 height=19>Sacado</td><td class=cellBody><?=isset($sNome) ? $sNome : ""?>&nbsp;-&nbsp;CNPJ:&nbsp;<?=isset($sCNPJ) ? $sCNPJ : ""?></td></tr>
+				<tr class=cellBody><td>&nbsp;</td><td ><?=isset($sEndereco) ? $sEndereco : ""?></td></tr>
+				<tr class=cellBody><td>&nbsp;</td><td ><?=isset($sCEP) ? $sCEP : ""?>&nbsp;<?=isset($sCidade) ? $sCidade : ""?> - <?=isset($sEstado) ? $sEstado : ""?></td></tr>
 			</table>
 			<table border=0 cellPadding=0 cellSpacing=0 width='100%'>
 				<tr class=cellTitleB>

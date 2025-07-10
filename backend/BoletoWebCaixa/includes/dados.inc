@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * armazenar todos dados necessarios para gerar codigo de barra
  * @author      wlung
@@ -9,13 +9,13 @@
  */
 
 /** incluir os valores constantes **/
-include './includes/const.inc';
+include_once './includes/const.inc';
 
 /** carregar as propriedades do arquivo de configuracao  **/
-include './WEB-INF/BoletoWebCaixa.ini';
+include_once './WEB-INF/BoletoWebCaixa.php';
 
 /** checar os dados do arquivo de configuracao  **/
-include './includes/campo.inc';
+include_once './includes/campo.inc';
 $msg_sacado = array ($msg_sacado1,$msg_sacado2,$msg_sacado3,$msg_sacado4,$msg_sacado5,
 		     $msg_sacado6,$msg_sacado7,$msg_sacado8,$msg_sacado9,$msg_sacado10);
 
@@ -45,22 +45,27 @@ $agencia_vinculacao = fillWithCharLeft($agencia_vinculacao,'0', 4);
 if (isset ($HTTP_POST_VARS)) $_POST = &$HTTP_POST_VARS;
 
 /** obter dados do formulario do cliente que sao mais frequentemente alterados **/
-$sNome      = $_POST["sacadoNome"];
-$sCNPJ      = $_POST["sacadoCNPJ"];
-$sEndereco  = $_POST["sacadoEndereco"];
-$sCEP       = $_POST["sacadoCep"];
-$sCidade    = $_POST["sacadoCidade"];
-$sEstado    = $_POST["sacadoEstado"];
-$vencimento = $_POST["dataVencimento"];
-$nosso_num  = $_POST["nossoNumero"];
-$num_doc    = $_POST["numDocumento"];
-$valor      = $_POST["valor"];
-$valor_multa= $_POST["multa"];
-$msg_compensacao = array($_POST["msgCompensacao1"],$_POST["msgCompensacao2"],
-			 $_POST["msgCompensacao3"],$_POST["msgCompensacao4"]);
+$sNome      = isset($_POST["sacadoNome"]) ? $_POST["sacadoNome"] : "";
+$sCNPJ      = isset($_POST["sacadoCNPJ"]) ? $_POST["sacadoCNPJ"] : "";
+$sEndereco  = isset($_POST["sacadoEndereco"]) ? $_POST["sacadoEndereco"] : "";
+$sCEP       = isset($_POST["sacadoCep"]) ? $_POST["sacadoCep"] : "";
+$sCidade    = isset($_POST["sacadoCidade"]) ? $_POST["sacadoCidade"] : "";
+$sEstado    = isset($_POST["sacadoEstado"]) ? $_POST["sacadoEstado"] : "";
+$vencimento = isset($_POST["dataVencimento"]) ? $_POST["dataVencimento"] : "";
+$nosso_num  = isset($_POST["nossoNumero"]) ? $_POST["nossoNumero"] : "";
+$num_doc    = isset($_POST["numDocumento"]) ? $_POST["numDocumento"] : "";
+$valor      = isset($_POST["valor"]) ? $_POST["valor"] : "";
+$valor_multa= isset($_POST["multa"]) ? $_POST["multa"] : "";
+$msg_compensacao = array(
+    isset($_POST["msgCompensacao1"]) ? $_POST["msgCompensacao1"] : "",
+    isset($_POST["msgCompensacao2"]) ? $_POST["msgCompensacao2"] : "",
+    isset($_POST["msgCompensacao3"]) ? $_POST["msgCompensacao3"] : "",
+    isset($_POST["msgCompensacao4"]) ? $_POST["msgCompensacao4"] : ""
+);
 
 //Adiciona o valor da multa ao valor do boleto original
-$valor = number_format((float)str_replace(",", ".", str_replace(".", "", $valor)) + (float)str_replace(",", ".", str_replace(".", "", $valor_multa)) + (float)str_replace(",", ".", str_replace(".", "", $despesa_bancaria)), 2, ",", ".");
+$despesa_bancaria_valor = isset($despesa_bancaria) ? $despesa_bancaria : "0,00";
+$valor = number_format((float)str_replace(",", ".", str_replace(".", "", $valor)) + (float)str_replace(",", ".", str_replace(".", "", $valor_multa)) + (float)str_replace(",", ".", str_replace(".", "", $despesa_bancaria_valor)), 2, ",", ".");
 
 /** checar os dados do formulario vindo do cliente  **/
 checkCampo($sNome,"01",$ALPHA,40,$CAMPO_OBRIGATORIO);
