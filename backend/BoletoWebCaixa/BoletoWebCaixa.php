@@ -80,11 +80,16 @@ $barcodeNum .= (isset($fatorVenc_Valor) ? $fatorVenc_Valor : "");
 <script language="JavaScript">
 	var BARCODE_IMG=showBarcodeImage("<?=isset($barcodeComp) ? getBinaryCode($barcodeComp) : ""?>");
 </script>
+<style>
+    @media print {
+        .print-btn { display: none !important; }
+    }
+</style>
 </HEAD>
 
 <body topmargin=3 rightmargin=10 bgcolor='#FFFFFF' text='#000000' onLoad="javascript:abrirJanela('aviso.html','500','520','0')">
 <div style="text-align:right; margin: 10px 20px 0 0;">
-    <button onclick="window.print()" style="padding: 6px 16px; font-size: 1rem; background: #20713a; color: #fff; border: none; border-radius: 4px; cursor: pointer;">
+    <button class="print-btn" onclick="window.print()" style="padding: 6px 16px; font-size: 1rem; background: #20713a; color: #fff; border: none; border-radius: 4px; cursor: pointer;">
         🖨️ Imprimir Boleto
     </button>
 </div>
