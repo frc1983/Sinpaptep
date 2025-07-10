@@ -131,6 +131,13 @@ AppAsset::register($this);
                     <li><a href="<?= Yii::$app->urlManager->createUrl(['/site/homologacoes']) ?>" class="text-muted text-decoration-none">Homologações</a></li>
                     <li><a href="<?= Yii::$app->urlManager->createUrl(['/site/juridico']) ?>" class="text-muted text-decoration-none">Jurídico</a></li>
                     <li><a href="<?= Yii::$app->urlManager->createUrl(['/site/contact']) ?>" class="text-muted text-decoration-none">Contato</a></li>
+                    <li>
+                        <?php
+                        $isLocalhost = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false);
+                        $adminUrl = $isLocalhost ? '/Sinpaptep/backend/web/site/login' : '/backend/web/site/login';
+                        ?>
+                        <a href="<?= $adminUrl ?>" class="text-muted text-decoration-none" target="_blank">Área Administrativa</a>
+                    </li>
                 </ul>
             </div>
             <div class="col-md-3">

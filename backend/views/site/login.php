@@ -13,18 +13,18 @@ $this->title = 'Login';
     <div class="mt-5 offset-lg-3 col-lg-6">
         <h1><?= Html::encode($this->title) ?></h1>
 
-        <p>Please fill out the following fields to login:</p>
+        <p>Por favor, preencha os campos abaixo para entrar:</p>
 
         <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-            <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+            <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'placeholder' => 'Usuário']) ?>
 
-            <?= $form->field($model, 'password')->passwordInput() ?>
+            <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Senha']) ?>
 
-            <?= $form->field($model, 'rememberMe')->checkbox() ?>
+            <?= $form->field($model, 'rememberMe')->checkbox(['label' => 'Lembrar-me']) ?>
 
             <div class="form-group">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary btn-block', 'name' => 'login-button']) ?>
+                <?= Html::submitButton('Entrar', ['class' => 'btn btn-primary btn-block', 'name' => 'login-button']) ?>
             </div>
 
         <?php ActiveForm::end(); ?>
