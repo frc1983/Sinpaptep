@@ -147,7 +147,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <input type="hidden" name="multa" value="<?= Html::encode(number_format($model->Multa, 2, ',', '.')) ?>">
                     <input type="hidden" name="despesa_bancaria" value="<?= Html::encode(number_format($model->DespesaBancaria, 2, ',', '.')) ?>">
                     <input type="hidden" name="numDocumento" value="<?= Html::encode($model->Id) ?>">
-                    <input type="hidden" name="nossoNumero" value="00000001">
+                    <input type="hidden" name="nossoNumero" value="<?= date('Ymd', strtotime($model->DataGeracaoBoleto)) . $model->Id ?>">
                     <input type="hidden" name="msgCompensacao1" value="Contribuição assistencial <?= date('Y') ?>">
                     <input type="hidden" name="msgCompensacao2" value="Contribuição de 4% sobre o salário dos empregados">
                     <input type="hidden" name="msgCompensacao3" value="">
