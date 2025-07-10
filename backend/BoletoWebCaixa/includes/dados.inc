@@ -68,7 +68,7 @@ $despesa_bancaria_valor = isset($despesa_bancaria) ? $despesa_bancaria : "0,00";
 $valor = number_format((float)str_replace(",", ".", str_replace(".", "", $valor)) + (float)str_replace(",", ".", str_replace(".", "", $valor_multa)) + (float)str_replace(",", ".", str_replace(".", "", $despesa_bancaria_valor)), 2, ",", ".");
 
 /** checar os dados do formulario vindo do cliente  **/
-checkCampo($sNome,"01",$ALPHA,40,$CAMPO_OBRIGATORIO);
+checkCampo($sNome,"01",$ALPHA,255,$CAMPO_OBRIGATORIO);
 checkCampo($sEndereco,"02",$ALPHA,40,$CAMPO_OBRIGATORIO);
 $sCEP = checkCampo($sCEP,"05",$CEP,9,$CAMPO_OBRIGATORIO);  // 12345-678
 

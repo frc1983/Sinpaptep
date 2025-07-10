@@ -139,7 +139,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <input type="hidden" name="sacadoNome" value="<?= Html::encode($model->Nome) ?>">
                     <input type="hidden" name="sacadoCNPJ" value="<?= Html::encode($model->CNPJ) ?>">
                     <input type="hidden" name="sacadoEndereco" value="<?= Html::encode($model->Endereco) ?>">
-                    <input type="hidden" name="sacadoCep" value="<?= Html::encode($model->CEP) ?>">
+                    <input type="hidden" name="sacadoCep" value="<?= Html::encode(preg_replace('/(\d{5})(\d{3})/', '$1-$2', preg_replace('/\D/', '', $model->CEP))) ?>">
                     <input type="hidden" name="sacadoCidade" value="<?= Html::encode($model->Cidade) ?>">
                     <input type="hidden" name="sacadoEstado" value="RS">
                     <input type="hidden" name="valor" value="<?= Html::encode(number_format($model->Valor, 2, ',', '.')) ?>">
