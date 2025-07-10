@@ -128,7 +128,10 @@ class Boleto extends ActiveRecord
      */
     public function isVencido()
     {
-        return strtotime($this->DataVencimento) < time();
+        // Considera vencido apenas se a data de vencimento for menor que hoje
+        $dataVencimento = strtotime($this->DataVencimento);
+        $hoje = strtotime(date('Y-m-d'));
+        return $dataVencimento < $hoje;
     }
 
     /**
