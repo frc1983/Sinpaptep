@@ -69,7 +69,9 @@ class Parceiro extends ActiveRecord
      */
     public function getImagens()
     {
-        return $this->parceiroImagens;
+        return $this->getParceiroImagens()
+            ->orderBy(['Ordem' => SORT_ASC, 'created_at' => SORT_DESC])
+            ->all();
     }
 
     /**

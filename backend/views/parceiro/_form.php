@@ -45,11 +45,14 @@ use yii\helpers\Html;
                     <div class="card-body">
                         <?php if ($model->imagens): ?>
                             <div class="mb-3">
-                                <label class="form-label">Imagens Atuais</label>
+                                <label class="form-label">Imagens Atuais (Ordenadas)</label>
                                 <div class="row">
-                                    <?php foreach ($model->imagens as $img): ?>
+                                    <?php foreach ($model->imagens as $index => $img): ?>
                                         <div class="col-6 mb-2">
                                             <div class="card">
+                                                <div class="card-header bg-light p-1">
+                                                    <small class="text-muted">Posição <?= $img->Ordem ?: ($index + 1) ?></small>
+                                                </div>
                                                 <img src="<?= $img->getImagemUrl() ?>" 
                                                      class="card-img-top" 
                                                      style="height: 80px; object-fit: cover;"
@@ -67,6 +70,12 @@ use yii\helpers\Html;
                                             </div>
                                         </div>
                                     <?php endforeach; ?>
+                                </div>
+                                <div class="alert alert-warning mt-2">
+                                    <small>
+                                        <i class="fas fa-info-circle"></i>
+                                        <strong>Nota:</strong> Para reordenar as imagens, use a visualização detalhada do parceiro.
+                                    </small>
                                 </div>
                             </div>
                         <?php endif; ?>

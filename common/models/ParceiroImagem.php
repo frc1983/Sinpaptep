@@ -51,11 +51,12 @@ class ParceiroImagem extends ActiveRecord
     {
         return [
             [['ParceiroId'], 'required'],
-            [['ParceiroId', 'created_at', 'updated_at'], 'integer'],
+            [['ParceiroId', 'created_at', 'updated_at', 'Ordem'], 'integer'],
             [['Descricao'], 'string', 'max' => 500],
             [['Imagem'], 'string', 'max' => 255],
             [['ParceiroId'], 'exist', 'skipOnError' => true, 'targetClass' => Parceiro::class, 'targetAttribute' => ['ParceiroId' => 'Id']],
             [['imagemFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, gif', 'maxSize' => 1024 * 1024 * 5],
+            [['Ordem'], 'default', 'value' => 1],
         ];
     }
 
@@ -69,6 +70,7 @@ class ParceiroImagem extends ActiveRecord
             'ParceiroId' => 'Parceiro ID',
             'Imagem' => 'Imagem',
             'Descricao' => 'Descrição',
+            'Ordem' => 'Ordem',
             'imagemFile' => 'Arquivo da Imagem',
             'created_at' => 'Data de Criação',
             'updated_at' => 'Data de Atualização',
@@ -163,8 +165,70 @@ class ParceiroImagem extends ActiveRecord
     {
         return self::find()
             ->where(['ParceiroId' => $parceiroId])
-            ->orderBy(['created_at' => SORT_DESC])
+            ->orderBy(['Ordem' => SORT_ASC, 'created_at' => SORT_DESC])
             ->all();
+    }
+
+    /**
+     * Obter a próxima ordem para uma nova imagem
+     */
+    public static function getNextOrdem($parceiroId)
+    {
+        $maxOrdem = self::find()
+            ->where(['ParceiroId' => $parceiroId])
+            ->max('Ordem');
+        
+        return $maxOrdem ? $maxOrdem + 1 : 1;
+    }
+
+    /**
+     * Mover imagem para uma nova posição
+     */
+    public function moveToPosition($newPosition)
+    {
+        $parceiroId = $this->ParceiroId;
+        $currentPosition = $this->Ordem ?: 1;
+        
+        if ($newPosition == $currentPosition) {
+            return true;
+        }
+        
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            if ($newPosition > $currentPosition) {
+                // Mover para baixo - diminuir ordem das imagens entre posição atual e nova
+                self::updateAllCounters(
+                    ['Ordem' => -1],
+                    [
+                        'and',
+                        ['ParceiroId' => $parceiroId],
+                        ['>', 'Ordem', $currentPosition],
+                        ['<=', 'Ordem', $newPosition]
+                    ]
+                );
+            } else {
+                // Mover para cima - aumentar ordem das imagens entre nova posição e atual
+                self::updateAllCounters(
+                    ['Ordem' => 1],
+                    [
+                        'and',
+                        ['ParceiroId' => $parceiroId],
+                        ['>=', 'Ordem', $newPosition],
+                        ['<', 'Ordem', $currentPosition]
+                    ]
+                );
+            }
+            
+            $this->Ordem = $newPosition;
+            $this->save(false);
+            
+            $transaction->commit();
+            return true;
+        } catch (\Exception $e) {
+            $transaction->rollBack();
+            Yii::error('Erro ao mover imagem: ' . $e->getMessage());
+            return false;
+        }
     }
 
     /**

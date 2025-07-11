@@ -64,9 +64,34 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="card-body">
                     <?php if (!empty($imagens)): ?>
                         <div class="row">
-                            <?php foreach ($imagens as $imagem): ?>
+                            <?php foreach ($imagens as $index => $imagem): ?>
                                 <div class="col-md-3 col-sm-6 mb-3">
                                     <div class="card h-100">
+                                        <div class="card-header bg-light">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <span class="badge bg-primary">Posição <?= $imagem->Ordem ?: ($index + 1) ?></span>
+                                                <div class="btn-group btn-group-sm">
+                                                    <?php if ($index > 0): ?>
+                                                        <?= Html::a('<i class="fas fa-arrow-up"></i>', 
+                                                            ['mover-imagem-cima', 'id' => $imagem->Id], 
+                                                            [
+                                                                'class' => 'btn btn-outline-primary',
+                                                                'title' => 'Mover para cima'
+                                                            ]
+                                                        ) ?>
+                                                    <?php endif; ?>
+                                                    <?php if ($index < count($imagens) - 1): ?>
+                                                        <?= Html::a('<i class="fas fa-arrow-down"></i>', 
+                                                            ['mover-imagem-baixo', 'id' => $imagem->Id], 
+                                                            [
+                                                                'class' => 'btn btn-outline-primary',
+                                                                'title' => 'Mover para baixo'
+                                                            ]
+                                                        ) ?>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="card-img-top text-center p-2" style="height: 200px; background-color: #f8f9fa;">
                                             <?= Html::img($imagem->getImagemUrl(), [
                                                 'class' => 'img-fluid',
@@ -84,16 +109,49 @@ $this->params['breadcrumbs'][] = $this->title;
                                             </small>
                                         </div>
                                         <div class="card-footer">
-                                            <?= Html::a('<i class="fas fa-trash"></i> Remover', 
-                                                ['remover-imagem', 'id' => $imagem->Id], 
-                                                [
-                                                    'class' => 'btn btn-sm btn-danger',
-                                                    'data' => [
-                                                        'confirm' => 'Tem certeza que deseja remover esta imagem?',
-                                                        'method' => 'post',
-                                                    ],
-                                                ]
-                                            ) ?>
+                                            <div class="btn-group btn-group-sm w-100">
+                                                <?= Html::a('<i class="fas fa-trash"></i>', 
+                                                    ['remover-imagem', 'id' => $imagem->Id], 
+                                                    [
+                                                        'class' => 'btn btn-danger',
+                                                        'data' => [
+                                                            'confirm' => 'Tem certeza que deseja remover esta imagem?',
+                                                            'method' => 'post',
+                                                        ],
+                                                        'title' => 'Remover imagem'
+                                                    ]
+                                                ) ?>
+                                                <button type="button" class="btn btn-info" 
+                                                        data-bs-toggle="modal" 
+                                                        data-bs-target="#modalPosicao<?= $imagem->Id ?>"
+                                                        title="Definir posição específica">
+                                                    <i class="fas fa-sort-numeric-up"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal para definir posição específica -->
+                                <div class="modal fade" id="modalPosicao<?= $imagem->Id ?>" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Definir Posição da Imagem</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Defina a nova posição para esta imagem (1 a <?= count($imagens) ?>):</p>
+                                                <form method="post" action="<?= Url::to(['mover-imagem-posicao', 'id' => $imagem->Id]) ?>">
+                                                    <?= Html::hiddenInput(Yii::$app->request->csrfParam, Yii::$app->request->csrfToken) ?>
+                                                    <div class="input-group">
+                                                        <input type="number" name="posicao" class="form-control" 
+                                                               min="1" max="<?= count($imagens) ?>" 
+                                                               value="<?= $imagem->Ordem ?: ($index + 1) ?>">
+                                                        <button type="submit" class="btn btn-primary">Mover</button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

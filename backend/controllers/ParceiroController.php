@@ -226,6 +226,7 @@ class ParceiroController extends Controller
                     $parceiroImagem = new ParceiroImagem();
                     $parceiroImagem->ParceiroId = $parceiroId;
                     $parceiroImagem->imagemFile = $file;
+                    $parceiroImagem->Ordem = ParceiroImagem::getNextOrdem($parceiroId);
                     
                     // Primeiro faz o upload, depois salva
                     if ($parceiroImagem->upload()) {
@@ -263,6 +264,76 @@ class ParceiroController extends Controller
             $model->delete();
             Yii::$app->session->setFlash('success', 'Imagem removida com sucesso!');
             return $this->redirect(['view', 'Id' => $parceiroId]);
+        }
+        
+        throw new NotFoundHttpException('Imagem não encontrada.');
+    }
+
+    /**
+     * Mover imagem para cima na ordem
+     * @param int $id
+     * @return \yii\web\Response
+     */
+    public function actionMoverImagemCima($id)
+    {
+        $model = ParceiroImagem::findOne($id);
+        if ($model) {
+            $currentPosition = $model->Ordem ?: 1;
+            if ($currentPosition > 1) {
+                $model->moveToPosition($currentPosition - 1);
+                Yii::$app->session->setFlash('success', 'Imagem movida para cima!');
+            }
+            return $this->redirect(['view', 'Id' => $model->ParceiroId]);
+        }
+        
+        throw new NotFoundHttpException('Imagem não encontrada.');
+    }
+
+    /**
+     * Mover imagem para baixo na ordem
+     * @param int $id
+     * @return \yii\web\Response
+     */
+    public function actionMoverImagemBaixo($id)
+    {
+        $model = ParceiroImagem::findOne($id);
+        if ($model) {
+            $currentPosition = $model->Ordem ?: 1;
+            $maxOrdem = ParceiroImagem::find()
+                ->where(['ParceiroId' => $model->ParceiroId])
+                ->max('Ordem');
+            
+            if ($currentPosition < $maxOrdem) {
+                $model->moveToPosition($currentPosition + 1);
+                Yii::$app->session->setFlash('success', 'Imagem movida para baixo!');
+            }
+            return $this->redirect(['view', 'Id' => $model->ParceiroId]);
+        }
+        
+        throw new NotFoundHttpException('Imagem não encontrada.');
+    }
+
+    /**
+     * Mover imagem para posição específica
+     * @param int $id
+     * @param int $posicao
+     * @return \yii\web\Response
+     */
+    public function actionMoverImagemPosicao($id, $posicao)
+    {
+        $model = ParceiroImagem::findOne($id);
+        if ($model) {
+            $maxOrdem = ParceiroImagem::find()
+                ->where(['ParceiroId' => $model->ParceiroId])
+                ->max('Ordem');
+            
+            if ($posicao >= 1 && $posicao <= $maxOrdem) {
+                $model->moveToPosition($posicao);
+                Yii::$app->session->setFlash('success', 'Imagem movida para a posição ' . $posicao . '!');
+            } else {
+                Yii::$app->session->setFlash('error', 'Posição inválida!');
+            }
+            return $this->redirect(['view', 'Id' => $model->ParceiroId]);
         }
         
         throw new NotFoundHttpException('Imagem não encontrada.');
