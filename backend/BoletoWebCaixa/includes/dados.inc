@@ -69,7 +69,7 @@ $valor = number_format((float)str_replace(",", ".", str_replace(".", "", $valor)
 
 /** checar os dados do formulario vindo do cliente  **/
 checkCampo($sNome,"01",$ALPHA,255,$CAMPO_OBRIGATORIO);
-checkCampo($sEndereco,"02",$ALPHA,40,$CAMPO_OBRIGATORIO);
+checkCampo($sEndereco,"02",$ALPHA,255,$CAMPO_OBRIGATORIO);
 $sCEP = checkCampo($sCEP,"05",$CEP,9,$CAMPO_OBRIGATORIO);  // 12345-678
 
 if ($sCEP == "00000-000")

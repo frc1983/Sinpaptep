@@ -68,9 +68,10 @@ Function isDateAllowed($valor){
     	$dataVenc = explode ('/', $valor);
     	$dataTmp = $dataVenc[2] . $dataVenc[1] . $dataVenc[0];   // aaaammdd    	
 	
+	// Remover a linha que exige que a data seja maior ou igual ao dia atual
 	$DATA_MIN_PERMITIDA_NUM = 20030101;   //date('Ymd', time());
     
-    	return ($dataTmp>=$DATA_MIN_PERMITIDA_NUM && $dataTmp>=$DATA_BASE_NUM && $dataTmp<=$DATA_MAX_PERMITIDA_NUM);
+    	return ($dataTmp>=$DATA_BASE_NUM && $dataTmp<=$DATA_MAX_PERMITIDA_NUM);
 }
 
 

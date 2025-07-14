@@ -53,7 +53,8 @@ class Boleto extends ActiveRecord
             [['Valor', 'Multa', 'DespesaBancaria'], 'number'],
             [['DataVencimento', 'DataGeracaoBoleto'], 'safe'],
             [['Nome', 'Endereco', 'Cidade'], 'string', 'max' => 255],
-            [['DataVencimento', 'DataGeracaoBoleto'], 'validateDateNotPast'],
+            // Remover a validação de datas não serem menores que o dia atual
+            // [['DataVencimento', 'DataGeracaoBoleto'], 'validateDateNotPast'], // Removido
         ];
     }
 
@@ -157,14 +158,14 @@ class Boleto extends ActiveRecord
     /**
      * Valida se a data não é menor que o dia atual
      */
-    public function validateDateNotPast($attribute, $params)
-    {
-        if (!empty($this->$attribute)) {
-            $dataInformada = strtotime($this->$attribute);
-            $hoje = strtotime(date('Y-m-d'));
-            if ($dataInformada < $hoje) {
-                $this->addError($attribute, 'A data não pode ser menor que o dia atual.');
-            }
-        }
-    }
+    // public function validateDateNotPast($attribute, $params)
+    // {
+    //     if (!empty($this->$attribute)) {
+    //         $dataInformada = strtotime($this->$attribute);
+    //         $hoje = strtotime(date('Y-m-d'));
+    //         if ($dataInformada < $hoje) {
+    //             $this->addError($attribute, 'A data não pode ser menor que o dia atual.');
+    //         }
+    //     }
+    // }
 } 

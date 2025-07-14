@@ -70,8 +70,9 @@ function ValidaData(data) {
     if ((ano == tempDate.getFullYear()) &&
             (mes == (tempDate.getMonth() + 1)) &&
             (dia == tempDate.getDate())) {
-        var tmp = new Date();
-        var todayDate = new Date(tmp.getFullYear(), tmp.getMonth(), tmp.getDate());
+        // Remover validação de data mínima igual ao dia atual
+        // var tmp = new Date();
+        // var todayDate = new Date(tmp.getFullYear(), tmp.getMonth(), tmp.getDate());
 
         //return (tempDate >= BASE_DATE && tempDate<=MAX_DATE && tempDate>=todayDate)
         return (tempDate >= BASE_DATE && tempDate <= MAX_DATE)

@@ -32,7 +32,7 @@
                 <tr>
                     <td align="left" valign="middle" width="36%"><strong>Endere&ccedil;o:</strong> </td>
                     <td align="left" width="64%"> <div align="left">
-                            <input type="text" name="sacadoEndereco" size="40" maxlength="40" value="">
+                            <input type="text" name="sacadoEndereco" size="40" maxlength="255" value="">
                         </div></td>
                 </tr>
                 <tr>
