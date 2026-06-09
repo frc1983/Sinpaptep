@@ -105,11 +105,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </div>
                                     <div>
                                         <h6 class="mb-1">Horário de Atendimento</h6>
-                                        <p class="text-muted mb-0">
-                                            Segunda a Sexta: 8h às 18h<br>
-                                            Sábado: 9h às 14h<br>
-                                            Domingo: Fechado
-                                        </p>
+                                        <p class="text-muted mb-0">Expediente externo de Segunda a Sexta: 14:00h às 17:30h</p>
                                     </div>
                                 </div>
                             </div>
