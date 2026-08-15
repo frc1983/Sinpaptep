@@ -67,17 +67,14 @@ use dosamigos\tinymce\TinyMce;
                             'force_br_newlines' => false,
                             'force_p_newlines' => true,
                             'convert_newlines_to_brs' => false,
-                            // Previne que iframes sejam envolvidos em <p>
                             'setup' => new \yii\web\JsExpression('function(editor) {
                                 editor.on("BeforeSetContent", function(e) {
                                     if (e.content) {
-                                        // Decodifica HTML escapado
                                         if (e.content.indexOf("&lt;iframe") !== -1) {
                                             var div = document.createElement("div");
                                             div.innerHTML = e.content;
                                             e.content = div.innerHTML;
                                         }
-                                        // Remove tags inválidas ao redor de iframes
                                         e.content = e.content.replace(/<p[^>]*>\s*<span[^>]*>\s*(<iframe[^>]*>.*?<\/iframe>)\s*<\/span>\s*<\/p>/gi, "$1");
                                         e.content = e.content.replace(/<p[^>]*>\s*(<iframe[^>]*>.*?<\/iframe>)\s*<\/p>/gi, "$1");
                                         e.content = e.content.replace(/<span[^>]*>\s*(<iframe[^>]*>.*?<\/iframe>)\s*<\/span>/gi, "$1");
@@ -85,13 +82,11 @@ use dosamigos\tinymce\TinyMce;
                                 });
                                 editor.on("GetContent", function(e) {
                                     if (e.content) {
-                                        // Decodifica HTML escapado
                                         if (e.content.indexOf("&lt;iframe") !== -1) {
                                             var div = document.createElement("div");
                                             div.innerHTML = e.content;
                                             e.content = div.innerHTML;
                                         }
-                                        // Remove tags inválidas ao redor de iframes
                                         e.content = e.content.replace(/<p[^>]*>\s*<span[^>]*>\s*(<iframe[^>]*>.*?<\/iframe>)\s*<\/span>\s*<\/p>/gi, "$1");
                                         e.content = e.content.replace(/<p[^>]*>\s*(<iframe[^>]*>.*?<\/iframe>)\s*<\/p>/gi, "$1");
                                         e.content = e.content.replace(/<span[^>]*>\s*(<iframe[^>]*>.*?<\/iframe>)\s*<\/span>/gi, "$1");
@@ -103,25 +98,48 @@ use dosamigos\tinymce\TinyMce;
                 <?php else: ?>
                     <textarea class="form-control" id="noticia-texto" name="Noticia[Texto]" rows="12" placeholder="Digite o texto da notícia aqui..."><?= Html::encode($model->Texto) ?></textarea>
                 <?php endif; ?>
-                <div class="form-text">
-                    <strong>HTML permitido:</strong> &lt;p&gt;, &lt;strong&gt;, &lt;em&gt;, &lt;u&gt;, &lt;b&gt;, &lt;i&gt;, &lt;span&gt;, &lt;div&gt;, &lt;h1&gt;-&lt;h6&gt;, &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;, &lt;a&gt;, &lt;img&gt;, &lt;blockquote&gt;, &lt;code&gt;, &lt;pre&gt;, &lt;table&gt;, &lt;iframe&gt; (YouTube/Vimeo/Instagram)
-                    <br>
-                    <div class="mt-2 p-2 bg-light rounded">
-                        <small>
-                            <strong><i class="fas fa-instagram"></i> Como incorporar posts do Instagram:</strong><br>
-                            <strong>Método 1 - Iframe direto (recomendado):</strong><br>
-                            No Instagram, vá até o post → "..." → "Copiar código de incorporação"<br>
-                            Ou use este formato manualmente:<br>
-                            <code>&lt;iframe src="https://www.instagram.com/p/POST_ID/embed" width="100%" height="480" frameborder="0" scrolling="no" allowtransparency="true"&gt;&lt;/iframe&gt;</code><br>
-                            <strong>Exemplo:</strong> Se o link for <code>https://www.instagram.com/p/C3gBqVrPSOZ/</code><br>
-                            Use: <code>&lt;iframe src="https://www.instagram.com/p/C3gBqVrPSOZ/embed" width="100%" height="480" frameborder="0" scrolling="no" allowtransparency="true"&gt;&lt;/iframe&gt;</code><br>
-                            <br>
-                            <strong>Método 2 - Blockquote (código completo do Instagram):</strong><br>
-                            Cole o código completo do blockquote fornecido pelo Instagram.
-                        </small>
-                    </div>
-                </div>
             </div>
+
+            <!-- =======================================================-->
+            <!-- CAMPO INSTAGRAM - NOVO                                  -->
+            <!-- =======================================================-->
+            <div class="mb-3">
+                <label for="noticia-instagram" class="form-label">
+                    <i class="fab fa-instagram" style="color:#E1306C;"></i>
+                    Post do Instagram
+                    <span class="badge bg-secondary ms-1">Opcional</span>
+                </label>
+                <div class="input-group">
+                    <span class="input-group-text" style="background:#E1306C; color:#fff; border-color:#E1306C;">
+                        <i class="fab fa-instagram"></i>
+                    </span>
+                    <input type="url"
+                           class="form-control"
+                           id="noticia-instagram"
+                           name="Noticia[Instagram_Url]"
+                           maxlength="500"
+                           value="<?= Html::encode($model->Instagram_Url) ?>"
+                           placeholder="https://www.instagram.com/p/CODIGO_DO_POST/">
+                </div>
+                <div class="form-text">
+                    Cole aqui o link do post do Instagram que deseja exibir na notícia.<br>
+                    <strong>Onde encontrar:</strong> Abra o post no Instagram → clique nos três pontos (···) → <em>Copiar link</em>.<br>
+                    <strong>Exemplos aceitos:</strong>
+                    <code>https://www.instagram.com/p/ABC123/</code> &nbsp;|&nbsp;
+                    <code>https://www.instagram.com/reel/ABC123/</code>
+                </div>
+                <?php if ($model->temInstagram()): ?>
+                    <div class="mt-2 p-2 border rounded bg-light d-flex align-items-center gap-2">
+                        <i class="fab fa-instagram fa-lg" style="color:#E1306C;"></i>
+                        <span class="text-success fw-bold">Post vinculado</span>
+                        <a href="<?= Html::encode($model->Instagram_Url) ?>" target="_blank" class="ms-auto btn btn-sm btn-outline-secondary">
+                            <i class="fas fa-external-link-alt"></i> Ver no Instagram
+                        </a>
+                    </div>
+                <?php endif; ?>
+            </div>
+            <!-- =======================================================-->
+
         </div>
         
         <div class="col-md-4">
@@ -144,28 +162,30 @@ use dosamigos\tinymce\TinyMce;
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    
-                    <?php if ($model->imagens): ?>
+
+                    <?php if (!$model->isNewRecord && $model->imagens && count($model->imagens) > 0): ?>
                         <div class="mb-3">
-                            <label class="form-label">Imagens Atuais</label>
-                            <div class="row">
+                            <label class="form-label">Imagens atuais</label>
+                            <div class="row g-2">
                                 <?php foreach ($model->imagens as $img): ?>
-                                    <div class="col-6 mb-2">
-                                        <div class="card">
-                                            <img src="<?= $img->getUrlComPrefixo() ?>" 
-                                                 class="card-img-top" 
-                                                 style="height: 80px; object-fit: cover;"
-                                                 alt="Imagem da notícia">
-                                            <div class="card-body p-2">
-                                                <?= Html::a('<i class="fas fa-trash"></i>', 
-                                                    ['/noticia/remover-imagem', 'id' => $img->Id], 
-                                                    [
-                                                        'class' => 'btn btn-danger btn-sm w-100',
-                                                        'onclick' => 'return confirm("Remover esta imagem?")',
-                                                        'title' => 'Remover imagem'
+                                    <div class="col-6">
+                                        <div class="position-relative">
+                                            <img src="<?= $img->getUrlComPrefixo() ?>"
+                                                 class="img-fluid rounded"
+                                                 style="height:80px; object-fit:cover; width:100%;"
+                                                 alt="Imagem">
+                                            <?= Html::a(
+                                                '<i class="fas fa-times"></i>',
+                                                ['remover-imagem', 'id' => $img->Id],
+                                                [
+                                                    'class' => 'btn btn-danger btn-sm position-absolute top-0 end-0 m-1',
+                                                    'style' => 'padding:2px 6px; font-size:10px;',
+                                                    'data' => [
+                                                        'confirm' => 'Remover esta imagem?',
+                                                        'method' => 'post',
                                                     ]
-                                                ) ?>
-                                            </div>
+                                                ]
+                                            ) ?>
                                         </div>
                                     </div>
                                 <?php endforeach; ?>
@@ -178,8 +198,7 @@ use dosamigos\tinymce\TinyMce;
                         <input type="file" class="form-control" id="noticia-imagem" name="Noticia[imagemFile][]" multiple accept="image/*">
                         <div class="form-text">
                             Formatos: PNG, JPG, JPEG<br>
-                            Máximo: 10 arquivos<br>
-                            Tamanho recomendado: 800x600px
+                            Máximo: 10 arquivos
                         </div>
                     </div>
                     
@@ -188,7 +207,7 @@ use dosamigos\tinymce\TinyMce;
                             <i class="fas fa-info-circle"></i>
                             <strong>Dicas:</strong><br>
                             • Use o editor para formatação rica<br>
-                            • Adicione imagens para melhor visualização<br>
+                            • Cole o link do Instagram no campo acima<br>
                             • Escolha a categoria apropriada
                         </small>
                     </div>
@@ -213,21 +232,15 @@ use dosamigos\tinymce\TinyMce;
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Garante que o TinyMCE não escape o HTML ao salvar
     if (typeof tinymce !== 'undefined') {
-        // Aguarda o TinyMCE estar pronto
         setTimeout(function() {
             var editor = tinymce.get('noticia-texto');
             if (editor) {
                 editor.on('GetContent', function(e) {
-                    // Remove escape de HTML se houver
                     if (e.content) {
-                        // Decodifica entidades HTML
                         var tempDiv = document.createElement('div');
                         tempDiv.innerHTML = e.content;
                         e.content = tempDiv.innerHTML;
-                        
-                        // Remove <p> e <span> ao redor de iframes
                         e.content = e.content.replace(/<p[^>]*>\s*<span[^>]*>\s*(<iframe[^>]*>.*?<\/iframe>)\s*<\/span>\s*<\/p>/gi, '$1');
                         e.content = e.content.replace(/<p[^>]*>\s*(<iframe[^>]*>.*?<\/iframe>)\s*<\/p>/gi, '$1');
                         e.content = e.content.replace(/<span[^>]*>\s*(<iframe[^>]*>.*?<\/iframe>)\s*<\/span>/gi, '$1');
@@ -237,42 +250,64 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 500);
     }
     
+    // Preview do link do Instagram ao sair do campo
+    var igInput = document.getElementById('noticia-instagram');
+    if (igInput) {
+        igInput.addEventListener('blur', function() {
+            var url = this.value.trim();
+            var preview = document.getElementById('ig-preview');
+            if (preview) preview.remove();
+
+            if (!url) return;
+
+            var match = url.match(/instagram\.com\/(p|reel|tv)\/([^/?#]+)/i);
+            if (match) {
+                var embedUrl = 'https://www.instagram.com/' + match[1] + '/' + match[2] + '/embed/';
+                var div = document.createElement('div');
+                div.id = 'ig-preview';
+                div.className = 'mt-2';
+                div.innerHTML = '<div class="text-muted small mb-1"><i class="fab fa-instagram"></i> Pré-visualização do embed:</div>' +
+                    '<iframe src="' + embedUrl + '" width="100%" height="480" frameborder="0" scrolling="no" allowtransparency="true" style="border-radius:8px;border:1px solid #ddd;"></iframe>';
+                igInput.closest('.mb-3').appendChild(div);
+            } else if (url) {
+                var div = document.createElement('div');
+                div.id = 'ig-preview';
+                div.className = 'mt-2 alert alert-warning';
+                div.innerHTML = '<i class="fas fa-exclamation-triangle"></i> URL não reconhecida como post do Instagram. Verifique o link.';
+                igInput.closest('.mb-3').appendChild(div);
+            }
+        });
+    }
+
     var form = document.querySelector('form');
     form.addEventListener('submit', function(e) {
         var isValid = true;
         var errorMessage = '';
         
-        // Validar título
         var titulo = document.getElementById('noticia-titulo').value.trim();
         if (!titulo) {
             errorMessage += '• O campo Título é obrigatório.\n';
             isValid = false;
         }
         
-        // Validar categoria
         var categoria = document.getElementById('noticia-categoria').value;
         if (!categoria) {
             errorMessage += '• O campo Categoria é obrigatório.\n';
             isValid = false;
         }
         
-        // Validar texto (TinyMCE)
         var textarea = document.getElementById('noticia-texto');
         var content = '';
-        
         if (typeof tinymce !== 'undefined' && tinymce.get('noticia-texto')) {
-            // Garantir que o TinyMCE salve o conteúdo antes da validação
             tinymce.get('noticia-texto').save();
             content = textarea.value.trim();
         } else {
             content = textarea.value.trim();
         }
         
-        // Verificar se o conteúdo não está vazio após remover HTML
         var tempDiv = document.createElement('div');
         tempDiv.innerHTML = content;
         var textoSemHtml = tempDiv.textContent || tempDiv.innerText || '';
-        
         if (!content || textoSemHtml.trim() === '') {
             errorMessage += '• O campo Texto não pode estar vazio.\n';
             isValid = false;
@@ -284,28 +319,18 @@ document.addEventListener('DOMContentLoaded', function() {
             return false;
         }
         
-        // Se tudo estiver válido, garantir que o TinyMCE salve antes do submit
         if (typeof tinymce !== 'undefined' && tinymce.get('noticia-texto')) {
-            // Salva o conteúdo do TinyMCE
             tinymce.get('noticia-texto').save();
-            
-            // Processa o conteúdo para remover escape e tags inválidas
-            var textarea = document.getElementById('noticia-texto');
-            var content = textarea.value;
-            
-            // Remove escape de HTML se houver (decodifica entidades)
-            var tempDiv = document.createElement('div');
-            tempDiv.innerHTML = content;
-            content = tempDiv.innerHTML;
-            
-            // Remove <p> e <span> ao redor de iframes
-            content = content.replace(/<p[^>]*>\s*<span[^>]*>\s*(<iframe[^>]*>.*?<\/iframe>)\s*<\/span>\s*<\/p>/gi, '$1');
-            content = content.replace(/<p[^>]*>\s*(<iframe[^>]*>.*?<\/iframe>)\s*<\/p>/gi, '$1');
-            content = content.replace(/<span[^>]*>\s*(<iframe[^>]*>.*?<\/iframe>)\s*<\/span>/gi, '$1');
-            
-            // Atualiza o textarea com o conteúdo limpo
-            textarea.value = content;
+            var ta = document.getElementById('noticia-texto');
+            var c = ta.value;
+            var td = document.createElement('div');
+            td.innerHTML = c;
+            c = td.innerHTML;
+            c = c.replace(/<p[^>]*>\s*<span[^>]*>\s*(<iframe[^>]*>.*?<\/iframe>)\s*<\/span>\s*<\/p>/gi, '$1');
+            c = c.replace(/<p[^>]*>\s*(<iframe[^>]*>.*?<\/iframe>)\s*<\/p>/gi, '$1');
+            c = c.replace(/<span[^>]*>\s*(<iframe[^>]*>.*?<\/iframe>)\s*<\/span>/gi, '$1');
+            ta.value = c;
         }
     });
 });
-</script> 
+</script>

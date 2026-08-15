@@ -109,6 +109,79 @@ a.desc:after {
     margin-bottom: 1.5rem;
 }
 
+/* Estilos responsivos para vídeos (Instagram, YouTube, Vimeo) */
+.noticia-content iframe,
+.pagina-content iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 2rem auto;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Container responsivo para vídeos do Instagram */
+.noticia-content iframe[src*="instagram.com"],
+.pagina-content iframe[src*="instagram.com"],
+.noticia-content iframe.instagram-embed,
+.pagina-content iframe.instagram-embed {
+    width: 100% !important;
+    min-height: 600px !important;
+    max-width: 658px !important;
+    margin: 2rem auto !important;
+    display: block !important;
+}
+
+/* Estilos para blockquotes do Instagram (antes da conversão pelo script) */
+.noticia-content blockquote.instagram-media,
+.pagina-content blockquote.instagram-media {
+    background: #FFF !important;
+    border: 0 !important;
+    border-radius: 3px !important;
+    box-shadow: 0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15) !important;
+    margin: 2rem auto !important;
+    max-width: 658px !important;
+    min-width: 326px !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+.noticia-content blockquote.instagram-media iframe,
+.pagina-content blockquote.instagram-media iframe {
+    width: 100% !important;
+    min-height: 600px !important;
+}
+
+/* Container responsivo para vídeos do YouTube */
+.noticia-content iframe[src*="youtube.com"],
+.pagina-content iframe[src*="youtube.com"] {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-width: 100%;
+}
+
+/* Container responsivo para vídeos do Vimeo */
+.noticia-content iframe[src*="vimeo.com"],
+.pagina-content iframe[src*="vimeo.com"] {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-width: 100%;
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    .noticia-content iframe[src*="instagram.com"],
+    .pagina-content iframe[src*="instagram.com"] {
+        min-height: 400px;
+    }
+    
+    .noticia-content iframe,
+    .pagina-content iframe {
+        margin: 1.5rem auto;
+    }
+}
+
 /* Animation utilities */
 .fade-in {
     animation: fadeIn 0.5s ease-in;

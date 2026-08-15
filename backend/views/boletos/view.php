@@ -149,7 +149,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <input type="hidden" name="numDocumento" value="<?= Html::encode($model->Id) ?>">
                     <input type="hidden" name="nossoNumero" value="<?= date('Ymd', strtotime($model->DataGeracaoBoleto)) . $model->Id ?>">
                     <input type="hidden" name="msgCompensacao1" value="">
-                    <input type="hidden" name="msgCompensacao2" value="Contribuição de parcela única de 4% sobre o salário dos empregado(s).">
+                    <input type="hidden" name="msgCompensacao2" value="Parcela única de 4% sobre o salário dos empregado(s).">
                     <input type="hidden" name="msgCompensacao3" value="">
                     <input type="hidden" name="msgCompensacao4" value="">
                     <button type="submit" class="btn btn-success"><i class="fas fa-print me-1"></i> Imprimir Boleto</button>

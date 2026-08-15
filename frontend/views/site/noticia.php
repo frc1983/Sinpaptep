@@ -69,6 +69,28 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= $noticia->getTextoSeguro() ?>
                     </div>
                     
+                    <?php
+                    // Verifica se há conteúdo do Instagram (blockquote ou iframe)
+                    $temInstagram = (strpos($noticia->Texto, 'instagram.com') !== false || 
+                                    strpos($noticia->Texto, 'instagram-media') !== false ||
+                                    strpos($noticia->Texto, 'data-instgrm-permalink') !== false);
+                    if ($temInstagram):
+                    ?>
+                    <script async src="//www.instagram.com/embed.js"></script>
+                    <script>
+                    // Garante que o Instagram processe os embeds após o carregamento
+                    if (typeof instgrm !== 'undefined') {
+                        instgrm.Embeds.process();
+                    } else {
+                        window.addEventListener('load', function() {
+                            if (typeof instgrm !== 'undefined') {
+                                instgrm.Embeds.process();
+                            }
+                        });
+                    }
+                    </script>
+                    <?php endif; ?>
+                    
                     <div class="mt-4 pt-3 border-top">
                         <div class="row">
                             <div class="col-md-6">
