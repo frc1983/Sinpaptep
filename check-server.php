@@ -58,20 +58,22 @@ foreach ($config_files as $file) {
 
 // Testa conexão com banco de dados
 echo "<h2>5. Teste de Conexão com Banco</h2>";
-try {
-    $pdo = new PDO(
-        'mysql:host=186.202.152.152;port=3306;dbname=sinpaptep;charset=utf8mb4',
-        'sinpaptep',
-        'b3+T/geK,c9yx8'
-    );
-    echo "Conexão com banco: ✅ OK<br>";
-    
-    // Testa uma query simples
-    $stmt = $pdo->query("SELECT 1");
-    echo "Query de teste: ✅ OK<br>";
-    
-} catch (PDOException $e) {
-    echo "Erro na conexão: ❌ " . $e->getMessage() . "<br>";
+require __DIR__ . '/common/config/load-env.php';
+$dbDsn = getenv('DB_DSN');
+$dbUser = getenv('DB_USERNAME');
+$dbPassword = getenv('DB_PASSWORD');
+if (!$dbDsn || $dbUser === false || $dbPassword === false || $dbPassword === '') {
+    echo "Credenciais de banco: ❌ arquivo .env ausente ou incompleto na raiz do projeto<br>";
+} else {
+    try {
+        $pdo = new PDO($dbDsn, $dbUser, $dbPassword);
+        echo "Conexão com banco: ✅ OK<br>";
+
+        $stmt = $pdo->query("SELECT 1");
+        echo "Query de teste: ✅ OK<br>";
+    } catch (PDOException $e) {
+        echo "Erro na conexão: ❌ " . $e->getMessage() . "<br>";
+    }
 }
 
 // Verifica módulos Apache
