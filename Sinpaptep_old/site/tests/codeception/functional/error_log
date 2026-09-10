@@ -1,0 +1,420 @@
+[31-Dec-2020 06:16:00 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php on line 7
+[31-Dec-2020 06:16:01 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[31-Dec-2020 06:16:02 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[31-Dec-2020 06:16:03 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[31-Dec-2020 06:16:04 America/Fortaleza] PHP Fatal error:  Class 'yii\web\Application' not found in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php on line 2
+[01-Jan-2021 04:05:53 America/Fortaleza] PHP Fatal error:  Class 'yii\web\Application' not found in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php on line 2
+[01-Jan-2021 10:14:38 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php on line 7
+[01-Jan-2021 11:05:10 America/Fortaleza] PHP Fatal error:  Class 'yii\web\Application' not found in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php on line 2
+[01-Jan-2021 13:31:44 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[01-Jan-2021 23:12:41 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[04-Jan-2021 05:00:17 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[05-Jan-2021 06:46:17 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[06-Jan-2021 11:00:41 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[06-Jan-2021 11:01:04 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[06-Jan-2021 11:01:18 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php on line 7
+[06-Jan-2021 11:01:31 America/Fortaleza] PHP Fatal error:  Class 'yii\web\Application' not found in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php on line 2
+[06-Jan-2021 11:01:45 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[10-Jan-2021 20:27:18 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[11-Jan-2021 02:44:43 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php on line 7
+[11-Jan-2021 11:09:43 America/Fortaleza] PHP Fatal error:  Class 'yii\web\Application' not found in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php on line 2
+[14-Jan-2021 01:22:40 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[15-Jan-2021 16:29:59 America/Fortaleza] PHP Fatal error:  Class 'yii\web\Application' not found in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php on line 2
+[17-Jan-2021 00:05:28 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[29-Jan-2021 05:38:31 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php on line 7
+[29-Jan-2021 05:38:31 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[29-Jan-2021 05:38:32 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[29-Jan-2021 05:38:33 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[29-Jan-2021 05:38:34 America/Fortaleza] PHP Fatal error:  Class 'yii\web\Application' not found in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php on line 2
+[15-Feb-2021 23:13:00 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[16-Feb-2021 21:07:21 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[24-Feb-2021 12:07:41 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php on line 7
+[24-Feb-2021 12:07:42 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[24-Feb-2021 12:07:43 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[24-Feb-2021 12:07:44 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[24-Feb-2021 12:07:44 America/Fortaleza] PHP Fatal error:  Class 'yii\web\Application' not found in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php on line 2
+[02-Mar-2021 02:25:22 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[02-Mar-2021 03:59:54 America/Fortaleza] PHP Fatal error:  Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[14-Mar-2021 00:12:07 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[14-Mar-2021 00:12:07 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[15-Mar-2021 12:04:44 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[15-Mar-2021 12:04:44 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\web\Application' not found in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php:2
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php on line 2
+[15-Mar-2021 12:09:30 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[15-Mar-2021 12:09:30 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[15-Mar-2021 12:09:34 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[15-Mar-2021 12:09:34 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[15-Mar-2021 12:09:36 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[15-Mar-2021 12:09:36 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[15-Mar-2021 12:13:27 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[15-Mar-2021 12:13:27 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php on line 7
+[21-Mar-2021 14:08:26 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Mar-2021 14:08:26 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php on line 7
+[21-Mar-2021 14:08:27 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Mar-2021 14:08:27 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[21-Mar-2021 14:08:27 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Mar-2021 14:08:27 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[21-Mar-2021 14:08:28 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Mar-2021 14:08:28 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[21-Mar-2021 14:08:29 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Mar-2021 14:08:29 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\web\Application' not found in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php:2
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php on line 2
+[29-Mar-2021 01:51:10 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[29-Mar-2021 01:51:10 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[08-Apr-2021 08:07:43 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[08-Apr-2021 08:07:43 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[13-Apr-2021 06:09:04 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[13-Apr-2021 06:09:04 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\web\Application' not found in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php:2
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php on line 2
+[15-Apr-2021 19:42:13 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[15-Apr-2021 19:42:13 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[19-Apr-2021 06:40:52 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[19-Apr-2021 06:40:52 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php on line 7
+[19-Apr-2021 06:40:53 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[19-Apr-2021 06:40:53 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[19-Apr-2021 06:40:54 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[19-Apr-2021 06:40:54 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[19-Apr-2021 06:40:54 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[19-Apr-2021 06:40:54 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[19-Apr-2021 06:40:55 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[19-Apr-2021 06:40:55 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\web\Application' not found in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php:2
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php on line 2
+[21-Apr-2021 07:55:47 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-Apr-2021 07:55:47 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[26-Apr-2021 19:35:06 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[26-Apr-2021 19:35:06 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[27-Apr-2021 14:05:01 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[27-Apr-2021 14:05:01 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[28-Apr-2021 07:54:54 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[28-Apr-2021 07:54:54 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[29-Apr-2021 10:47:39 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[29-Apr-2021 10:47:39 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[30-Apr-2021 21:45:47 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[30-Apr-2021 21:45:47 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[03-May-2021 05:25:59 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[03-May-2021 05:25:59 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php on line 7
+[04-May-2021 01:15:55 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[04-May-2021 01:15:55 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[04-May-2021 14:34:15 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[04-May-2021 14:34:15 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[06-May-2021 02:34:22 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[06-May-2021 02:34:22 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[07-May-2021 16:50:13 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[07-May-2021 16:50:13 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php on line 7
+[09-May-2021 03:37:41 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[09-May-2021 03:37:41 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php on line 7
+[12-May-2021 04:42:54 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[12-May-2021 04:42:54 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[12-May-2021 13:50:44 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[12-May-2021 13:50:44 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\web\Application' not found in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php:2
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php on line 2
+[13-May-2021 12:48:36 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[13-May-2021 12:48:36 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[13-May-2021 13:06:58 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[13-May-2021 13:06:58 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[15-May-2021 18:53:50 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[15-May-2021 18:53:50 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[17-May-2021 12:21:52 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[17-May-2021 12:21:52 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php on line 7
+[18-May-2021 23:36:24 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[18-May-2021 23:36:24 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php on line 7
+[18-May-2021 23:36:25 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[18-May-2021 23:36:25 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[18-May-2021 23:36:25 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[18-May-2021 23:36:25 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[18-May-2021 23:36:26 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[18-May-2021 23:36:26 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[18-May-2021 23:36:26 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[18-May-2021 23:36:26 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\web\Application' not found in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php:2
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php on line 2
+[20-May-2021 09:46:45 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-May-2021 09:46:45 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\web\Application' not found in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php:2
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php on line 2
+[20-May-2021 11:56:20 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[20-May-2021 11:56:20 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\web\Application' not found in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php:2
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php on line 2
+[21-May-2021 08:02:24 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-May-2021 08:02:24 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php on line 7
+[21-May-2021 08:02:25 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-May-2021 08:02:25 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[21-May-2021 08:02:26 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-May-2021 08:02:26 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[21-May-2021 08:02:26 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-May-2021 08:02:26 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[21-May-2021 08:02:27 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-May-2021 08:02:27 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\web\Application' not found in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php:2
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php on line 2
+[21-May-2021 17:22:28 America/Fortaleza] PHP Warning:  Version warning: Imagick was compiled against Image Magick version 1654 but version 1650 is loaded. Imagick will run but may behave surprisingly in Unknown on line 0
+[21-May-2021 17:22:28 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[18-Jun-2021 06:16:44 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[25-Jun-2021 13:56:06 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php on line 7
+[25-Jun-2021 13:56:07 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[25-Jun-2021 13:56:08 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[25-Jun-2021 13:56:09 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[25-Jun-2021 13:56:10 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\web\Application' not found in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php:2
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php on line 2
+[14-Jul-2021 17:13:35 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[14-Jul-2021 17:51:27 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[16-Jul-2021 00:37:30 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[17-Jul-2021 12:07:38 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php on line 7
+[21-Jul-2021 19:41:56 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[03-Aug-2021 05:21:47 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[03-Aug-2021 18:47:48 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\web\Application' not found in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php:2
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php on line 2
+[15-Aug-2021 15:35:56 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php on line 7
+[16-Aug-2021 08:02:17 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[20-Aug-2021 14:40:26 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php on line 7
+[21-Aug-2021 01:21:08 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[21-Aug-2021 05:54:57 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\web\Application' not found in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php:2
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php on line 2
+[21-Aug-2021 09:34:44 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php on line 7
+[21-Aug-2021 10:05:46 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[21-Aug-2021 14:11:12 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[23-Aug-2021 15:34:03 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\web\Application' not found in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php:2
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php on line 2
+[23-Aug-2021 17:50:53 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[25-Aug-2021 13:35:00 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php on line 7
+[25-Aug-2021 15:48:19 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[26-Aug-2021 00:11:38 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[26-Aug-2021 00:11:50 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/AboutCept.php on line 7
+[26-Aug-2021 00:11:57 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'yii\web\Application' not found in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php:2
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/_bootstrap.php on line 2
+[26-Aug-2021 06:18:35 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/ContactCept.php on line 7
+[27-Aug-2021 18:06:28 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php:5
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/HomeCept.php on line 5
+[30-Aug-2021 09:46:31 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7
+[30-Aug-2021 19:18:49 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class 'FunctionalTester' not found in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php:7
+Stack trace:
+#0 {main}
+  thrown in /home1/sindicat/public_html/site/tests/codeception/functional/LoginCept.php on line 7

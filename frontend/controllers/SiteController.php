@@ -15,7 +15,6 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
-use common\models\AvisoModal;
 use common\models\Noticia;
 use common\models\Parceiro;
 use common\models\Socio;
@@ -73,11 +72,9 @@ class SiteController extends Controller
     {
         $noticias = Noticia::getUltimasNoticias(5);
         $anunciantes = \common\models\Parceiro::find()->orderBy(['Nome' => SORT_ASC])->all();
-        $avisoModal = AvisoModal::getAtivoParaSite();
         return $this->render('index', [
-            'noticias'    => $noticias,
+            'noticias' => $noticias,
             'anunciantes' => $anunciantes,
-            'avisoModal'  => $avisoModal,
         ]);
     }
 
