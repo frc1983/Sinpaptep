@@ -18,7 +18,7 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
-            'cookieValidationKey' => getenv('COOKIE_VALIDATION_KEY_BACKEND') ?: '',
+            'cookieValidationKey' => 'Qw8z2nV7pLk4sT1xRj6bYc9uHf3eGm5aSd0Xv2WqZt7Jr8PlB',
         ],
         'user' => [
             'identityClass' => 'common\models\User',

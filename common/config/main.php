@@ -11,9 +11,9 @@ return [
         ],
         'db' => [
             'class' => \yii\db\Connection::class,
-            'dsn' => getenv('DB_DSN') ?: '',
-            'username' => getenv('DB_USERNAME') ?: '',
-            'password' => getenv('DB_PASSWORD') ?: '',
+            'dsn' => 'mysql:host=186.202.152.152;port=3306;dbname=sinpaptep;charset=utf8mb4',
+            'username' => 'sinpaptep',
+            'password' => 'b3+T/geK,c9yx8',
             'charset' => 'utf8mb4',
             'enableSchemaCache' => true,
             'schemaCacheDuration' => 60,
@@ -25,9 +25,10 @@ return [
         'mailer' => [
             'class' => \yii\symfonymailer\Mailer::class,
             'viewPath' => '@common/mail',
-            'useFileTransport' => filter_var(getenv('MAILER_USE_FILE_TRANSPORT') ?: '0', FILTER_VALIDATE_BOOLEAN),
+            // send all mails to a file by default.
+            'useFileTransport' => false,
             'transport' => [
-                'dsn' => getenv('MAILER_DSN') ?: '',
+                'dsn' => 'smtp://sindicatopublicitariosrs@gmail.com:prkzulvrdthjgkbh@smtp.gmail.com:587'
             ],
         ],
     ],

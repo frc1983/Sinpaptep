@@ -17,7 +17,15 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
-            'cookieValidationKey' => getenv('COOKIE_VALIDATION_KEY_FRONTEND') ?: '',
+            'cookieValidationKey' => 'Zp4vX7mQ2sL9wT6kJr1yB8nHc5eGf3aSd0Vx2WqUt7Jr8PlB',
+        ],
+        'mailer' => [
+            'class' => \yii\symfonymailer\Mailer::class,
+            'viewPath' => '@common/mail',
+            'useFileTransport' => false,
+            'transport' => [
+                'dsn' => 'smtp://sindicatopublicitariosrs@gmail.com:prkzulvrdthjgkbh@smtp.gmail.com:587'
+            ],
         ],
         'user' => [
             'identityClass' => 'common\models\User',
