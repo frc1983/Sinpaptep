@@ -11,23 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Baixa o código (incluindo vendor que será commitado no git)
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 2. PHP só para rodar o init do Yii2
-      - name: Configurar PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.1'
-          extensions: mbstring, intl, pdo, pdo_mysql, gd, zip, curl
-          coverage: none
-
-      # 3. Gera os arquivos de environments/prod (index.php, robots.txt etc.)
-      - name: Inicializar ambiente de produção
-        run: php init --env=Production --overwrite=All
-
-      # 4. Envia para Locaweb - só arquivos alterados desde o último deploy
       - name: Deploy FTP para Locaweb
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
