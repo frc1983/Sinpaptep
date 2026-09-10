@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Baixa o código (incluindo vendor que será commitado no git)
+      # 1. Baixa o código do repositório
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 2. PHP só para rodar o init do Yii2
+      # 2. Configura o PHP na mesma versão do servidor
       - name: Configurar PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -23,11 +23,24 @@ jobs:
           extensions: mbstring, intl, pdo, pdo_mysql, gd, zip, curl
           coverage: none
 
-      # 3. Gera os arquivos de environments/prod (index.php, robots.txt etc.)
-      - name: Inicializar ambiente de produção
+      # 3. Cache do Composer para acelerar deploys futuros
+      - name: Cache Composer
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock') }}
+          restore-keys: composer-
+
+      # 4. Instala dependências de produção (sem pacotes de dev/teste)
+      - name: Instalar dependências (Composer)
+        run: composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+
+      # 5. Roda o init do Yii2 no ambiente de produção
+      #    Isso copia os arquivos de environments/prod para os lugares certos
+      - name: Inicializar ambiente de produção (Yii2 init)
         run: php init --env=Production --overwrite=All
 
-      # 4. Envia para Locaweb - só arquivos alterados desde o último deploy
+      # 6. Envia tudo para a Locaweb via FTP
       - name: Deploy FTP para Locaweb
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -35,9 +48,11 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           server-dir: /public_html/
+          # Exclui arquivos que não devem ir para produção
           exclude: |
             **/.git*
             **/.git*/**
+            **/node_modules/**
             **/tests/**
             **/_test*
             **/Sinpaptep_old/**
