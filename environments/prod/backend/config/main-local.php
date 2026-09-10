@@ -39,6 +39,7 @@ return [
                 [
                     'class' => \yii\log\FileTarget::class,
                     'levels' => ['error', 'warning'],
+                    'logVars' => [],
                     'logFile' => '@runtime/logs/app.log',
                 ],
             ],
