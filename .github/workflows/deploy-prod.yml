@@ -14,6 +14,52 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Configurar PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: mbstring, intl, pdo, pdo_mysql, gd, zip, curl
+          coverage: none
+
+      - name: Cache do Composer
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock') }}
+          restore-keys: composer-
+
+      - name: Instalar dependências de produção
+        run: composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+
+      - name: Inicializar ambiente de produção
+        run: php init --env=Production --overwrite=All
+
+      - name: Criar arquivo de ambiente de produção
+        env:
+          DB_DSN: ${{ secrets.DB_DSN }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          MAILER_USE_FILE_TRANSPORT: ${{ secrets.MAILER_USE_FILE_TRANSPORT }}
+          MAILER_DSN: ${{ secrets.MAILER_DSN }}
+          COOKIE_VALIDATION_KEY_FRONTEND: ${{ secrets.COOKIE_VALIDATION_KEY_FRONTEND }}
+          COOKIE_VALIDATION_KEY_BACKEND: ${{ secrets.COOKIE_VALIDATION_KEY_BACKEND }}
+        run: |
+          test -n "$DB_DSN"
+          test -n "$DB_USERNAME"
+          test -n "$DB_PASSWORD"
+          test -n "$COOKIE_VALIDATION_KEY_FRONTEND"
+          test -n "$COOKIE_VALIDATION_KEY_BACKEND"
+          umask 077
+          {
+            printf 'DB_DSN=%s\n' "$DB_DSN"
+            printf 'DB_USERNAME=%s\n' "$DB_USERNAME"
+            printf 'DB_PASSWORD=%s\n' "$DB_PASSWORD"
+            printf 'MAILER_USE_FILE_TRANSPORT=%s\n' "${MAILER_USE_FILE_TRANSPORT:-false}"
+            printf 'MAILER_DSN=%s\n' "$MAILER_DSN"
+            printf 'COOKIE_VALIDATION_KEY_FRONTEND=%s\n' "$COOKIE_VALIDATION_KEY_FRONTEND"
+            printf 'COOKIE_VALIDATION_KEY_BACKEND=%s\n' "$COOKIE_VALIDATION_KEY_BACKEND"
+          } > .env
+
       - name: Deploy FTP para Locaweb
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
