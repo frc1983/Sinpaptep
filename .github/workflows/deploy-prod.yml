@@ -65,6 +65,17 @@ jobs:
             printf 'INSTAGRAM_API_VERSION=v24.0\n'
           } > .env
 
+      - name: Sincronizar feed do Instagram
+        env:
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+        run: |
+          if test -z "$INSTAGRAM_USER_ID" || test -z "$INSTAGRAM_ACCESS_TOKEN"; then
+            echo 'Credenciais do Instagram ausentes; mantendo o feed em modo de espera.'
+            exit 0
+          fi
+          php yii instagram/sync
+
       - name: Deploy FTP para Locaweb
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
