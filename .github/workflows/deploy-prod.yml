@@ -43,6 +43,8 @@ jobs:
           MAILER_DSN: ${{ secrets.MAILER_DSN }}
           COOKIE_VALIDATION_KEY_FRONTEND: ${{ secrets.COOKIE_VALIDATION_KEY_FRONTEND }}
           COOKIE_VALIDATION_KEY_BACKEND: ${{ secrets.COOKIE_VALIDATION_KEY_BACKEND }}
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
         run: |
           test -n "$DB_DSN"
           test -n "$DB_USERNAME"
@@ -58,6 +60,9 @@ jobs:
             printf 'MAILER_DSN=%s\n' "$MAILER_DSN"
             printf 'COOKIE_VALIDATION_KEY_FRONTEND=%s\n' "$COOKIE_VALIDATION_KEY_FRONTEND"
             printf 'COOKIE_VALIDATION_KEY_BACKEND=%s\n' "$COOKIE_VALIDATION_KEY_BACKEND"
+            printf 'INSTAGRAM_USER_ID=%s\n' "$INSTAGRAM_USER_ID"
+            printf 'INSTAGRAM_ACCESS_TOKEN=%s\n' "$INSTAGRAM_ACCESS_TOKEN"
+            printf 'INSTAGRAM_API_VERSION=v24.0\n'
           } > .env
 
       - name: Deploy FTP para Locaweb

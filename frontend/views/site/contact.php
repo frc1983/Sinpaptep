@@ -117,9 +117,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <i class="fas fa-share-alt me-2" style="color: #20713a;"></i>
                                 Siga-nos nas Redes Sociais
                             </h6>
-                            <div class="d-flex gap-2">
-                                <a href="https://www.facebook.com/sindicatopublicitariosrs.com.br" target="_blank" class="text-decoration-none"><i class="fab fa-facebook-f"></i></a>
-                                <a href="https://www.instagram.com/sindicato_publirs" target="_blank" class="text-decoration-none"><i class="fab fa-instagram"></i></a>
+                            <div class="contact-social-links d-flex gap-2">
+                                <a href="https://www.facebook.com/sindicatopublicitariosrs.com.br" target="_blank" rel="noopener" aria-label="Facebook do SINPAPTEP-RS"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://www.instagram.com/sindicato_publirs" target="_blank" rel="noopener" aria-label="Instagram do SINPAPTEP-RS"><i class="fab fa-instagram"></i></a>
                             </div>
                         </div>
                     </div>

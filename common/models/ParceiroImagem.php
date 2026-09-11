@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\helpers\UploadUrl;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
@@ -138,11 +139,7 @@ class ParceiroImagem extends ActiveRecord
     public function getImagemUrl()
     {
         if ($this->Imagem) {
-            $prefix = '/backend/web/uploads/parceiros/';
-            if (isset($_SERVER['HTTP_HOST']) && (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false)) {
-                $prefix = '/Sinpaptep' . $prefix;
-            }
-            return $prefix . basename($this->Imagem);
+            return UploadUrl::backendWeb('uploads/parceiros/' . basename($this->Imagem));
         }
         return null;
     }
@@ -253,4 +250,4 @@ class ParceiroImagem extends ActiveRecord
         $this->removeImagem();
         return true;
     }
-} 
+}

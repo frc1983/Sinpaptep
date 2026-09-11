@@ -1,0 +1,148 @@
+name: Deploy Preview Locaweb
+
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
+
+concurrency:
+  group: locaweb-preview
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Publicar preview na Locaweb
+    runs-on: ubuntu-latest
+    environment: preview
+
+    steps:
+      - name: Verificar configuração do preview
+        id: preview-config
+        env:
+          DB_DSN: ${{ secrets.DB_DSN }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          COOKIE_FRONTEND: ${{ secrets.COOKIE_VALIDATION_KEY_FRONTEND }}
+          COOKIE_BACKEND: ${{ secrets.COOKIE_VALIDATION_KEY_BACKEND }}
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+        run: |
+          if test -n "$DB_DSN" && test -n "$DB_USERNAME" && test -n "$DB_PASSWORD" \
+            && test -n "$COOKIE_FRONTEND" && test -n "$COOKIE_BACKEND" \
+            && test -n "$FTP_HOST" && test -n "$FTP_USER" && test -n "$FTP_PASS"; then
+            echo 'ready=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'ready=false' >> "$GITHUB_OUTPUT"
+            echo '### Preview ainda não publicado' >> "$GITHUB_STEP_SUMMARY"
+            echo 'Verifique os Secrets do repositório e execute novamente este workflow.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Checkout do branch dev
+        if: steps.preview-config.outputs.ready == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: dev
+
+      - name: Configurar PHP
+        if: steps.preview-config.outputs.ready == 'true'
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: mbstring, intl, pdo, pdo_mysql, gd, zip, curl
+          coverage: none
+
+      - name: Cache do Composer
+        if: steps.preview-config.outputs.ready == 'true'
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-preview-${{ hashFiles('composer.lock') }}
+          restore-keys: composer-preview-
+
+      - name: Instalar dependências de produção
+        if: steps.preview-config.outputs.ready == 'true'
+        run: composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+
+      - name: Inicializar ambiente
+        if: steps.preview-config.outputs.ready == 'true'
+        run: php init --env=Production --overwrite=All
+
+      - name: Criar configuração isolada do preview
+        if: steps.preview-config.outputs.ready == 'true'
+        env:
+          DB_DSN: ${{ secrets.DB_DSN }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          COOKIE_VALIDATION_KEY_FRONTEND: ${{ secrets.COOKIE_VALIDATION_KEY_FRONTEND }}
+          COOKIE_VALIDATION_KEY_BACKEND: ${{ secrets.COOKIE_VALIDATION_KEY_BACKEND }}
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+        run: |
+          test -n "$DB_DSN"
+          test -n "$DB_USERNAME"
+          test -n "$DB_PASSWORD"
+          test -n "$COOKIE_VALIDATION_KEY_FRONTEND"
+          test -n "$COOKIE_VALIDATION_KEY_BACKEND"
+          umask 077
+          {
+            printf 'APP_PREVIEW=true\n'
+            printf 'DB_DSN=%s\n' "$DB_DSN"
+            printf 'DB_USERNAME=%s\n' "$DB_USERNAME"
+            printf 'DB_PASSWORD=%s\n' "$DB_PASSWORD"
+            printf 'MAILER_USE_FILE_TRANSPORT=true\n'
+            printf 'MAILER_DSN=\n'
+            printf 'MEDIA_BASE_URL=https://sindicatopublicitariosrs.com.br\n'
+            printf 'COOKIE_VALIDATION_KEY_FRONTEND=%s\n' "$COOKIE_VALIDATION_KEY_FRONTEND"
+            printf 'COOKIE_VALIDATION_KEY_BACKEND=%s\n' "$COOKIE_VALIDATION_KEY_BACKEND"
+            printf 'INSTAGRAM_USER_ID=%s\n' "$INSTAGRAM_USER_ID"
+            printf 'INSTAGRAM_ACCESS_TOKEN=%s\n' "$INSTAGRAM_ACCESS_TOKEN"
+            printf 'INSTAGRAM_API_VERSION=v24.0\n'
+          } > .env
+          printf 'User-agent: *\nDisallow: /\n' > frontend/web/robots.txt
+
+      - name: Sincronizar feed do Instagram
+        if: steps.preview-config.outputs.ready == 'true'
+        env:
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+        run: |
+          if test -z "$INSTAGRAM_USER_ID" || test -z "$INSTAGRAM_ACCESS_TOKEN"; then
+            echo 'Credenciais do Instagram ausentes; mantendo o feed em modo de espera.'
+            exit 0
+          fi
+          php yii instagram/sync
+
+      - name: Deploy FTP do preview
+        if: steps.preview-config.outputs.ready == 'true'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          server-dir: /public_html/preview/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/tests/**
+            **/_test*
+            **/Sinpaptep_old/**
+            **/vagrant/**
+            **/*.bat
+            **/Vagrantfile
+            **/docker-compose.yml
+            **/Dockerfile
+            **/codeception.yml
+            **/phpunit.xml
+            **/check-*.php
+            **/test-*.php
+            **/phpinfo.php
+
+      - name: Resumo
+        if: steps.preview-config.outputs.ready == 'true'
+        run: |
+          {
+            echo '### Preview publicado'
+            echo 'O subdomínio deve apontar para `/public_html/preview/frontend/web`.'
+          } >> "$GITHUB_STEP_SUMMARY"
