@@ -73,7 +73,6 @@ jobs:
             **/tests/**
             **/_test*
             **/Sinpaptep_old/**
-            **/Instagram_Noticias/**
             **/vagrant/**
             **/*.bat
             **/Vagrantfile
