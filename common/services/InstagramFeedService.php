@@ -119,11 +119,13 @@ class InstagramFeedService
         $error = curl_error($curl);
         curl_close($curl);
 
+        $data = is_string($body) ? json_decode($body, true) : null;
         if ($body === false || $status < 200 || $status >= 300) {
-            throw new RuntimeException('Falha ao consultar a Meta' . ($error ? ': ' . $error : ' (HTTP ' . $status . ').'));
+            $metaMessage = is_array($data) ? ($data['error']['message'] ?? '') : '';
+            $details = $error ?: ($metaMessage ?: 'HTTP ' . $status);
+            throw new RuntimeException('Falha ao consultar a Meta: ' . $details . '.');
         }
 
-        $data = json_decode($body, true);
         if (!is_array($data)) {
             throw new RuntimeException('A Meta retornou uma resposta inválida.');
         }
