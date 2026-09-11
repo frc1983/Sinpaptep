@@ -22,6 +22,7 @@ use common\models\Socio;
 use common\models\SocioDadosEmpresa;
 use common\models\SocioEndereco;
 use common\models\SocioFilho;
+use common\services\InstagramFeedService;
 
 /**
  * Site controller
@@ -74,10 +75,12 @@ class SiteController extends Controller
         $noticias = Noticia::getUltimasNoticias(5);
         $anunciantes = \common\models\Parceiro::find()->orderBy(['Nome' => SORT_ASC])->all();
         $avisoModal = AvisoModal::getAtivoParaSite();
+        $instagramFeed = (new InstagramFeedService())->getCachedFeed();
         return $this->render('index', [
             'noticias'    => $noticias,
             'anunciantes' => $anunciantes,
             'avisoModal'  => $avisoModal,
+            'instagramFeed' => $instagramFeed,
         ]);
     }
 
@@ -246,4 +249,4 @@ class SiteController extends Controller
             'filhos' => $filhos,
         ]);
     }
-} 
+}
