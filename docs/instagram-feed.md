@@ -4,7 +4,8 @@ O site exibe até seis publicações do perfil profissional `@sindicato_publirs`
 
 ## Ativação
 
-1. Confirme que o perfil é profissional e obtenha, no aplicativo da Meta autorizado pelo sindicato, o ID do usuário e um token de longa duração.
+1. Confirme que o perfil é profissional e está vinculado à Página do Facebook do sindicato. No Explorador da Graph API, consulte `me/accounts?fields=id,name,access_token,instagram_business_account` com as permissões `pages_show_list`, `pages_read_engagement`, `instagram_basic` e `business_management`.
+   Use `instagram_business_account.id` como ID e o `access_token` retornado para a Página como token.
 2. Copie as variáveis abaixo para o `.env` da hospedagem:
 
    ```dotenv
@@ -20,7 +21,7 @@ O site exibe até seis publicações do perfil profissional `@sindicato_publirs`
    ```
 
 4. Agende `php yii instagram/sync` a cada hora no painel da hospedagem.
-5. Agende `php yii instagram/refresh-token` a cada 30 dias. O token renovado é armazenado em `frontend/runtime`, fora do versionamento e sem aparecer na página ou na saída do comando.
+5. Não agende `instagram/refresh-token`: esse endpoint é exclusivo do outro modelo de Login do Instagram. Quando o Token de Página expirar ou for revogado, gere outro no Meta e substitua o secret `INSTAGRAM_ACCESS_TOKEN`.
 
 Se as credenciais ainda não estiverem configuradas, a home mostra um convite para acessar o perfil diretamente. Se uma sincronização falhar, o último feed salvo continua disponível.
 

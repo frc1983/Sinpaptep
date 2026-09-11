@@ -23,14 +23,7 @@ class InstagramController extends Controller
 
     public function actionRefreshToken(): int
     {
-        try {
-            $data = (new InstagramFeedService())->refreshAccessToken();
-            $expiresAt = !empty($data['expires_at']) ? date('d/m/Y H:i', (int) $data['expires_at']) : 'não informado';
-            $this->stdout("Token renovado e armazenado com segurança. Validade: {$expiresAt}.\n");
-            return ExitCode::OK;
-        } catch (Throwable $exception) {
-            $this->stderr($exception->getMessage() . "\n");
-            return ExitCode::UNSPECIFIED_ERROR;
-        }
+        $this->stderr("O Token de Página deve ser renovado no Meta e atualizado em INSTAGRAM_ACCESS_TOKEN.\n");
+        return ExitCode::UNSPECIFIED_ERROR;
     }
 }

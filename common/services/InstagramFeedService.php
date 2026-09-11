@@ -37,7 +37,7 @@ class InstagramFeedService
         $version = trim((string) getenv('INSTAGRAM_API_VERSION')) ?: self::DEFAULT_API_VERSION;
         $fields = 'id,caption,media_type,media_url,thumbnail_url,permalink,timestamp';
         $url = sprintf(
-            'https://graph.instagram.com/%s/%s/media?fields=%s&limit=%d&access_token=%s',
+            'https://graph.facebook.com/%s/%s/media?fields=%s&limit=%d&access_token=%s',
             rawurlencode($version),
             rawurlencode($userId),
             rawurlencode($fields),
@@ -67,25 +67,10 @@ class InstagramFeedService
 
     public function refreshAccessToken(): array
     {
-        $token = $this->accessToken();
-        if ($token === '') {
-            throw new RuntimeException('Configure INSTAGRAM_ACCESS_TOKEN no arquivo .env.');
-        }
-
-        $url = 'https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=' . rawurlencode($token);
-        $response = $this->requestJson($url);
-        if (empty($response['access_token'])) {
-            throw new RuntimeException('A Meta não retornou um novo token de acesso.');
-        }
-
-        $tokenData = [
-            'access_token' => (string) $response['access_token'],
-            'expires_at' => time() + (int) ($response['expires_in'] ?? 0),
-            'refreshed_at' => gmdate('c'),
-        ];
-        $this->writeJson($this->tokenPath(), $tokenData);
-
-        return $tokenData;
+        throw new RuntimeException(
+            'O site usa um Token de Página da API do Facebook, que não é renovado pelo endpoint do Instagram. ' .
+            'Quando necessário, gere um novo token da Página no Meta e atualize INSTAGRAM_ACCESS_TOKEN.'
+        );
     }
 
     private function normalizePost(array $item): ?array
@@ -113,11 +98,6 @@ class InstagramFeedService
 
     private function accessToken(): string
     {
-        $cached = $this->readJson($this->tokenPath());
-        if (!empty($cached['access_token'])) {
-            return (string) $cached['access_token'];
-        }
-
         return trim((string) getenv('INSTAGRAM_ACCESS_TOKEN'));
     }
 
@@ -182,8 +162,4 @@ class InstagramFeedService
         return Yii::getAlias('@frontend/runtime/instagram-feed.json');
     }
 
-    private function tokenPath(): string
-    {
-        return Yii::getAlias('@frontend/runtime/instagram-token.json');
-    }
 }
