@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use common\helpers\UploadUrl;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -159,12 +160,8 @@ class Imagem extends ActiveRecord
     public function getUrlComPrefixo()
     {
         if ($this->Url) {
-            $prefix = '/backend/web/';
-            if (isset($_SERVER['HTTP_HOST']) && (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false)) {
-                $prefix = '/Sinpaptep' . $prefix;
-            }
-            return $prefix . ltrim($this->Url, '/');
+            return UploadUrl::backendWeb($this->Url);
         }
         return null;
     }
-} 
+}

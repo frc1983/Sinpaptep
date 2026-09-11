@@ -77,6 +77,8 @@ jobs:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           COOKIE_VALIDATION_KEY_FRONTEND: ${{ secrets.COOKIE_VALIDATION_KEY_FRONTEND }}
           COOKIE_VALIDATION_KEY_BACKEND: ${{ secrets.COOKIE_VALIDATION_KEY_BACKEND }}
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
         run: |
           test -n "$DB_DSN"
           test -n "$DB_USERNAME"
@@ -91,8 +93,12 @@ jobs:
             printf 'DB_PASSWORD=%s\n' "$DB_PASSWORD"
             printf 'MAILER_USE_FILE_TRANSPORT=true\n'
             printf 'MAILER_DSN=\n'
+            printf 'MEDIA_BASE_URL=https://sindicatopublicitariosrs.com.br\n'
             printf 'COOKIE_VALIDATION_KEY_FRONTEND=%s\n' "$COOKIE_VALIDATION_KEY_FRONTEND"
             printf 'COOKIE_VALIDATION_KEY_BACKEND=%s\n' "$COOKIE_VALIDATION_KEY_BACKEND"
+            printf 'INSTAGRAM_USER_ID=%s\n' "$INSTAGRAM_USER_ID"
+            printf 'INSTAGRAM_ACCESS_TOKEN=%s\n' "$INSTAGRAM_ACCESS_TOKEN"
+            printf 'INSTAGRAM_API_VERSION=v24.0\n'
           } > .env
           printf 'User-agent: *\nDisallow: /\n' > frontend/web/robots.txt
 
