@@ -20,11 +20,11 @@ jobs:
       - name: Verificar configuração do preview
         id: preview-config
         env:
-          DB_DSN: ${{ secrets.PREVIEW_DB_DSN }}
-          DB_USERNAME: ${{ secrets.PREVIEW_DB_USERNAME }}
-          DB_PASSWORD: ${{ secrets.PREVIEW_DB_PASSWORD }}
-          COOKIE_FRONTEND: ${{ secrets.PREVIEW_COOKIE_VALIDATION_KEY_FRONTEND }}
-          COOKIE_BACKEND: ${{ secrets.PREVIEW_COOKIE_VALIDATION_KEY_BACKEND }}
+          DB_DSN: ${{ secrets.DB_DSN }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          COOKIE_FRONTEND: ${{ secrets.COOKIE_VALIDATION_KEY_FRONTEND }}
+          COOKIE_BACKEND: ${{ secrets.COOKIE_VALIDATION_KEY_BACKEND }}
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USER: ${{ secrets.FTP_USER }}
           FTP_PASS: ${{ secrets.FTP_PASS }}
@@ -36,7 +36,7 @@ jobs:
           else
             echo 'ready=false' >> "$GITHUB_OUTPUT"
             echo '### Preview ainda não publicado' >> "$GITHUB_STEP_SUMMARY"
-            echo 'Cadastre os secrets obrigatórios do ambiente `preview` e execute novamente este workflow.' >> "$GITHUB_STEP_SUMMARY"
+            echo 'Verifique os Secrets do repositório e execute novamente este workflow.' >> "$GITHUB_STEP_SUMMARY"
           fi
 
       - name: Checkout do branch dev
@@ -72,13 +72,11 @@ jobs:
       - name: Criar configuração isolada do preview
         if: steps.preview-config.outputs.ready == 'true'
         env:
-          DB_DSN: ${{ secrets.PREVIEW_DB_DSN }}
-          DB_USERNAME: ${{ secrets.PREVIEW_DB_USERNAME }}
-          DB_PASSWORD: ${{ secrets.PREVIEW_DB_PASSWORD }}
-          COOKIE_VALIDATION_KEY_FRONTEND: ${{ secrets.PREVIEW_COOKIE_VALIDATION_KEY_FRONTEND }}
-          COOKIE_VALIDATION_KEY_BACKEND: ${{ secrets.PREVIEW_COOKIE_VALIDATION_KEY_BACKEND }}
-          INSTAGRAM_USER_ID: ${{ secrets.PREVIEW_INSTAGRAM_USER_ID }}
-          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.PREVIEW_INSTAGRAM_ACCESS_TOKEN }}
+          DB_DSN: ${{ secrets.DB_DSN }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          COOKIE_VALIDATION_KEY_FRONTEND: ${{ secrets.COOKIE_VALIDATION_KEY_FRONTEND }}
+          COOKIE_VALIDATION_KEY_BACKEND: ${{ secrets.COOKIE_VALIDATION_KEY_BACKEND }}
         run: |
           test -n "$DB_DSN"
           test -n "$DB_USERNAME"
@@ -95,9 +93,6 @@ jobs:
             printf 'MAILER_DSN=\n'
             printf 'COOKIE_VALIDATION_KEY_FRONTEND=%s\n' "$COOKIE_VALIDATION_KEY_FRONTEND"
             printf 'COOKIE_VALIDATION_KEY_BACKEND=%s\n' "$COOKIE_VALIDATION_KEY_BACKEND"
-            printf 'INSTAGRAM_USER_ID=%s\n' "$INSTAGRAM_USER_ID"
-            printf 'INSTAGRAM_ACCESS_TOKEN=%s\n' "$INSTAGRAM_ACCESS_TOKEN"
-            printf 'INSTAGRAM_API_VERSION=v24.0\n'
           } > .env
           printf 'User-agent: *\nDisallow: /\n' > frontend/web/robots.txt
 
